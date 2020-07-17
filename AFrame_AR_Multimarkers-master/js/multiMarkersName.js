@@ -29,15 +29,22 @@ AFRAME.registerComponent('markers_start',{
 			markerEl.setAttribute('registerevents','');
 			sceneEl.appendChild(markerEl);
 
-			//Adding text to each marker
-			var textEl = document.createElement('a-entity');
+			if (k==0)
+			{
+				console.log("k is zero");
+			}
+			else
+			{
+				//Adding text to each marker
+				var textEl = document.createElement('a-entity');
 			
-			textEl.setAttribute('id','text');
-			textEl.setAttribute('text',{color: 'red', align: 'center', value:markersNameArray[k], width: '5.5'});
-			textEl.object3D.position.set(0, 0.7, 0);
-			textEl.object3D.rotation.set(-90, 0, 0);
+				textEl.setAttribute('id','text');
+				textEl.setAttribute('text',{color: 'red', align: 'center', value:markersNameArray[k], width: '5.5'});
+				textEl.object3D.position.set(0, 0.7, 0);
+				textEl.object3D.rotation.set(-90, 0, 0);
 
-			markerEl.appendChild(textEl);
+				markerEl.appendChild(textEl);
+			}
 		}
 	}
 });
