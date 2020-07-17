@@ -72,27 +72,11 @@ AFRAME.registerComponent('registerevents', {
 			marker.addEventListener("markerFound", ()=> {
 				var markerId = marker.id;
 				console.log('Marker Found: ', markerId);
-				if (markerId=='Marker_1')
-				{
-					console.log('FIRST Marker Found: ', markerId);
-				}
-				else
-				{
-					console.log('NOT VALID Marker Found: ', markerId);
-				}
 			});
 
 			marker.addEventListener("markerLost",() =>{
 				var markerId = marker.id;
 				console.log('Marker Lost: ', markerId);
-				if (markerId=='Marker_1')
-				{
-					console.log('FIRST Marker Lost: ', markerId);
-				}
-				else
-				{
-					console.log('NOT VALID Marker Found: ', markerId);
-				}
 			});
 		},
 	});
