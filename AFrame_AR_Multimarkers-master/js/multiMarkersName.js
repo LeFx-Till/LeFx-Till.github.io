@@ -36,7 +36,7 @@ AFRAME.registerComponent('markers_start',{
 				//var markerEl = document.createElement('a-marker');
 				//var videoURL="resources/media/Video_0-"+k+".mp4";
 				var videoEl = document.createElement('a-video');
-				sceneEl.appendChild(markerEl);
+				//sceneEl.appendChild(videoEl);
 			}
 			else
 			{
