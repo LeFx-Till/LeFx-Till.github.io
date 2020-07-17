@@ -39,7 +39,7 @@ AFRAME.registerComponent('markers_start',{
 				myVideo.setAttribute('id','video0');
 				myVideo.setAttribute('video0',{src: videoURL, autoplay: false, loop crossorigin: 'anonymous'});
 				assetsEl.appendChild(video);
-				sceneEl.appendChild(assetsEl);
+				//sceneEl.appendChild(assetsEl);
 				
 				// var videoEl = document.createElement('a-video');			
 				
