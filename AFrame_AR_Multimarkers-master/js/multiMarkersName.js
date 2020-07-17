@@ -39,7 +39,10 @@ AFRAME.registerComponent('markers_start',{
 				videoEl.setAttribute('src',videoURL);
 				videoEl.setAttribute('height',3);
 				videoEl.setAttribute('src',1.69811321);
-				sceneEl.appendChild(videoEl);
+				//videoEl.setAttribute('transparent',"false");
+				//videoEl.object3D.position.set(0, 0, 0);
+				//videoEl.object3D.rotation.set(0, 0, 0);
+				markerEl.appendChild(videoEl);
 			}
 			else
 			{
