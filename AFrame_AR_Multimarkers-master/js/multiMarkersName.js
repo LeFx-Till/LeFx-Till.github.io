@@ -74,7 +74,7 @@ AFRAME.registerComponent('registerevents', {
 
 			marker.addEventListener("markerFound", ()=> {
 				var markerId = marker.id;
-				console.log('Marker Found: ', markerId);
+				console.log('Marker Found By Till: ', markerId);
 			});
 
 			marker.addEventListener("markerLost",() =>{
