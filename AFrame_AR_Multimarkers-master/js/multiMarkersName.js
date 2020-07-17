@@ -9,6 +9,7 @@ AFRAME.registerComponent('markers_start',{
 		console.log('Add markers to the scene');
 
 		var sceneEl = document.querySelector('a-scene');
+		//var assetsEl = document.querySelector('a-assets');
 		
 		//list of the markers
 		for(var i=1; i<19; i++)
@@ -31,7 +32,11 @@ AFRAME.registerComponent('markers_start',{
 
 			if (k==0)
 			{
-				console.log("k is zero");
+				console.log("k is "+k);
+				//var markerEl = document.createElement('a-marker');
+				//var videoURL="resources/media/Video_0-"+k+".mp4";
+				var videoEl = document.createElement('a-video');
+				sceneEl.appendChild(markerEl);
 			}
 			else
 			{
