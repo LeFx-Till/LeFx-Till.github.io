@@ -8,16 +8,14 @@ AFRAME.registerComponent('markers_start',{
 	init:function(){
 		console.log('Add markers to the scene');
 
-		var sceneEl = document.querySelector('a-scene');
-		//var assetsEl = document.querySelector('a-assets');
+		var sceneEl = document.querySelector('a-scene');		
 		
 		//list of the markers
 		for(var i=1; i<19; i++)
 		{
 			var url="resources/markers/pattern-Individual_Blocks-"+i+".patt";
 			markersURLArray.push(url);
-			markersNameArray.push('Marker_'+i);
-			//console.log(url);
+			markersNameArray.push('Marker_'+i);			
 		}
 
 		for(var k=0; k<18; k++)
@@ -35,14 +33,14 @@ AFRAME.registerComponent('markers_start',{
 				var videoURL="resources/media/Video_0"+k+".mp4";
 				var videoEl = document.createElement('a-video');
 				
-				//videoEl.setAttribute('id','myVideo');
+				videoEl.setAttribute('id','myVideo');
 				//videoEl.setAttribute('video',{src: videoURL, height: '3', width:'1.69811321', value:markersNameArray[k], transparent:false});
-				videoEl.setAttribute('src',videoURL);
-				videoEl.setAttribute('height','3');
-				videoEl.setAttribute('width','1.69811321');
-				videoEl.setAttribute('transparent',false);
-				videoEl.object3D.position.set(0, 0, 0);
-				videoEl.object3D.rotation.set(0, 0, 0);
+				// videoEl.setAttribute('src',videoURL);
+				// videoEl.setAttribute('height','3');
+				// videoEl.setAttribute('width','1.69811321');
+				// videoEl.setAttribute('transparent',false);
+				// videoEl.object3D.position.set(0, 0, 0);
+				// videoEl.object3D.rotation.set(0, 0, 0);
 				
 				markerEl.appendChild(videoEl);
 			}
@@ -84,6 +82,14 @@ AFRAME.registerComponent('registerevents', {
 			marker.addEventListener("markerLost",() =>{
 				var markerId = marker.id;
 				console.log('Marker Lost: ', markerId);
+				if (markerId=='Marker_1')
+				{
+					console.log('FIRST Marker Found: ', markerId);
+				}
+				else
+				{
+					console.log('NOT VALID Marker Found: ', markerId);
+				}
 			});
 		},
 	});

@@ -128,19 +128,19 @@
   <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
     <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
     <a-assets>
-      <video id="Video_Asset_0" autoplay="false" loop crossorigin="anonymous" src="media/Daniel_Sieler.mp4" webkit-playsinline playsinline controls muted></video>
-	  <video id="Video_Asset_1" autoplay="false" loop crossorigin="anonymous" src="media/MuttiVati.mp4" webkit-playsinline playsinline controls muted></video>
+      <video id="Video_Asset_0" autoplay="false" loop crossorigin="anonymous" src="media/Video_00.mp4" webkit-playsinline playsinline controls muted></video>
+	  <video id="Video_Asset_1" autoplay="false" loop crossorigin="anonymous" src="media/Video_01.mp4" webkit-playsinline playsinline controls muted></video>
     </a-assets>
-    <a-marker id="marker_0" type="pattern" url="marker/pattern-ar-marker_01.patt" emitevents="true" button class="Android">
+    <a-marker id="marker_0" type="pattern" url="marker/pattern-Individual_Blocks-1.patt" emitevents="true" button class="Android">
       <a-video src="#Video_Asset_0" id="Video_0" class="intersectable" width="1.69811321" height="3" position="0 0 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
     </a-marker>
-	    <a-marker id="marker_1" type="pattern" url="marker/hiro.patt" emitevents="true" button class="Android">
+	    <a-marker id="marker_1" type="pattern" url="marker/pattern-Individual_Blocks-2.patt" emitevents="true" button class="Android">
       <a-video src="#Video_Asset_1" id="Video_1" class="intersectable" width="1.69811321" height="3" position="0 0 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
     </a-marker>
-    <a-marker id="marker_0" type="pattern" url="marker/pattern-ar-marker_01.patt" emitevents="true" button class="iOS">
+    <a-marker id="marker_0" type="pattern" url="marker/pattern-Individual_Blocks-1.patt" emitevents="true" button class="iOS">
       <a-video src="#Video_Asset_0" id="Video_0" class="intersectable" width="1.69811321" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
     </a-marker>
-	    <a-marker id="marker_1" type="pattern" url="marker/hiro.patt" emitevents="true" button class="iOS">
+	    <a-marker id="marker_1" type="pattern" url="marker/pattern-Individual_Blocks-2.patt" emitevents="true" button class="iOS">
       <a-video src="#Video_Asset_1" id="Video_1" class="intersectable" width="1.69811321" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
     </a-marker>
     <a-entity camera></a-entity>
