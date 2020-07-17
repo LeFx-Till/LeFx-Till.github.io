@@ -9,14 +9,14 @@ AFRAME.registerComponent('markers_start',{
 		console.log('Add markers to the scene');
 
 		var sceneEl = document.querySelector('a-scene');
-		var assetsEl = document.querySelector('a-assets');
 		
 		//list of the markers
 		for(var i=1; i<19; i++)
 		{
 			var url="resources/markers/pattern-Individual_Blocks-"+i+".patt";
 			markersURLArray.push(url);
-			markersNameArray.push('Marker_'+i);			
+			markersNameArray.push('Marker_'+i);
+			//console.log(url);
 		}
 
 		for(var k=0; k<18; k++)
@@ -29,37 +29,15 @@ AFRAME.registerComponent('markers_start',{
 			markerEl.setAttribute('registerevents','');
 			sceneEl.appendChild(markerEl);
 
-			// if (k==0)
-			// {								
-				// var videoURL="resources/media/Video_00.mp4";				
-				// var video = document.createElement('video');
-				
-				// video.setAttribute('id','video0');
-				// video.setAttribute('video0',{src: videoURL, autoplay: false, loop crossorigin: 'anonymous'});
-				// assetsEl.appendChild(video);
-				
-				// var videoEl = document.createElement('a-video');
-				// console.log('Added Video: ', videoURL);
-				
-				// videoEl.setAttribute('id','#video0');				
-				// videoEl.setAttribute('video0',{src:'#video0', height: '3', width:'1.69811321', transparent:false});								
-				// videoEl.object3D.position.set(0, 0, 0);
-				// videoEl.object3D.rotation.set(0, 0, 0);
-				
-				// markerEl.appendChild(videoEl);
-			// }
-			// else
-			{
-				//Adding text to each marker
-				var textEl = document.createElement('a-entity');
+			//Adding text to each marker
+			var textEl = document.createElement('a-entity');
 			
-				textEl.setAttribute('id','text');
-				textEl.setAttribute('text',{color: 'red', align: 'center', value:markersNameArray[k], width: '5.5'});
-				textEl.object3D.position.set(0, 0.7, 0);
-				textEl.object3D.rotation.set(-90, 0, 0);
+			textEl.setAttribute('id','text');
+			textEl.setAttribute('text',{color: 'red', align: 'center', value:markersNameArray[k], width: '5.5'});
+			textEl.object3D.position.set(0, 0.7, 0);
+			textEl.object3D.rotation.set(-90, 0, 0);
 
-				markerEl.appendChild(textEl);
-			}
+			markerEl.appendChild(textEl);
 		}
 	}
 });
