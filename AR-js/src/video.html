@@ -35,15 +35,29 @@
 
           marker_0.addEventListener("markerFound", function (evt) {
             markerFound = 1;
-            button.hidden = false;
-            button.innerHTML="Play";
+			
+			Video_1.pause();
+			Video_1.muted=true;
+			Video_0.play();
+			Video_0.muted=false;
+			
+			isPlaying = true;
+            //button.hidden = false;
+            //button.innerHTML="Play";
             //Video_0.play();  //if video should start immediently on marker detection
           });
 		  
 		    marker_1.addEventListener("markerFound", function (evt) {
             markerFound = 1;
-            button.hidden = false;
-            button.innerHTML="Play";
+			
+			Video_0.pause();
+			Video_0.muted=true;
+			Video_1.play();
+			Video_1.muted=false;
+			
+			isPlaying = true;
+            //button.hidden = false;
+            //button.innerHTML="Play";
             //Video_0.play();  //if video should start immediently on marker detection
           });
 
@@ -51,31 +65,31 @@
             markerFound = 0;
             Video_0.pause();
             isPlaying = false;
-            button.hidden = true;
+            //button.hidden = true;
           });
 		  
 			marker_1.addEventListener("markerLost", function (evt) {
             markerFound = 0;
             Video_1.pause();
             isPlaying = false;
-            button.hidden = true;
+            //button.hidden = true;
           });
 
-          button.addEventListener("click", function(evt){
-            if(isPlaying){
-              Video_0.pause();
-			  Video_1.pause();
-              isPlaying = false;
-              button.innerHTML="Play";
-              return;
-            }
-            Video_0.muted=false;
-			Video_1.muted=false;
-            Video_0.play();
-			Video_1.play();
-            isPlaying = true;
-            button.innerHTML="Pause";
-          });
+          <!-- button.addEventListener("click", function(evt){ -->
+            <!-- if(isPlaying){ -->
+              <!-- Video_0.pause(); -->
+			  <!-- Video_1.pause(); -->
+              <!-- isPlaying = false; -->
+              <!-- button.innerHTML="Play"; -->
+              <!-- return; -->
+            <!-- } -->
+            <!-- Video_0.muted=false; -->
+			<!-- Video_1.muted=false; -->
+            <!-- Video_0.play(); -->
+			<!-- Video_1.play(); -->
+            <!-- isPlaying = true; -->
+            <!-- button.innerHTML="Pause"; -->
+          <!-- }); -->
 
           fullbutton.addEventListener("click",
             function (evt){
