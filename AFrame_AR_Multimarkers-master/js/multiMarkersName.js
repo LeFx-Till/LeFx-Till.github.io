@@ -40,8 +40,8 @@ AFRAME.registerComponent('markers_start',{
 				videoEl.setAttribute('height',3);
 				videoEl.setAttribute('src',1.69811321);
 				//videoEl.setAttribute('transparent',"false");
-				//videoEl.object3D.position.set(0, 0, 0);
-				//videoEl.object3D.rotation.set(0, 0, 0);
+				videoEl.object3D.position.set(0, 0, 0);
+				videoEl.object3D.rotation.set(0, 0, 0);
 				markerEl.appendChild(videoEl);
 			}
 			else
@@ -69,6 +69,10 @@ AFRAME.registerComponent('registerevents', {
 			marker.addEventListener("markerFound", ()=> {
 				var markerId = marker.id;
 				console.log('Marker Found: ', markerId);
+				if (markerId==1)
+				{
+					console.log('FIRST Marker Found: ', markerId);
+				}
 			});
 
 			marker.addEventListener("markerLost",() =>{
