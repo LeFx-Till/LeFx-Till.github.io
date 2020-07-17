@@ -32,23 +32,24 @@ AFRAME.registerComponent('markers_start',{
 			
 			if (k==0)
 			{								
-				var videoURL="resources/media/Video_00.mp4";				
-				var myVideo = document.createElement('video');
+				var videoURL="resources/media/Video_00.mp4";	
+				console.log('Added Video: ', videoURL);				
+				// var myVideo = document.createElement('video');
 				
-				myVideo.setAttribute('id','video0');
-				myVideo.setAttribute('video0',{src: videoURL, autoplay: false, loop crossorigin: 'anonymous'});
-				assetsEl.appendChild(video);
-				sceneEl.appendChild(assetsEl);
+				// myVideo.setAttribute('id','video0');
+				// myVideo.setAttribute('video0',{src: videoURL, autoplay: false, loop crossorigin: 'anonymous'});
+				// assetsEl.appendChild(video);
+				// sceneEl.appendChild(assetsEl);
 				
-				var videoEl = document.createElement('a-video');
-				console.log('Added Video: ', videoURL);
+				// var videoEl = document.createElement('a-video');
+				// console.log('Added Video: ', videoURL);
 				
-				videoEl.setAttribute('id','#video0');				
-				videoEl.setAttribute('video0',{src:'#video0', height: '3', width:'1.69811321', transparent:false});								
-				videoEl.object3D.position.set(0, 0, 0);
-				videoEl.object3D.rotation.set(0, 0, 0);
+				// videoEl.setAttribute('id','#video0');				
+				// videoEl.setAttribute('video0',{src:'#video0', height: '3', width:'1.69811321', transparent:false});								
+				// videoEl.object3D.position.set(0, 0, 0);
+				// videoEl.object3D.rotation.set(0, 0, 0);
 				
-				markerEl.appendChild(videoEl);
+				// markerEl.appendChild(videoEl);
 			}
 			else
 			{
