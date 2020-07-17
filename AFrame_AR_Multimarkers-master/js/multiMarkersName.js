@@ -33,11 +33,11 @@ AFRAME.registerComponent('markers_start',{
 			if (k==0)
 			{								
 				var videoURL="resources/media/Video_0-"+k+".mp4";
-				var videoEl = document.createElement('a-entity');
-				videoEl.setAttribute('id','video');
+				var videoEl = document.createElement('a-video');
+				//videoEl.setAttribute('id','video');
 				videoEl.setAttribute('src',videoURL);
-				videoEl.setAttribute('height',3);
-				videoEl.setAttribute('width',1.69811321);
+				videoEl.setAttribute('height','3');
+				videoEl.setAttribute('width','1.69811321');
 				videoEl.setAttribute('transparent',false);
 				videoEl.object3D.position.set(0, 0.7, 0);
 				videoEl.object3D.rotation.set(-90, 0, 0);
