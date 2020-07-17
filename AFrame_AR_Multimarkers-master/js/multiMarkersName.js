@@ -27,7 +27,7 @@ AFRAME.registerComponent('markers_start',{
 			markerEl.setAttribute('id',markersNameArray[k]);
 
 			markerEl.setAttribute('registerevents','');
-			//sceneEl.appendChild(markerEl);
+			sceneEl.appendChild(markerEl);
 
 			// if (k==0)
 			// {								
