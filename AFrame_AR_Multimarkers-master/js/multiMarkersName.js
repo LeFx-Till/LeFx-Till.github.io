@@ -33,10 +33,10 @@ AFRAME.registerComponent('markers_start',{
 			if (k==0)
 			{
 				var videoURL="resources/media/Video_00.mp4";	
-				console.log('Added Tills SuperDuper Video: ', videoURL);
-				var myVideo = document.createElement('video');
+				console.log('Added Tills SuperDuperGyper Video: ', videoURL);
 				
-				//myVideo.setAttribute('id','video0');
+				var myVideo = document.createElement('video');				
+				myVideo.setAttribute('id','video0');
 				//myVideo.setAttribute('video0',{src: videoURL, autoplay: false, loop crossorigin: 'anonymous'});
 				//assetsEl.appendChild(video);
 				//sceneEl.appendChild(assetsEl);
