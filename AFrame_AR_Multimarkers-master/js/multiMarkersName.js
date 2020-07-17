@@ -36,7 +36,7 @@ AFRAME.registerComponent('markers_start',{
 				var videoEl = document.createElement('a-entity');
 				
 				videoEl.setAttribute('id','video');
-				videoEl.setAttribute('video',{src: videoURL, height: '3', width:'1.69811321', transparent:false});
+				videoEl.setAttribute('video',{src: videoURL, height: '3', width:'1.69811321', value:markersNameArray[k], transparent:false});
 				//videoEl.setAttribute('src',videoURL);
 				//videoEl.setAttribute('height','3');
 				//videoEl.setAttribute('width','1.69811321');
