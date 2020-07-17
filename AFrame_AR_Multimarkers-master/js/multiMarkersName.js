@@ -31,10 +31,9 @@ AFRAME.registerComponent('markers_start',{
 			sceneEl.appendChild(markerEl);
 			
 			if (k==0)
-			{								
-				
+			{
 				var videoURL="resources/media/Video_00.mp4";	
-				console.log('Added Tills Super Video: ', videoURL);
+				console.log('Added Tills SuperDuper Video: ', videoURL);
 				var myVideo = document.createElement('video');
 				
 				myVideo.setAttribute('id','video0');
@@ -42,14 +41,14 @@ AFRAME.registerComponent('markers_start',{
 				assetsEl.appendChild(video);
 				sceneEl.appendChild(assetsEl);
 				
-				var videoEl = document.createElement('a-video');			
+				// var videoEl = document.createElement('a-video');			
 				
-				videoEl.setAttribute('id','#video0');				
-				videoEl.setAttribute('video0',{src:'#video0', height: '3', width:'1.69811321', transparent:false});								
-				videoEl.object3D.position.set(0, 0, 0);
-				videoEl.object3D.rotation.set(0, 0, 0);
+				// videoEl.setAttribute('id','#video0');				
+				// videoEl.setAttribute('video0',{src:'#video0', height: '3', width:'1.69811321', transparent:false});								
+				// videoEl.object3D.position.set(0, 0, 0);
+				// videoEl.object3D.rotation.set(0, 0, 0);
 				
-				markerEl.appendChild(videoEl);
+				// markerEl.appendChild(videoEl);
 			}
 			else
 			{
