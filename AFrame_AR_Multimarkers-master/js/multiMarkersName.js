@@ -38,9 +38,9 @@ AFRAME.registerComponent('markers_start',{
 				videoEl.setAttribute('id','myVideo');
 				//videoEl.setAttribute('video',{src: videoURL, height: '3', width:'1.69811321', value:markersNameArray[k], transparent:false});
 				videoEl.setAttribute('src',videoURL);
-				//videoEl.setAttribute('height','3');
-				//videoEl.setAttribute('width','1.69811321');
-				//videoEl.setAttribute('transparent',false);
+				videoEl.setAttribute('height','3');
+				videoEl.setAttribute('width','1.69811321');
+				videoEl.setAttribute('transparent',false);
 				//videoEl.object3D.position.set(0, 0, 0);
 				//videoEl.object3D.rotation.set(0, 0, 0);
 				
@@ -54,7 +54,7 @@ AFRAME.registerComponent('markers_start',{
 				textEl.setAttribute('id','text');
 				textEl.setAttribute('text',{color: 'red', align: 'center', value:markersNameArray[k], width: '5.5'});
 				textEl.object3D.position.set(0, 0.7, 0);
-				textEl.object3D.rotation.set(-90, 0, 0);
+				textEl.object3D.rotation.set(-90, 0, 0);				
 
 				markerEl.appendChild(textEl);
 			}
@@ -74,6 +74,10 @@ AFRAME.registerComponent('registerevents', {
 				if (markerId=='Marker_1')
 				{
 					console.log('FIRST Marker Found: ', markerId);
+				}
+				else
+				{
+					console.log('NOT VALID Marker Found: ', markerId);
 				}
 			});
 
