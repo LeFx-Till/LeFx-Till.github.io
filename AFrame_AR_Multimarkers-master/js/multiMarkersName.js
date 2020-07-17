@@ -34,9 +34,12 @@ AFRAME.registerComponent('markers_start',{
 			{
 				console.log("k is "+k);
 				//var markerEl = document.createElement('a-marker');
-				//var videoURL="resources/media/Video_0-"+k+".mp4";
+				var videoURL="resources/media/Video_0-"+k+".mp4";
 				var videoEl = document.createElement('a-video');
-				//sceneEl.appendChild(videoEl);
+				videoEl.setAttribute('src',videoURL);
+				videoEl.setAttribute('height',3);
+				videoEl.setAttribute('src',1.69811321);
+				sceneEl.appendChild(videoEl);
 			}
 			else
 			{
