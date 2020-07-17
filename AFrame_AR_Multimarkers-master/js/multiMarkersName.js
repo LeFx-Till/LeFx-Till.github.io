@@ -32,9 +32,10 @@ AFRAME.registerComponent('markers_start',{
 			
 			if (k==0)
 			{								
+				
 				var videoURL="resources/media/Video_00.mp4";	
-				console.log('Added Video: ', videoURL);				
-				// var myVideo = document.createElement('video');
+				console.log('Added Tills Video: ', videoURL);
+				var myVideo = document.createElement('video');
 				
 				// myVideo.setAttribute('id','video0');
 				// myVideo.setAttribute('video0',{src: videoURL, autoplay: false, loop crossorigin: 'anonymous'});
@@ -75,7 +76,7 @@ AFRAME.registerComponent('registerevents', {
 
 			marker.addEventListener("markerFound", ()=> {
 				var markerId = marker.id;
-				console.log('Marker Found By Till: ', markerId);
+				console.log('Marker Found By Till_01: ', markerId);
 			});
 
 			marker.addEventListener("markerLost",() =>{
