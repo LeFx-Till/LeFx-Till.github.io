@@ -35,7 +35,7 @@ AFRAME.registerComponent('markers_start',{
 				var videoURL="resources/media/Video_0-"+k+".mp4";
 				var videoEl = document.createElement('a-video');
 				
-				videoEl.setAttribute('id','myVideo');
+				//videoEl.setAttribute('id','myVideo');
 				//videoEl.setAttribute('video',{src: videoURL, height: '3', width:'1.69811321', value:markersNameArray[k], transparent:false});
 				videoEl.setAttribute('src',videoURL);
 				videoEl.setAttribute('height','3');
@@ -54,7 +54,7 @@ AFRAME.registerComponent('markers_start',{
 				textEl.setAttribute('id','text');
 				textEl.setAttribute('text',{color: 'red', align: 'center', value:markersNameArray[k], width: '5.5'});
 				textEl.object3D.position.set(0, 0.7, 0);
-				textEl.object3D.rotation.set(-90, 0, 0);				
+				textEl.object3D.rotation.set(-90, 0, 0);
 
 				markerEl.appendChild(textEl);
 			}
