@@ -39,6 +39,7 @@ AFRAME.registerComponent('markers_start',{
 				assetsEl.appendChild(video);
 				
 				var videoEl = document.createElement('a-video');
+				console.log('Added Video: ', videoURL);
 				
 				videoEl.setAttribute('id','#video0');				
 				videoEl.setAttribute('video0',{src:'#video0', height: '3', width:'1.69811321', transparent:false});								
