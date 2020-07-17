@@ -9,7 +9,7 @@ AFRAME.registerComponent('markers_start',{
 		console.log('Add markers to the scene');
 
 		var sceneEl = document.querySelector('a-scene');
-		var assetsEl = document.querySelector('a-assets');
+		//var assetsEl = document.querySelector('a-assets');
 		
 		//list of the markers
 		for(var i=1; i<19; i++)
