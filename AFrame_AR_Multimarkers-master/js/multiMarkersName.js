@@ -8,7 +8,8 @@ AFRAME.registerComponent('markers_start',{
 	init:function(){
 		console.log('Add markers to the scene');
 
-		var sceneEl = document.querySelector('a-scene');		
+		var sceneEl = document.querySelector('a-scene');
+		var assetsEl = document.querySelector('a-assets');
 		
 		//list of the markers
 		for(var i=1; i<19; i++)
@@ -30,17 +31,19 @@ AFRAME.registerComponent('markers_start',{
 
 			if (k==0)
 			{								
-				var videoURL="resources/media/Video_0"+k+".mp4";
+				var videoURL="resources/media/Video_00.mp4";				
+				var video = document.createElement('video');
+				
+				video.setAttribute('id','video0');
+				video.setAttribute('video0',{src: videoURL, autoplay: false, loop crossorigin: 'anonymous'});
+				assetsEl.appendChild(video);
+				
 				var videoEl = document.createElement('a-video');
 				
-				videoEl.setAttribute('id','myVideo');
-				//videoEl.setAttribute('video',{src: videoURL, height: '3', width:'1.69811321', value:markersNameArray[k], transparent:false});
-				// videoEl.setAttribute('src',videoURL);
-				// videoEl.setAttribute('height','3');
-				// videoEl.setAttribute('width','1.69811321');
-				// videoEl.setAttribute('transparent',false);
-				// videoEl.object3D.position.set(0, 0, 0);
-				// videoEl.object3D.rotation.set(0, 0, 0);
+				videoEl.setAttribute('id','#video0');				
+				videoEl.setAttribute('video0',{src:'#video0', height: '3', width:'1.69811321', transparent:false});								
+				videoEl.object3D.position.set(0, 0, 0);
+				videoEl.object3D.rotation.set(0, 0, 0);
 				
 				markerEl.appendChild(videoEl);
 			}
@@ -84,7 +87,7 @@ AFRAME.registerComponent('registerevents', {
 				console.log('Marker Lost: ', markerId);
 				if (markerId=='Marker_1')
 				{
-					console.log('FIRST Marker Found: ', markerId);
+					console.log('FIRST Marker Lost: ', markerId);
 				}
 				else
 				{
