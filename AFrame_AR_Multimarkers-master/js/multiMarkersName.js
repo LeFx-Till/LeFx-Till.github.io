@@ -10,7 +10,7 @@ AFRAME.registerComponent('markers_start',{
 
 		var sceneEl = document.querySelector('a-scene');
 		
-		//create two arrays: the first one with the URL of the PATT files, the second an unique ID for each marker.
+		//list of the markers
 		for(var i=1; i<19; i++)
 		{
 			var url="resources/markers/pattern-Individual_Blocks-"+i+".patt";
@@ -19,7 +19,6 @@ AFRAME.registerComponent('markers_start',{
 			//console.log(url);
 		}
 
-		//create the markers. For each iteration it creates an empty <a-marker> tag and it sets the components type=”pattern” , url=”PATH/TO/PATT” , id=”Marker_ID” and the registerevents
 		for(var k=0; k<18; k++)
 		{
 			var markerEl = document.createElement('a-marker');
@@ -30,32 +29,15 @@ AFRAME.registerComponent('markers_start',{
 			markerEl.setAttribute('registerevents','');
 			sceneEl.appendChild(markerEl);
 
-			if (k==0)
-			{
-				// var videoURL="resources/media/Video_0-"+k+".mp4";
-				// var videoEl = document.createElement('a-video');
-				// videoEl.setAttribute('src',videoURL);
-				// videoEl.setAttribute('height',3);
-				// videoEl.setAttribute('src',1.69811321);
-				// videoEl.setAttribute('color',"#FFFFFF");
-				// videoEl.setAttribute('transparent',"false");
-				// videoEl.object3D.position.set(0, 0, 0);
-				// videoEl.object3D.rotation.set(0, 0, 0);
-				
-				// markerEl.appendChild(videoEl);
-			}
-			else
-			{
-				//Adding text to each marker
-				var textEl = document.createElement('a-entity');
+			//Adding text to each marker
+			var textEl = document.createElement('a-entity');
 			
-				textEl.setAttribute('id','text');
-				textEl.setAttribute('text',{color: 'red', align: 'center', value:markersNameArray[k], width: '5.5'});
-				textEl.object3D.position.set(0, 0.7, 0);
-				textEl.object3D.rotation.set(-90, 0, 0);
+			textEl.setAttribute('id','text');
+			textEl.setAttribute('text',{color: 'red', align: 'center', value:markersNameArray[k], width: '5.5'});
+			textEl.object3D.position.set(0, 0.7, 0);
+			textEl.object3D.rotation.set(-90, 0, 0);
 
-				markerEl.appendChild(textEl);
-			}
+			markerEl.appendChild(textEl);
 		}
 	}
 });
