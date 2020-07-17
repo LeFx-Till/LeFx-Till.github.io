@@ -22,24 +22,41 @@
         init: function ()
         {
           var elem = document.documentElement;
-          var marker = document.querySelector("#marker");
+          var marker_0 = document.querySelector("#marker_0");
+		  var marker_1 = document.querySelector("#marker_1");
           var fullbutton = document.querySelector("#fullscreen");
           var Video_0 = document.querySelector("#Video_Asset_0");
+		  var Video_1 = document.querySelector("#Video_Asset_1");
           var button = document.querySelector("#mutebutton");
           button.hidden = true;
           Video_0.pause();
+		  Video_1.pause();
           var isPlaying = false;
 
-          marker.addEventListener("markerFound", function (evt) {
+          marker_0.addEventListener("markerFound", function (evt) {
             markerFound = 1;
             button.hidden = false;
             button.innerHTML="Play";
-            Video_0.play();  //if video should start immediently on marker detection
+            //Video_0.play();  //if video should start immediently on marker detection
+          });
+		  
+		    marker_1.addEventListener("markerFound", function (evt) {
+            markerFound = 1;
+            button.hidden = false;
+            button.innerHTML="Play";
+            //Video_0.play();  //if video should start immediently on marker detection
           });
 
-          marker.addEventListener("markerLost", function (evt) {
+          marker_0.addEventListener("markerLost", function (evt) {
             markerFound = 0;
             Video_0.pause();
+            isPlaying = false;
+            button.hidden = true;
+          });
+		  
+			marker_1.addEventListener("markerLost", function (evt) {
+            markerFound = 0;
+            Video_1.pause();
             isPlaying = false;
             button.hidden = true;
           });
@@ -47,12 +64,15 @@
           button.addEventListener("click", function(evt){
             if(isPlaying){
               Video_0.pause();
+			  Video_1.pause();
               isPlaying = false;
               button.innerHTML="Play";
               return;
             }
             Video_0.muted=false;
+			Video_1.muted=false;
             Video_0.play();
+			Video_1.play();
             isPlaying = true;
             button.innerHTML="Pause";
           });
@@ -109,12 +129,19 @@
     <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
     <a-assets>
       <video id="Video_Asset_0" autoplay="false" loop crossorigin="anonymous" src="media/Daniel_Sieler.mp4" webkit-playsinline playsinline controls muted></video>
+	  <video id="Video_Asset_1" autoplay="false" loop crossorigin="anonymous" src="media/MuttiVati.mp4" webkit-playsinline playsinline controls muted></video>
     </a-assets>
-    <a-marker id="marker" type="pattern" url="marker/hiro.patt" emitevents="true" button class="Android">
+    <a-marker id="marker_0" type="pattern" url="marker/hiro.patt" emitevents="true" button class="Android">
       <a-video src="#Video_Asset_0" id="Video_0" class="intersectable" width="1.69811321" height="3" position="0 0 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
     </a-marker>
-    <a-marker id="marker" type="pattern" url="marker/hiro.patt" emitevents="true" button class="iOS">
+	    <a-marker id="marker_1" type="pattern" url="marker/pattern-ar-marker_01.patt" emitevents="true" button class="Android">
+      <a-video src="#Video_Asset_1" id="Video_1" class="intersectable" width="1.69811321" height="3" position="0 0 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+    </a-marker>
+    <a-marker id="marker_0" type="pattern" url="marker/hiro.patt" emitevents="true" button class="iOS">
       <a-video src="#Video_Asset_0" id="Video_0" class="intersectable" width="1.69811321" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+    </a-marker>
+	    <a-marker id="marker_1" type="pattern" url="marker/pattern-ar-marker_01.patt" emitevents="true" button class="iOS">
+      <a-video src="#Video_Asset_1" id="Video_1" class="intersectable" width="1.69811321" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
     </a-marker>
     <a-entity camera></a-entity>
   </a-scene>
