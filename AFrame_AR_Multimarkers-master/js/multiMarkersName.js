@@ -36,9 +36,9 @@ AFRAME.registerComponent('markers_start',{
 				console.log('Added Tills SuperDuper Video: ', videoURL);
 				var myVideo = document.createElement('video');
 				
-				myVideo.setAttribute('id','video0');
-				myVideo.setAttribute('video0',{src: videoURL, autoplay: false, loop crossorigin: 'anonymous'});
-				assetsEl.appendChild(video);
+				//myVideo.setAttribute('id','video0');
+				//myVideo.setAttribute('video0',{src: videoURL, autoplay: false, loop crossorigin: 'anonymous'});
+				//assetsEl.appendChild(video);
 				//sceneEl.appendChild(assetsEl);
 				
 				// var videoEl = document.createElement('a-video');			
