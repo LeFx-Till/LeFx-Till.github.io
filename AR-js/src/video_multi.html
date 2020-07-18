@@ -65,9 +65,9 @@
                 button.hidden = true;
 
                 for (var i = 0; i < 2; i++) {
-                    markerArray[i].addEventListener("markerFound", function () { markerFound(i); }, false);
+                    markerArray[i].addEventListener("markerFound", function () { markerFound(i); });
 
-                    markerArray[i].addEventListener("markerLost", function () { markerLost(i); }, false);
+                    markerArray[i].addEventListener("markerLost", function () { markerLost(i); });
                 }
 
                 button.addEventListener("click", function (evt) {
