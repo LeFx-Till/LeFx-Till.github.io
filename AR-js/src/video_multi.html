@@ -17,12 +17,20 @@
     <!-- we import arjs version without NFT but with marker + location based support -->
     <script src="https://raw.githack.com/AR-js-org/AR.js/3.0.0/aframe/build/aframe-ar.js"></script>
     <script>
+        const amountMarkers = 2;
         var currentMarker = '';
+        var currentMarkerID = -1;
         var markerFound = 0;
         var markerArray = [];
         var videoArray = [];
         var markersNameArray = [];
         var markersURLArray = [];
+
+        function PauseVideosAll() {
+            for (var i = 0; i < amountMarkers; i++) {
+                videoArray[i].pause();
+            }
+        }
 
         AFRAME.registerComponent('button', {
             init: function () {
@@ -31,40 +39,37 @@
                 var button = document.querySelector("#mutebutton");
                 var isPlaying = false;
 
-                // create marker and video arrays
-                for (var i = 0; i < 2; i++) {
+                button.hidden = true;
+
+                for (var i = 0; i < amountMarkers; i++) {
+
+                    // create marker array
                     var newMarker = document.querySelector("#marker_0" + i);
                     markerArray.push(newMarker);
 
+                    // create video array
                     var newVideo = document.querySelector("#Video_Asset_0" + i);
                     videoArray.push(newVideo);
                 }
 
-                videoArray[0].pause();
-                videoArray[1].pause();
-
-                button.hidden = true;
+                PauseVideosAll()
 
                 const marker = this.el;
                 marker.addEventListener("markerFound", () => {
                     markerFound = 1;
 
-                    console.log('Le Button Is there');
                     button.hidden = false;
                     button.innerHTML = "Play";
 
                     currentMarker = marker.id;
-
                     console.log('Se Marker Is Found : ', marker.id);
                 });
 
-                marker.addEventListener("markerLost", () => {                    
+                marker.addEventListener("markerLost", () => {
                     markerFound = 0;
 
-                    videoArray[0].pause();
-                    videoArray[1].pause();
+                    PauseVideosAll();
 
-                    console.log('Le Button Is GONE');
                     isPlaying = false;
                     button.hidden = true;
 
@@ -74,11 +79,20 @@
 
                 button.addEventListener("click", function (evt) {
                     if (isPlaying) {
-                        videoArray[0].pause();
-                        videoArray[1].pause();
+
+                        PauseVideosAll();
                         isPlaying = false;
                         button.innerHTML = "Play";
                         return;
+                    }
+
+                    if (currentMarker != '') {
+                        videoArray[0].muted = false;
+                        videoArray[0].play();
+
+                        console.log('Try play video_00', videoArray[0].id);
+                        isPlaying = true;
+                        button.innerHTML = "Pause";
                     }
 
                     if (currentMarker == markerArray[0].id) {
