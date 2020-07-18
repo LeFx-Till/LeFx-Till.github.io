@@ -21,11 +21,9 @@
         var currentMarker = '';
         var currentMarkerID = -1;
         var markerFound = 0;
-        var markerArray = [];
+        //var markerArray = [];
         var markerIDArray = [];
-        var videoArray = [];
-        var markersNameArray = [];
-        var markersURLArray = [];
+        var videoArray = [];        
 
         function PauseVideosAll() {
             for (var i = 0; i < amountMarkers; i++) {
@@ -48,8 +46,8 @@
 
                     // create marker array
                     var newMarker = document.querySelector("#marker_0" + i);
-                    console.log('pushing to marker array ', newMarker);
-                    markerArray.push(newMarker);
+                    //console.log('pushing to marker array ', newMarker);
+                    //markerArray.push(newMarker);
                     markerIDArray.push(newMarker.id);
 
                     // create video array
@@ -95,11 +93,11 @@
 
                     if (currentMarker != '') {
                         var index = markerIDArray.indexOf(currentMarker);
-                        console.log('Click on Index ', index, currentMarker, markerArray[0].id);
+                        console.log('Click on Index ', currentMarker);
                         videoArray[index].muted = false;
                         videoArray[index].play();
 
-                        console.log('Me Try play video_0', videoArray[index].id);
+                        console.log('Me Try play ', videoArray[index].id);
                         isPlaying = true;
                         button.innerHTML = "Pause";
                     }
