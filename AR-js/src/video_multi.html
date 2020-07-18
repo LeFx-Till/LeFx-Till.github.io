@@ -79,7 +79,6 @@
 
                 button.addEventListener("click", function (evt) {
                     if (isPlaying) {
-
                         PauseVideosAll();
                         isPlaying = false;
                         button.innerHTML = "Play";
@@ -87,32 +86,13 @@
                     }
 
                     if (currentMarker != '') {
-                        videoArray[0].muted = false;
-                        videoArray[0].play();
+                        var index = currentMarker.split('_')[1];
+                        videoArray[index].muted = false;
+                        videoArray[index].play();
 
-                        console.log('Try play video_00', videoArray[0].id);
+                        console.log('Me Try play video_0', videoArray[index].id);
                         isPlaying = true;
                         button.innerHTML = "Pause";
-                    }
-
-                    if (currentMarker == markerArray[0].id) {
-                        videoArray[0].muted = false;
-                        videoArray[0].play();
-
-                        console.log('Try play video_00', videoArray[0].id);
-                        isPlaying = true;
-                        button.innerHTML = "Pause";
-                    }
-                    else if (currentMarker == markerArray[1].id) {
-                        videoArray[1].muted = false;
-                        videoArray[1].play();
-
-                        console.log('Try play video_01', videoArray[1].id);
-                        isPlaying = true;
-                        button.innerHTML = "Pause";
-                    }
-                    else {
-                        console.log('I tried but no marker confirmation');
                     }
                 });
 
