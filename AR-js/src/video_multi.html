@@ -24,6 +24,25 @@
         var markersNameArray = [];
         var markersURLArray = [];
 
+        function markerFound(index) {
+            markerFound = 1;
+            button.hidden = false;
+            button.innerHTML = "Play";
+
+            currentMarker = markerArray[index].id;
+            console.log('Found Marker 0' + index, markerArray[index].id);
+        }
+
+        function markerLost(index) {
+            currentMarker = '';
+            markerFound = 0;
+            videoArray[index].pause();
+            isPlaying = false;
+            button.hidden = true;
+
+            console.log('Lost Marker 0' + index, markerArray[index].id);
+        }
+
         AFRAME.registerComponent('button', {
             init: function () {
                 var elem = document.documentElement;
@@ -46,26 +65,9 @@
                 button.hidden = true;
 
                 for (var i = 0; i < 2; i++) {
-                    markerArray[i].addEventListener("markerFound", function (evt) {
-                        markerFound = 1;
-                        button.hidden = false;
-                        button.innerHTML = "Play";
+                    markerArray[i].addEventListener("markerFound", function () { markerFound(i); }, false);
 
-                        currentMarker = markerArray[i].id;
-                        console.log('Found Marker 0' + i, markerArray[i].id);
-                    });
-                }
-
-                for (var i = 0; i < 2; i++) {
-                    markerArray[i].addEventListener("markerLost", function (evt) {
-                        currentMarker = '';
-                        markerFound = 0;
-                        videoArray[i].pause();
-                        isPlaying = false;
-                        button.hidden = true;
-
-                        console.log('Lost Marker 0' + i, markerArray[i].id);
-                    });
+                    markerArray[i].addEventListener("markerLost", function () { markerLost(i); }, false);
                 }
 
                 button.addEventListener("click", function (evt) {
