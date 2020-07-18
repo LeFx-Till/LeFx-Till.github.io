@@ -48,10 +48,22 @@
                 const marker = this.el;
                 marker.addEventListener("markerFound", () => {                    
                     console.log('Se Marker Found : ', marker.id);
+                    markerFound = 1;
+                    button.hidden = false;
+                    button.innerHTML = "Play";
+
+                    currentMarker = marker.id;
                 });
 
                 marker.addEventListener("markerLost", () => {                    
                     console.log('Se Marker Lost: ', marker.id);
+
+                    currentMarker = '';
+                    markerFound = 0;
+                    videoArray[0].pause();
+                    videoArray[1].pause();
+                    isPlaying = false;
+                    button.hidden = true;
                 });
 
                 button.addEventListener("click", function (evt) {
