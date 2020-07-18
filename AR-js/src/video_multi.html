@@ -22,6 +22,7 @@
         var currentMarkerID = -1;
         var markerFound = 0;
         var markerArray = [];
+        var markerIDArray = [];
         var videoArray = [];
         var markersNameArray = [];
         var markersURLArray = [];
@@ -49,6 +50,7 @@
                     var newMarker = document.querySelector("#marker_0" + i);
                     console.log('pushing to marker array ', newMarker);
                     markerArray.push(newMarker);
+                    markerIDArray.push(newMarker.id);
 
                     // create video array
                     var newVideo = document.querySelector("#Video_Asset_0" + i);
@@ -71,7 +73,7 @@
 
                 marker.addEventListener("markerLost", () => {
                     markerFound = 0;
-                                        
+
                     PauseVideosAll();
 
                     isPlaying = false;
@@ -92,7 +94,7 @@
                     }
 
                     if (currentMarker != '') {
-                        var index = markerArray.indexOf(currentMarker.id);
+                        var index = markerIDArray.indexOf(currentMarker);
                         console.log('Click on Index ', index, currentMarker, markerArray[0].id);
                         videoArray[index].muted = false;
                         videoArray[index].play();
