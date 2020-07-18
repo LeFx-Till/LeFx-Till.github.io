@@ -45,7 +45,7 @@
                     button.hidden = false;
                     button.innerHTML = "Play";
 
-                    console.log('Found Marker 00: ', markerId);
+                    console.log('Found Marker 00');
                 });
 
                 marker_01.addEventListener("markerFound", function (evt)
@@ -54,7 +54,7 @@
                     button.hidden = false;
                     button.innerHTML = "Play";
 
-                    console.log('Found Marker 01: ', markerId);
+                    console.log('Found Marker 01');
                 });
 
                 marker_00.addEventListener("markerLost", function (evt)
@@ -64,7 +64,7 @@
                     isPlaying = false;
                     button.hidden = true;
 
-                    console.log('Lost Marker 00: ', markerId);
+                    console.log('Lost Marker 00');
                 });
 
                 marker_01.addEventListener("markerLost", function (evt)
@@ -74,7 +74,7 @@
                     isPlaying = false;
                     button.hidden = true;
 
-                    console.log('Lost Marker 01: ', markerId);
+                    console.log('Lost Marker 01');
                 });
 
                 button.addEventListener("click", function (evt)
@@ -174,14 +174,14 @@
             <a-video src="#Video_Asset_00" id="Video_00" class="intersectable" width="1.698" height="3" position="0 0 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
         <a-marker id="marker_01" type="pattern" url="marker/hiro.patt" emitevents="true" button class="Android">
-            <a-video src="#Video_Asset_01" id="Video_01" class="intersectable" width="1.698" height="3" position="0 0 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+            <a-video src="#Video_Asset_01" id="Video_01" class="intersectable" width="3" height="1.698" position="0 0 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
 
         <a-marker id="marker_00" type="pattern" url="marker/pattern-ar-marker_poly_01.patt" emitevents="true" button class="iOS">
             <a-video src="#Video_Asset_00" id="Video_00" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
         <a-marker id="marker_01" type="pattern" url="marker/hiro.patt" emitevents="true" button class="iOS">
-            <a-video src="#Video_Asset_01" id="Video_01" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+            <a-video src="#Video_Asset_01" id="Video_01" class="intersectable" width="3" height="1.698" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
 
         <a-entity camera></a-entity>
