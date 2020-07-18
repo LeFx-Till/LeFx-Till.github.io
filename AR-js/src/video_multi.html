@@ -40,11 +40,12 @@
                 var isPlaying = false;
 
                 button.hidden = true;
-
+                                
                 for (var i = 0; i < amountMarkers; i++) {
 
                     // create marker array
                     var newMarker = document.querySelector("#marker_0" + i);
+                    console.log('pushing to marker array ', newMarker);
                     markerArray.push(newMarker);
 
                     // create video array
@@ -91,7 +92,7 @@
 
                     if (currentMarker != '') {
                         var index = markerArray.indexOf(currentMarker);
-                        console.log('Click on Index ', index);
+                        console.log('Click on Index ', index, currentMarker, markerArray[0]);
                         videoArray[index].muted = false;
                         videoArray[index].play();
 
