@@ -22,7 +22,7 @@
         var currentMarkerID = -1;
         var markerFound = 0;
         //var markerArray = [];
-        var markerIDArray = [];
+        //var markerIDArray = [];
         var videoArray = [];        
 
         function PauseVideosAll() {
@@ -35,113 +35,112 @@
             init: function () {
                 console.log('#######');
 
-                var elem = document.documentElement;
-                var fullbutton = document.querySelector("#fullscreen");
-                var button = document.querySelector("#mutebutton");
-                var isPlaying = false;
+                //var elem = document.documentElement;
+                //var fullbutton = document.querySelector("#fullscreen");
+                //var button = document.querySelector("#mutebutton");
+                //var isPlaying = false;
 
-                button.hidden = true;
+                //button.hidden = true;
 
-                for (var i = 0; i < amountMarkers; i++) {
+                //for (var i = 0; i < amountMarkers; i++) {
 
-                    // create marker array
-                    var newMarker = document.querySelector("#marker_0" + i);
-                    //console.log('pushing to marker array ', newMarker);
-                    //markerArray.push(newMarker);
-                    markerIDArray.push(newMarker.id);
+                //    // create marker array
+                //    //var newMarker = document.querySelector("#marker_0" + i);
+                //    //console.log('pushing to marker array ', newMarker);
+                //    //markerArray.push(newMarker);
+                //    //markerIDArray.push(newMarker.id);
 
-                    // create video array
-                    var newVideo = document.querySelector("#Video_Asset_0" + i);
-                    videoArray.push(newVideo);
-                }
+                //    // create video array
+                //    var newVideo = document.querySelector("#Video_Asset_0" + i);
+                //    videoArray.push(newVideo);
+                //}
+                                
+                //PauseVideosAll()
 
-                console.log('CALL PAUSING INIT');
-                PauseVideosAll()
+                //const marker = this.el;
+                //marker.addEventListener("markerFound", () => {
+                //    markerFound = 1;
 
-                const marker = this.el;
-                marker.addEventListener("markerFound", () => {
-                    markerFound = 1;
+                //    button.hidden = false;
+                //    button.innerHTML = "Play";
 
-                    button.hidden = false;
-                    button.innerHTML = "Play";
+                //    currentMarker = marker.id;
+                //    console.log('Se Marker Is Found : ', marker.id, currentMarker);
+                //});
 
-                    currentMarker = marker.id;
-                    console.log('Se Marker Is Found : ', marker.id, currentMarker);
-                });
+                //marker.addEventListener("markerLost", () => {
+                //    markerFound = 0;
 
-                marker.addEventListener("markerLost", () => {
-                    markerFound = 0;
+                //    PauseVideosAll();
 
-                    PauseVideosAll();
+                //    isPlaying = false;
+                //    button.hidden = true;
 
-                    isPlaying = false;
-                    button.hidden = true;
+                //    currentMarker = '';
+                //    console.log('Se Marker Is Lost: ', marker.id);
+                //});
 
-                    currentMarker = '';
-                    console.log('Se Marker Is Lost: ', marker.id);
-                });
+                //button.addEventListener("click", function (evt) {
+                //    if (isPlaying) {
 
-                button.addEventListener("click", function (evt) {
-                    if (isPlaying) {
+                //        console.log('CALL PAUSING click');
+                //        PauseVideosAll();
+                //        isPlaying = false;
+                //        button.innerHTML = "Play";
+                //        return;
+                //    }
 
-                        console.log('CALL PAUSING click');
-                        PauseVideosAll();
-                        isPlaying = false;
-                        button.innerHTML = "Play";
-                        return;
-                    }
+                //    //if (currentMarker != '') {
+                //    //    var index = markerIDArray.indexOf(currentMarker);
+                //    //    console.log('Click on Index ', currentMarker);
+                //    //    videoArray[index].muted = false;
+                //    //    videoArray[index].play();
 
-                    if (currentMarker != '') {
-                        var index = markerIDArray.indexOf(currentMarker);
-                        console.log('Click on Index ', currentMarker);
-                        videoArray[index].muted = false;
-                        videoArray[index].play();
+                //    //    console.log('Me Try play ', videoArray[index].id);
+                //    //    isPlaying = true;
+                //    //    button.innerHTML = "Pause";
+                //    //}
+                //});
 
-                        console.log('Me Try play ', videoArray[index].id);
-                        isPlaying = true;
-                        button.innerHTML = "Pause";
-                    }
-                });
+                //fullbutton.addEventListener("click", function (evt) {
+                //    if (fullscreen == 0) {
+                //        if (elem.requestFullscreen) {
+                //            elem.requestFullscreen();
+                //        }
+                //        else if (elem.mozRequestFullScreen) {
+                //            /* Firefox */
+                //            elem.mozRequestFullScreen();
+                //        }
+                //        else if (elem.webkitRequestFullscreen) {
+                //            /* Chrome, Safari and Opera */
+                //            elem.webkitRequestFullscreen();
+                //        }
+                //        else if (elem.msRequestFullscreen) {
+                //            /* IE/Edge */
+                //            elem.msRequestFullscreen();
+                //        }
 
-                fullbutton.addEventListener("click", function (evt) {
-                    if (fullscreen == 0) {
-                        if (elem.requestFullscreen) {
-                            elem.requestFullscreen();
-                        }
-                        else if (elem.mozRequestFullScreen) {
-                            /* Firefox */
-                            elem.mozRequestFullScreen();
-                        }
-                        else if (elem.webkitRequestFullscreen) {
-                            /* Chrome, Safari and Opera */
-                            elem.webkitRequestFullscreen();
-                        }
-                        else if (elem.msRequestFullscreen) {
-                            /* IE/Edge */
-                            elem.msRequestFullscreen();
-                        }
+                //        fullbutton.setAttribute("src", "vendor/exit_fullscreen.png");
+                //        fullscreen = 1;
+                //    }
+                //    else {
+                //        if (document.exitFullscreen) {
+                //            document.exitFullscreen();
+                //        }
+                //        else if (document.webkitExitFullscreen) {
+                //            document.webkitExitFullscreen();
+                //        }
+                //        else if (document.mozCancelFullScreen) {
+                //            document.mozCancelFullScreen();
+                //        }
+                //        else if (document.msExitFullscreen) {
+                //            document.msExitFullscreen();
+                //        }
 
-                        fullbutton.setAttribute("src", "vendor/exit_fullscreen.png");
-                        fullscreen = 1;
-                    }
-                    else {
-                        if (document.exitFullscreen) {
-                            document.exitFullscreen();
-                        }
-                        else if (document.webkitExitFullscreen) {
-                            document.webkitExitFullscreen();
-                        }
-                        else if (document.mozCancelFullScreen) {
-                            document.mozCancelFullScreen();
-                        }
-                        else if (document.msExitFullscreen) {
-                            document.msExitFullscreen();
-                        }
-
-                        fullbutton.setAttribute("src", "vendor/fullscreen.png");
-                        fullscreen = 0;
-                    }
-                });
+                //        fullbutton.setAttribute("src", "vendor/fullscreen.png");
+                //        fullscreen = 0;
+                //    }
+                //});
             },
             tick: function (totalTime, deltaTime) {
                 var dTime = deltaTime / 1000;
