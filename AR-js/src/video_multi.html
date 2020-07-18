@@ -66,13 +66,12 @@
                     button.innerHTML = "Play";
 
                     currentMarker = marker.id;
-                    console.log('Se Marker Is Found : ', marker.id);
+                    console.log('Se Marker Is Found : ', marker.id, currentMarker);
                 });
 
                 marker.addEventListener("markerLost", () => {
                     markerFound = 0;
-
-                    console.log('CALL PAUSING markerLost');
+                                        
                     PauseVideosAll();
 
                     isPlaying = false;
