@@ -45,45 +45,28 @@
                 }
 
                 videoArray.forEach(PauseAll);
-                button.hidden = true;                                
+                button.hidden = true;             
 
-                markerArray[0].addEventListener("markerFound", function (evt) {
-                    markerFound = 1;
-                    button.hidden = false;
-                    button.innerHTML = "Play";
+                for (var i = 0; i < 2; i++) {
+                    markerArray[i].addEventListener("markerFound", function (evt) {
+                        markerFound = 1;
+                        button.hidden = false;
+                        button.innerHTML = "Play";
 
-                    currentMarker = markerArray[0].id;
-                    console.log('Found Marker 00', markerArray[0].id);
-                });
+                        currentMarker = markerArray[i].id;
+                        console.log('Found Marker 0'+i, markerArray[i].id);
+                    });
 
-                markerArray[1].addEventListener("markerFound", function (evt) {
-                    markerFound = 1;
-                    button.hidden = false;
-                    button.innerHTML = "Play";
+                    markerArray[i].addEventListener("markerLost", function (evt) {
+                        currentMarker = '';
+                        markerFound = 0;
+                        videoArray[i].pause();
+                        isPlaying = false;
+                        button.hidden = true;
 
-                    currentMarker = markerArray[1].id;
-                    console.log('Found Marker 01', markerArray[1].id);
-                });
-
-                markerArray[0].addEventListener("markerLost", function (evt) {
-                    currentMarker = '';
-                    markerFound = 0;
-                    videoArray[0].pause();
-                    isPlaying = false;
-                    button.hidden = true;
-                    
-                    console.log('Lost Marker 00', markerArray[0].id);
-                });
-
-                markerArray[1].addEventListener("markerLost", function (evt) {
-                    currentMarker = '';
-                    markerFound = 0;
-                    videoArray[1].pause();
-                    isPlaying = false;
-                    button.hidden = true;
-
-                    console.log('Lost Marker 01', markerArray[1].id);
-                });
+                        console.log('Lost Marker 0' + i, markerArray[i].id);
+                    });
+                }
 
                 button.addEventListener("click", function (evt) {
                     if (isPlaying) {
