@@ -44,7 +44,9 @@
                     videoArray.push(newVideo);
                 }
 
-                videoArray.forEach(PauseAll);
+                videoArray[0].pause();
+                videoArray[1].pause();
+
                 button.hidden = true;             
 
                 for (var i = 0; i < 2; i++) {
