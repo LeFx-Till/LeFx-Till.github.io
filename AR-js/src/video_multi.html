@@ -28,8 +28,7 @@
 
         function PauseVideosAll() {            
             for (var i = 0; i < amountMarkers; i++) {
-                videoArray[i].pause();
-                console.log('PAUSING : ', amountMarkers, i);
+                videoArray[i].pause();                
             }
         }
 
@@ -53,6 +52,7 @@
                     videoArray.push(newVideo);
                 }
 
+                console.log('CALL PAUSING INIT');
                 PauseVideosAll()
 
                 const marker = this.el;
@@ -69,6 +69,7 @@
                 marker.addEventListener("markerLost", () => {
                     markerFound = 0;
 
+                    console.log('CALL PAUSING markerLost');
                     PauseVideosAll();
 
                     isPlaying = false;
@@ -80,6 +81,8 @@
 
                 button.addEventListener("click", function (evt) {
                     if (isPlaying) {
+
+                        console.log('CALL PAUSING click');
                         PauseVideosAll();
                         isPlaying = false;
                         button.innerHTML = "Play";
@@ -87,8 +90,8 @@
                     }
 
                     if (currentMarker != '') {
-                        var index = currentMarker.split('_')[1];
-                        console.log('SE INDEX IS ', index);
+                        var index = markerArray.indexOf(currentMarker);
+                        console.log('Click on Index ', index);
                         videoArray[index].muted = false;
                         videoArray[index].play();
 
