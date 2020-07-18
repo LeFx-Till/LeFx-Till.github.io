@@ -52,7 +52,7 @@
 
                     // create video array
                     var newVideo = document.querySelector("#Video_Asset_0" + i);
-                    videoArray.push(newVideo.id);
+                    videoArray.push(newVideo);
                 }
 
                 console.log('CALL PAUSING INIT');
@@ -93,8 +93,8 @@
                     }
 
                     if (currentMarker != '') {
-                        var index = markerArray.indexOf(currentMarker);
-                        console.log('Click on Index ', index, currentMarker, markerArray[0]);
+                        var index = markerArray.indexOf(currentMarker.id);
+                        console.log('Click on Index ', index, currentMarker.id, markerArray[0].id);
                         videoArray[index].muted = false;
                         videoArray[index].play();
 
