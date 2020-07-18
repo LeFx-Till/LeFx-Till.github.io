@@ -18,8 +18,10 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/3.0.0/aframe/build/aframe-ar.js"></script>
     <script>
         var markerFound = 0;
-        var markersURLArray = [];
+        var markersArray = [];
         var markersNameArray = [];
+        var markersURLArray = [];
+
         AFRAME.registerComponent('button', {
             init: function () {
                 var elem = document.documentElement;
@@ -39,17 +41,22 @@
 
                 var isPlaying = false;
 
-                marker_00.addEventListener("markerFound", function (evt)
-                {
+                marker_00.addEventListener("markerFound", function (evt) {
                     markerFound = 1;
                     button.hidden = false;
                     button.innerHTML = "Play";
 
                     console.log('Found Marker 00', marker_00.id);
+
+                    if (marker_00.id == 'marker_00') {
+                        console.log('Sis is number 00');
+                    }
+                    else {
+                        console.log('Sis is NOT number 00');
+                    }
                 });
 
-                marker_01.addEventListener("markerFound", function (evt)
-                {
+                marker_01.addEventListener("markerFound", function (evt) {
                     markerFound = 1;
                     button.hidden = false;
                     button.innerHTML = "Play";
@@ -57,8 +64,7 @@
                     console.log('Found Marker 01', marker_01.id);
                 });
 
-                marker_00.addEventListener("markerLost", function (evt)
-                {
+                marker_00.addEventListener("markerLost", function (evt) {
                     markerFound = 0;
                     Video_00.pause();
                     isPlaying = false;
@@ -67,8 +73,7 @@
                     console.log('Lost Marker 00', marker_00.id);
                 });
 
-                marker_01.addEventListener("markerLost", function (evt)
-                {
+                marker_01.addEventListener("markerLost", function (evt) {
                     markerFound = 0;
                     Video_01.pause();
                     isPlaying = false;
@@ -77,10 +82,8 @@
                     console.log('Lost Marker 01', marker_01.id);
                 });
 
-                button.addEventListener("click", function (evt)
-                {
-                    if (isPlaying)
-                    {
+                button.addEventListener("click", function (evt) {
+                    if (isPlaying) {
                         Video_00.pause();
                         Video_01.pause();
                         isPlaying = false;
@@ -94,21 +97,16 @@
                     button.innerHTML = "Pause";
                 });
 
-                fullbutton.addEventListener("click", function (evt)
-                {
-                    if (fullscreen == 0)
-                    {
-                        if (elem.requestFullscreen)
-                        {
+                fullbutton.addEventListener("click", function (evt) {
+                    if (fullscreen == 0) {
+                        if (elem.requestFullscreen) {
                             elem.requestFullscreen();
                         }
-                        else if (elem.mozRequestFullScreen)
-                        {
+                        else if (elem.mozRequestFullScreen) {
                             /* Firefox */
                             elem.mozRequestFullScreen();
                         }
-                        else if (elem.webkitRequestFullscreen)
-                        {
+                        else if (elem.webkitRequestFullscreen) {
                             /* Chrome, Safari and Opera */
                             elem.webkitRequestFullscreen();
                         }
@@ -120,22 +118,17 @@
                         fullbutton.setAttribute("src", "vendor/exit_fullscreen.png");
                         fullscreen = 1;
                     }
-                    else
-                    {
-                        if (document.exitFullscreen)
-                        {
+                    else {
+                        if (document.exitFullscreen) {
                             document.exitFullscreen();
                         }
-                        else if (document.webkitExitFullscreen)
-                        {
+                        else if (document.webkitExitFullscreen) {
                             document.webkitExitFullscreen();
                         }
-                        else if (document.mozCancelFullScreen)
-                        {
+                        else if (document.mozCancelFullScreen) {
                             document.mozCancelFullScreen();
                         }
-                        else if (document.msExitFullscreen)
-                        {
+                        else if (document.msExitFullscreen) {
                             document.msExitFullscreen();
                         }
 
@@ -144,11 +137,9 @@
                     }
                 });
             },
-            tick: function (totalTime, deltaTime)
-            {
+            tick: function (totalTime, deltaTime) {
                 var dTime = deltaTime / 1000;
-                if (markerFound == 1)
-                {
+                if (markerFound == 1) {
 
                 }
             }
