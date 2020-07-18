@@ -24,11 +24,16 @@
         var markersNameArray = [];
         var markersURLArray = [];
 
+        function PauseAll(index, arr) {
+            arr[index].pause;
+        }
+
         AFRAME.registerComponent('button', {
             init: function () {                
                 var elem = document.documentElement;
                 var fullbutton = document.querySelector("#fullscreen");
                 var button = document.querySelector("#mutebutton");
+                var isPlaying = false;
 
                 // create marker and video arrays
                 for (var i = 0; i < 2; i++) {
@@ -39,12 +44,8 @@
                     videoArray.push(newVideo);
                 }
 
-                button.hidden = true;
-
-                videoArray[0].pause();                
-                videoArray[1].pause();
-
-                var isPlaying = false;
+                videoArray.forEach(PauseAll);
+                button.hidden = true;                                
 
                 markerArray[0].addEventListener("markerFound", function (evt) {
                     markerFound = 1;
