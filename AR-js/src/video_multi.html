@@ -26,9 +26,10 @@
         var markersNameArray = [];
         var markersURLArray = [];
 
-        function PauseVideosAll() {
+        function PauseVideosAll() {            
             for (var i = 0; i < amountMarkers; i++) {
                 videoArray[i].pause();
+                console.log('PAUSING : ', amountMarkers, i);
             }
         }
 
