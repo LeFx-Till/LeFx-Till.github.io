@@ -19,7 +19,8 @@
     <script>
         var currentMarker = '';
         var markerFound = 0;
-        var markersArray = [];
+        var markerArray = [];
+        var videoArray = [];
         var markersNameArray = [];
         var markersURLArray = [];
 
@@ -29,79 +30,82 @@
                 var fullbutton = document.querySelector("#fullscreen");
                 var button = document.querySelector("#mutebutton");
 
-                var marker_00 = document.querySelector("#marker_00");
-                var marker_01 = document.querySelector("#marker_01");
+                // create marker and video arrays
+                for (var i = 0; i < 2; i++) {
+                    var newMarker = document.querySelector("#marker_0" + i);
+                    markerArray.push(newMarker);
 
-                var Video_00 = document.querySelector("#Video_Asset_00");
-                var Video_01 = document.querySelector("#Video_Asset_01");
+                    var newVideo = document.querySelector("#Video_Asset_0" + i);
+                    videoArray.push(newVideo);
+                }
 
                 button.hidden = true;
 
-                Video_00.pause();
-                Video_01.pause();
+                videoArray[0].pause();                
+                videoArray[1].pause();
 
                 var isPlaying = false;
 
-                marker_00.addEventListener("markerFound", function (evt) {
+                markerArray[0].addEventListener("markerFound", function (evt) {
                     markerFound = 1;
                     button.hidden = false;
                     button.innerHTML = "Play";
 
-                    currentMarker = marker_00.id;
-                    console.log('Found Marker 00', marker_00.id);
+                    currentMarker = markerArray[0].id;
+                    console.log('Found Marker 00', markerArray[0].id);
                 });
 
-                marker_01.addEventListener("markerFound", function (evt) {
+                markerArray[1].addEventListener("markerFound", function (evt) {
                     markerFound = 1;
                     button.hidden = false;
                     button.innerHTML = "Play";
 
-                    currentMarker = marker_01.id;
-                    console.log('Found Marker 01', marker_01.id);
+                    currentMarker = markerArray[1].id;
+                    console.log('Found Marker 01', markerArray[1].id);
                 });
 
-                marker_00.addEventListener("markerLost", function (evt) {
+                markerArray[0].addEventListener("markerLost", function (evt) {
                     currentMarker = '';
                     markerFound = 0;
-                    Video_00.pause();
+                    videoArray[0].pause();
                     isPlaying = false;
                     button.hidden = true;
                     
-                    console.log('Lost Marker 00', marker_00.id);
+                    console.log('Lost Marker 00', markerArray[0].id);
                 });
 
-                marker_01.addEventListener("markerLost", function (evt) {
+                markerArray[1].addEventListener("markerLost", function (evt) {
                     currentMarker = '';
                     markerFound = 0;
-                    Video_01.pause();
+                    videoArray[1].pause();
                     isPlaying = false;
                     button.hidden = true;
 
-                    console.log('Lost Marker 01', marker_01.id);
+                    console.log('Lost Marker 01', markerArray[1].id);
                 });
 
                 button.addEventListener("click", function (evt) {
                     if (isPlaying) {
-                        Video_00.pause();
-                        Video_01.pause();
+                        videoArray[0].pause();
+                        videoArray[1].pause();
                         isPlaying = false;
                         button.innerHTML = "Play";
                         return;
                     }
 
-                    if (currentMarker == marker_00.id) {
-                        Video_00.muted = false;
-                        Video_00.play();
+                    if (currentMarker == markerArray[0].id) {
+                        videoArray[0].muted = false;
+                        videoArray[0].play();
 
-                        console.log('Try play video_00', Video_00.id);
+                        console.log('Try play video_00', videoArray[0].id);
                         isPlaying = true;
                         button.innerHTML = "Pause";
                     }
-                    else if (currentMarker == marker_01.id) {
-                        Video_01.muted = false;
-                        Video_01.play();
+                    else if (currentMarker == markerArray[1].id) {
+                        videoArray[1].muted = false;
+                        videoArray[1].play();
 
-                        console.log('Try play video_01', Video_01.id);
+                        console.log('Try play video_01', videoArray[1].id);
                         isPlaying = true;
                         button.innerHTML = "Pause";
                     }
