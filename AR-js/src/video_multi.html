@@ -66,7 +66,6 @@
                     Video_00.pause();
                     isPlaying = false;
                     button.hidden = true;
-
                     
                     console.log('Lost Marker 00', marker_00.id);
                 });
@@ -94,16 +93,21 @@
                         Video_00.muted = false;
                         Video_00.play();
 
+                        console.log('Try play video_00', Video_00.id);
                         isPlaying = true;
                         button.innerHTML = "Pause";
                     }
-                    else if (currentMarker == marker_00.id) {
+                    else if (currentMarker == marker_01.id) {
                         Video_01.muted = false;
                         Video_01.play();
 
+                        console.log('Try play video_01', Video_01.id);
                         isPlaying = true;
                         button.innerHTML = "Pause";
-                    }                    
+                    }
+                    else {
+                        console.log('I tried but no marker confirmation');
+                    }
                 });
 
                 fullbutton.addEventListener("click", function (evt) {
