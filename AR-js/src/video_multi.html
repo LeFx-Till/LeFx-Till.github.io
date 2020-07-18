@@ -24,25 +24,6 @@
         var markersNameArray = [];
         var markersURLArray = [];
 
-        function markerFound(index) {
-            markerFound = 1;
-            button.hidden = false;
-            button.innerHTML = "Play";
-
-            currentMarker = markerArray[index].id;
-            console.log('Found Marker 0' + index, markerArray[index].id);
-        }
-
-        function markerLost(index) {
-            currentMarker = '';
-            markerFound = 0;
-            videoArray[index].pause();
-            isPlaying = false;
-            button.hidden = true;
-
-            console.log('Lost Marker 0' + index, markerArray[index].id);
-        }
-
         AFRAME.registerComponent('button', {
             init: function () {
                 var elem = document.documentElement;
@@ -64,11 +45,14 @@
 
                 button.hidden = true;
 
-                for (var i = 0; i < 2; i++) {
-                    markerArray[i].addEventListener("markerFound", function () { markerFound(i); });
+                const marker = this.el;
+                marker.addEventListener("markerFound", () => {                    
+                    console.log('Se Marker Found : ', marker.id);
+                });
 
-                    markerArray[i].addEventListener("markerLost", function () { markerLost(i); });
-                }
+                marker.addEventListener("markerLost", () => {                    
+                    console.log('Se Marker Lost: ', marker.id);
+                });
 
                 button.addEventListener("click", function (evt) {
                     if (isPlaying) {
