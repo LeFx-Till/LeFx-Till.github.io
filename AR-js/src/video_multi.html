@@ -46,24 +46,30 @@
                 button.hidden = true;
 
                 const marker = this.el;
-                marker.addEventListener("markerFound", () => {                    
-                    console.log('Se Marker Found : ', marker.id);
+                marker.addEventListener("markerFound", () => {
                     markerFound = 1;
+
+                    console.log('Le Button Is there');
                     button.hidden = false;
                     button.innerHTML = "Play";
 
                     currentMarker = marker.id;
+
+                    console.log('Se Marker Is Found : ', marker.id);
                 });
 
                 marker.addEventListener("markerLost", () => {                    
-                    console.log('Se Marker Lost: ', marker.id);
-
-                    currentMarker = '';
                     markerFound = 0;
+
                     videoArray[0].pause();
                     videoArray[1].pause();
+
+                    console.log('Le Button Is GONE');
                     isPlaying = false;
                     button.hidden = true;
+
+                    currentMarker = '';
+                    console.log('Se Marker Is Lost: ', marker.id);
                 });
 
                 button.addEventListener("click", function (evt) {
