@@ -63,7 +63,7 @@
                         markerFound = 1;
 
                         button.hidden = false;
-                        button.innerHTML = "-- Play Video --";
+                        button.innerHTML = "-- !Play Video! --";
 
                         currentMarker = marker.id;
                         console.log('Se Marker Is Found : ', marker.id, currentMarker);
@@ -87,7 +87,7 @@
                             console.log('CALL PAUSING click');
                             PauseVideosAll();
                             isPlaying = false;
-                            button.innerHTML = "-- Play Video --";
+                            button.innerHTML = "-- !Play Video! --";
                             return;
                         }
 
@@ -169,13 +169,13 @@
         </a-assets>
 
         <a-marker id="marker_00" type="pattern" url="marker/pattern-pattern_00.patt" emitevents="true" button class="iOS">
-            <a-video src="#Video_Asset_00" id="Video_00" class="intersectable" width="1.698" height="3" position="0 0 0" rotation="0 1.6 0" color="#FFFFFF" transparent=False></a-video>
+            <a-video src="#Video_Asset_00" id="Video_00" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
         <a-marker id="marker_01" type="pattern" url="marker/pattern-pattern_01.patt" emitevents="true" button class="iOS">
-            <a-video src="#Video_Asset_01" id="Video_01" class="intersectable" width="1.698" height="3" position="0 0 0" rotation="0 1.6 0" color="#FFFFFF" transparent=False></a-video>
+            <a-video src="#Video_Asset_01" id="Video_01" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
         <a-marker id="marker_02" type="pattern" url="marker/pattern-pattern_02.patt" emitevents="true" button class="iOS">
-            <a-video src="#Video_Asset_02" id="Video_02" class="intersectable" width="1.698" height="3" position="0 0 0" rotation="0 1.6 0" color="#FFFFFF" transparent=False></a-video>
+            <a-video src="#Video_Asset_02" id="Video_02" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
 
         <a-entity camera></a-entity>
