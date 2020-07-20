@@ -13,7 +13,7 @@
 <head>
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/master/aframe.min.js"></script>
     <!-- we import arjs version without NFT but with marker + location based support -->
     <script src="https://raw.githack.com/AR-js-org/AR.js/3.0.0/aframe/build/aframe-ar.js"></script>
     <script>
@@ -63,7 +63,7 @@
                         markerFound = 1;
 
                         button.hidden = false;
-                        button.innerHTML = "Play";
+                        button.innerHTML = "Play Video";
 
                         currentMarker = marker.id;
                         console.log('Se Marker Is Found : ', marker.id, currentMarker);
@@ -87,7 +87,7 @@
                             console.log('CALL PAUSING click');
                             PauseVideosAll();
                             isPlaying = false;
-                            button.innerHTML = "Play";
+                            button.innerHTML = "Play Video";
                             return;
                         }
 
@@ -154,7 +154,7 @@
 </head>
 <body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
     <div style='position: absolute; bottom: 10px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>PlayMe</button>
+        <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 5px; left: 30px; width:100%; text-align: right; z-index: 1;'>
         <input type="image" id="fullscreen" src="vendor/fullscreen.png" style='position: absolute; bottom: 0px; right: 35px;'></input>
