@@ -63,7 +63,7 @@
                         markerFound = 1;
 
                         button.hidden = false;
-                        button.innerHTML = "-- !Play Video! --";
+                        button.innerHTML = "-- !Play Video Till! --";
 
                         currentMarker = marker.id;
                         console.log('Se Marker Is Found : ', marker.id, currentMarker);
@@ -87,7 +87,7 @@
                             console.log('CALL PAUSING click');
                             PauseVideosAll();
                             isPlaying = false;
-                            button.innerHTML = "-- !Play Video! --";
+                            button.innerHTML = "-- !Play Video Till! --";
                             return;
                         }
 
