@@ -45,23 +45,38 @@
 
                     for (var i = 0; i < amountMarkers; i++) {
 
-                        var newMarker = document.querySelector("#marker_0" + i);
 
-                        markerArray.push(newMarker);
-                        markerIDArray.push(newMarker.id);
 
-                        if (i < 10)
+                        if (i < 10) {
+                            markerArray.push(document.querySelector("#marker_0" + i));
+                            markerIDArray.push(document.querySelector("#marker_0" + i).id);
                             videoArray.push(document.querySelector("#Video_Asset_0" + i));
-                        else if (i >= 10 && i < 20)
+                        }
+                        else if (i >= 10 && i < 20) {
+                            markerArray.push(document.querySelector("#marker_1" + i));
+                            markerIDArray.push(document.querySelector("#marker_1" + i).id);
                             videoArray.push(document.querySelector("#Video_Asset_1" + i));
-                        else if (i >= 20 && i < 30)
+                        }
+                        else if (i >= 20 && i < 30) {
+                            markerArray.push(document.querySelector("#marker_2" + i));
+                            markerIDArray.push(document.querySelector("#marker_2" + i).id);
                             videoArray.push(document.querySelector("#Video_Asset_2" + i));
-                        else if (i >= 30 && i < 40)
+                        }
+                        else if (i >= 30 && i < 40) {
+                            markerArray.push(document.querySelector("#marker_3" + i));
+                            markerIDArray.push(document.querySelector("#marker_3" + i).id);
                             videoArray.push(document.querySelector("#Video_Asset_3" + i));
-                        else if (i >= 40 && i < 50)
+                        }
+                        else if (i >= 40 && i < 50) {
+                            markerArray.push(document.querySelector("#marker_4" + i));
+                            markerIDArray.push(document.querySelector("#marker_4" + i).id);
                             videoArray.push(document.querySelector("#Video_Asset_4" + i));
-                        else if (i >= 50 && i < 60)
+                        }
+                        else if (i >= 50 && i < 60) {
+                            markerArray.push(document.querySelector("#marker_5" + i));
+                            markerIDArray.push(document.querySelector("#marker_5" + i).id);
                             videoArray.push(document.querySelector("#Video_Asset_5" + i));
+                        }                            
                     }
 
                     PauseVideosAll()
@@ -71,7 +86,7 @@
                         markerFound = 1;
 
                         button.hidden = false;
-                        button.innerHTML = "PLAY VIDEO";
+                        button.innerHTML = "-- PLAY VIDEO --";
 
                         currentMarker = marker.id;
                         console.log('Se Marker Is Found : ', marker.id, currentMarker);
@@ -94,7 +109,7 @@
 
                             PauseVideosAll();
                             isPlaying = false;
-                            button.innerHTML = "PLAY VIDEO";
+                            button.innerHTML = "-- PLAY VIDEO --";
                             return;
                         }
 
@@ -106,7 +121,7 @@
 
                             console.log('Me Try play ', videoArray[index].id);
                             isPlaying = true;
-                            button.innerHTML = "PAUSE";
+                            button.innerHTML = "Pause";
                         }
                     });
 
