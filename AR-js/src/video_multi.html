@@ -65,12 +65,11 @@
 
                     
                     marker.addEventListener("markerFound", () => {
+                        
                         debugButton.innerHTML = marker.id;
+                        var markerID = String(marker.id).split('_');
 
-                        if (marker.id == 'marker_0')
-                            debugButton.innerHTML = 'first marker found!';
-                        else
-                            debugButton.innerHTML = marker.id;                        
+                        debugButton.innerHTML = markerID[1];                                          
 
                         //markerFound = 1;
 
