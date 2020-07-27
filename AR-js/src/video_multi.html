@@ -35,6 +35,7 @@
                     //var button = document.querySelector("#mutebutton");
                     var debugButton = document.querySelector('#debugbutton');
                     var sceneEl = document.querySelector('a-scene');
+                    var assetsEl = document.querySelector('a-assets');
                     //var isPlaying = false;
                     //var markerEl = document.querySelector('a-marker');
                     const marker = this.el;
@@ -63,23 +64,24 @@
                         var markerID = String(marker.id).split('_');
 
                         if (currentMarkerID != markerID[1]) {
-                            currentMarkerID = markerID[1];
-                            debugButton.innerHTML = 'new ' + markerID[1];
 
-                            var myAssets = document.createElement('a-assets');
+                            currentMarkerID = markerID[1];                            
+                                                        
                             var myVideo = document.createElement('video');
                             myVideo.id = 'Video_Asset_' + currentMarkerID;
                             myVideo.src = 'media/Video_000.mp4';
                             myVideo.autoplay = false;
                             myVideo.loop = true;
-                            myAssets.appendChild(myVideo);
+                            assetsEl.appendChild(myVideo);                            
 
-                            var videoEl = document.createElement('a-video');
+                            var videoEl = document.createElement('a-video');                            
                             videoEl.setAttribute('Video_' + currentMarkerID, { src: '#' + myVideo.id, height: '3', width: '1.698', transparent: false, color: '#FFFFFF' });
                             videoEl.object3D.position.set(0, 1.6, 0);
                             videoEl.object3D.rotation.set(0, 0, 0);
 
-                            sceneEl.appendChild(videoEl);
+                            marker.appendChild.appendChild(videoEl);                            
+
+                            debugButton.innerHTML = 'new ' + myVideo.id;
                         }
                         else {
                             debugButton.innerHTML = 'same ' + markerID[1];
@@ -193,6 +195,8 @@
     </div>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
+
+        <a-assets></a-assets>
 
         <!--<a-assets>
             <video id="Video_Asset_0" autoplay="false" loop crossorigin="anonymous" src="media/Video_000.mp4" webkit-playsinline playsinline controls muted></video>
