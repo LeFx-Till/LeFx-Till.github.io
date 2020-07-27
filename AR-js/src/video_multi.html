@@ -17,11 +17,10 @@
     <!-- we import arjs version without NFT but with marker + location based support -->
     <script src="https://raw.githack.com/AR-js-org/AR.js/3.0.0/aframe/build/aframe-ar.js"></script>
     <script>
-        const amountMarkers = 11;
+        const amountMarkers = 10;
         var currentMarker = '';
         var currentMarkerID = -1;
-        var markerFound = 0;        
-        var markerArray = [];
+        var markerFound = 0;                
         var markerIDArray = [];
         var videoArray = [];
 
@@ -48,8 +47,7 @@
 
                         // create marker array
                         var newMarker = document.querySelector("#marker_" + i);
-                        console.log('pushing to marker array ', newMarker);
-                        markerArray.push(newMarker);
+                        console.log('pushing to marker array ', newMarker, "#marker_" + i);
                         markerIDArray.push(newMarker.id);
 
                         // create video array
@@ -173,7 +171,6 @@
             <video id="Video_Asset_7" autoplay="false" loop crossorigin="anonymous" src="media/Video_007.mp4" webkit-playsinline playsinline controls muted></video>
             <video id="Video_Asset_8" autoplay="false" loop crossorigin="anonymous" src="media/Video_008.mp4" webkit-playsinline playsinline controls muted></video>
             <video id="Video_Asset_9" autoplay="false" loop crossorigin="anonymous" src="media/Video_009.mp4" webkit-playsinline playsinline controls muted></video>
-            <video id="Video_Asset_10" autoplay="false" loop crossorigin="anonymous" src="media/Video_010.mp4" webkit-playsinline playsinline controls muted></video>
         </a-assets>
 
         <a-marker id="marker_0" type="pattern" url="marker/border_pattern_000.patt" emitevents="true" button class="iOS">
@@ -205,9 +202,6 @@
         </a-marker>
         <a-marker id="marker_9" type="pattern" url="marker/border_pattern_009.patt" emitevents="true" button class="iOS">
             <a-video src="#Video_Asset_9" id="Video_9" class="intersectable" width="1.65" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
-        </a-marker>
-        <a-marker id="marker_10" type="pattern" url="marker/border_pattern_010.patt" emitevents="true" button class="iOS">
-            <a-video src="#Video_Asset_10" id="Video_10" class="intersectable" width="3" height="2.25" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
 
         <a-entity camera></a-entity>
