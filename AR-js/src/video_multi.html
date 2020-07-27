@@ -65,21 +65,24 @@
 
                         if (currentMarkerID != markerID[1]) {
 
-                            currentMarkerID = markerID[1];                            
-                                                        
+                            currentMarkerID = markerID[1];
+
                             var myVideo = document.createElement("VIDEO");
                             myVideo.setAttribute("id", "Video_Asset_" + currentMarkerID);
-                            myVideo.setAttribute("src", "media/Video_000.mp4");
                             myVideo.setAttribute("autoplay", "false");
-                            assetsEl.appendChild(myVideo);                            
+                            myVideo.setAttribute("loop", "true");
+                            myVideo.setAttribute("crossorigin", "anonymous");
+                            myVideo.setAttribute("src", "media/Video_000.mp4" + "webkit-playsinline playsinline controls muted");
+                            assetsEl.appendChild(myVideo);
 
                             var videoEl = document.createElement('a-video');
-                            videoEl.setAttribute("id", "Video_" + currentMarkerID);
                             videoEl.setAttribute("src", "#" + myVideo.id);
-                            videoEl.setAttribute("height", "3");
+                            videoEl.setAttribute("id", "Video_" + currentMarkerID);                            
+                            videoEl.setAttribute("class", "intersectable");
                             videoEl.setAttribute("width", "1.698");
+                            videoEl.setAttribute("height", "3");                            
                             videoEl.setAttribute("transparent", "false");
-                            videoEl.setAttribute("color", "#FFFFFF");                            
+                            videoEl.setAttribute("color", "#FFFFFF");
                             videoEl.object3D.position.set(0, 1.6, 0);
                             videoEl.object3D.rotation.set(0, 0, 0);
 
