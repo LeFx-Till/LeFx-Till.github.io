@@ -68,8 +68,8 @@
                             currentMarkerID = markerID[1];
 
                             var myVideo = document.createElement("VIDEO");
-                            myVideo.id = 'Video_Asset_0'; //myVideo.setAttribute("id", "Video_Asset_" + currentMarkerID);
-                            myVideo.autoplay = false;
+                            myVideo.id = 'Video_Asset_' + currentMarkerID;
+                            myVideo.autoplay = true;
                             myVideo.src = 'media/Video_000.mp4';
                             myVideo.loop = true;
                             myVideo.setAttribute("crossorigin", "anonymous");                            
@@ -112,6 +112,17 @@
                     marker.addEventListener('markerLost', () => {
                         debugButton.innerHTML = '_ _ _ _';
 
+                        var video = document.getElementById("Video_Asset_" + currentMarkerID);
+                        if (video != null) {
+
+                            assetsEl.removeChild(video);
+                            debugButton.innerHTML = 'removed video';
+                        }
+                        else {
+                            debugButton.innerHTML = '_ _ _ _';
+                        }
+
+                        
                         //document.documentElement.el.remove;
                         //markerFound = 0;
 
