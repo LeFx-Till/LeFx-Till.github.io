@@ -35,6 +35,7 @@
             {
                 init: function () {
 
+                    console.log('#######');
                     var elem = document.documentElement;
                     var fullbutton = document.querySelector("#fullscreen");
                     var button = document.querySelector("#mutebutton");
@@ -73,6 +74,7 @@
                         button.innerHTML = "PLAY VIDEO";
 
                         currentMarker = marker.id;
+                        console.log('Se Marker Is Found : ', marker.id, currentMarker);
                     });
 
                     marker.addEventListener("markerLost", () => {
@@ -84,6 +86,7 @@
                         button.hidden = true;
 
                         currentMarker = '';
+                        console.log('Se Marker Is Lost: ', marker.id);
                     });
 
                     button.addEventListener("click", function (evt) {
@@ -101,6 +104,7 @@
                             videoArray[index].muted = false;
                             videoArray[index].play();
 
+                            console.log('Me Try play ', videoArray[index].id);
                             isPlaying = true;
                             button.innerHTML = "PAUSE";
                         }
