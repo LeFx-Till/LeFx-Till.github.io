@@ -67,11 +67,10 @@
 
                             currentMarkerID = markerID[1];                            
                                                         
-                            var myVideo = document.createElement('video');
-                            myVideo.id = 'Video_Asset_' + currentMarkerID;
-                            myVideo.src = 'media/Video_000.mp4';
-                            myVideo.autoplay = false;
-                            myVideo.loop = true;
+                            var myVideo = document.createElement("VIDEO");
+                            myVideo.setAttribute("id", "Video_Asset_" + currentMarkerID);
+                            myVideo.setAttribute("src", "media/Video_000.mp4");
+                            myVideo.setAttribute("autoplay", "false");
                             assetsEl.appendChild(myVideo);                            
 
                             var videoEl = document.createElement('a-video');                            
