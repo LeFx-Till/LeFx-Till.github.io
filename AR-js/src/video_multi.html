@@ -21,6 +21,7 @@
         var currentMarker = '';
         var currentMarkerID = -1;
         var markerFound = 0;        
+        var markerArray = [];
         var markerIDArray = [];
         var videoArray = [];
 
@@ -35,6 +36,7 @@
                 init: function () {
 
                     console.log('#######');
+
                     var elem = document.documentElement;
                     var fullbutton = document.querySelector("#fullscreen");
                     var button = document.querySelector("#mutebutton");
@@ -44,10 +46,15 @@
 
                     for (var i = 0; i < amountMarkers; i++) {
 
+                        // create marker array
                         var newMarker = document.querySelector("#marker_" + i);
-                        console.log('>>>> ', newMarker.id, newMarker.localName);
-                        markerIDArray.push(document.querySelector(newMarker.id));
-                        videoArray.push(document.querySelector("#Video_Asset_" + i));
+                        console.log('pushing to marker array ', newMarker);
+                        markerArray.push(newMarker);
+                        markerIDArray.push(newMarker.id);
+
+                        // create video array
+                        var newVideo = document.querySelector("#Video_Asset_" + i);
+                        videoArray.push(newVideo);
                     }
 
                     PauseVideosAll()
