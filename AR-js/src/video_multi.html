@@ -21,7 +21,6 @@
         var currentMarker = '';
         var currentMarkerID = -1;
         var markerFound = 0;
-        var markerArray = [];
         var markerIDArray = [];
         var videoArray = [];
 
@@ -34,6 +33,7 @@
         AFRAME.registerComponent('button',
             {
                 init: function () {
+
                     console.log('#######');
 
                     var elem = document.documentElement;
@@ -46,13 +46,13 @@
                     for (var i = 0; i < amountMarkers; i++) {
 
                         // create marker array
-                        var newMarker = document.querySelector("#marker_0" + i);
-                        console.log('pushing to marker array ', newMarker);
-                        markerArray.push(newMarker);
+                        var queryString = '#marker_' + i;
+                        var newMarker = document.querySelector(queryString);
+                        console.log('pushing to marker array ', newMarker, '#marker_' + i);
                         markerIDArray.push(newMarker.id);
 
                         // create video array
-                        var newVideo = document.querySelector("#Video_Asset_0" + i);
+                        var newVideo = document.querySelector('#Video_Asset_' + i);
                         videoArray.push(newVideo);
                     }
 
@@ -84,7 +84,6 @@
                     button.addEventListener("click", function (evt) {
                         if (isPlaying) {
 
-                            console.log('CALL PAUSING click');
                             PauseVideosAll();
                             isPlaying = false;
                             button.innerHTML = "-- PLAY VIDEO --";
@@ -93,7 +92,7 @@
 
                         if (currentMarker != '') {
                             var index = markerIDArray.indexOf(currentMarker);
-                            console.log('Click on Index ', currentMarker);
+
                             videoArray[index].muted = false;
                             videoArray[index].play();
 
@@ -163,39 +162,41 @@
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
 
         <a-assets>
-            <video id="Video_Asset_00" autoplay="false" loop crossorigin="anonymous" src="media/Video_000.mp4" webkit-playsinline playsinline controls muted></video>
-            <video id="Video_Asset_01" autoplay="false" loop crossorigin="anonymous" src="media/Video_001.mp4" webkit-playsinline playsinline controls muted></video>
-            <video id="Video_Asset_02" autoplay="false" loop crossorigin="anonymous" src="media/Video_002.mp4" webkit-playsinline playsinline controls muted></video>
-            <video id="Video_Asset_03" autoplay="false" loop crossorigin="anonymous" src="media/Video_003.mp4" webkit-playsinline playsinline controls muted></video>
-            <video id="Video_Asset_04" autoplay="false" loop crossorigin="anonymous" src="media/Video_004.mp4" webkit-playsinline playsinline controls muted></video>
-            <video id="Video_Asset_05" autoplay="false" loop crossorigin="anonymous" src="media/Video_005.mp4" webkit-playsinline playsinline controls muted></video>
-            <video id="Video_Asset_06" autoplay="false" loop crossorigin="anonymous" src="media/Video_006.mp4" webkit-playsinline playsinline controls muted></video>
-            <video id="Video_Asset_07" autoplay="false" loop crossorigin="anonymous" src="media/Video_007.mp4" webkit-playsinline playsinline controls muted></video>
+            <video id="Video_Asset_0" autoplay="false" loop crossorigin="anonymous" src="media/Video_000.mp4" webkit-playsinline playsinline controls muted></video>
+            <video id="Video_Asset_1" autoplay="false" loop crossorigin="anonymous" src="media/Video_001.mp4" webkit-playsinline playsinline controls muted></video>
+            <video id="Video_Asset_2" autoplay="false" loop crossorigin="anonymous" src="media/Video_002.mp4" webkit-playsinline playsinline controls muted></video>
+            <video id="Video_Asset_3" autoplay="false" loop crossorigin="anonymous" src="media/Video_003.mp4" webkit-playsinline playsinline controls muted></video>
+            <video id="Video_Asset_4" autoplay="false" loop crossorigin="anonymous" src="media/Video_004.mp4" webkit-playsinline playsinline controls muted></video>
+            <video id="Video_Asset_5" autoplay="false" loop crossorigin="anonymous" src="media/Video_005.mp4" webkit-playsinline playsinline controls muted></video>
+            <video id="Video_Asset_6" autoplay="false" loop crossorigin="anonymous" src="media/Video_006.mp4" webkit-playsinline playsinline controls muted></video>
+            <video id="Video_Asset_7" autoplay="false" loop crossorigin="anonymous" src="media/Video_007.mp4" webkit-playsinline playsinline controls muted></video>
+            <video id="Video_Asset_8" autoplay="false" loop crossorigin="anonymous" src="media/Video_008.mp4" webkit-playsinline playsinline controls muted></video>
+            <video id="Video_Asset_9" autoplay="false" loop crossorigin="anonymous" src="media/Video_009.mp4" webkit-playsinline playsinline controls muted></video>
         </a-assets>
 
-        <a-marker id="marker_00" type="pattern" url="marker/border_pattern_000.patt" emitevents="true" button class="iOS">
-            <a-video src="#Video_Asset_00" id="Video_00" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        <a-marker id="marker_0" type="pattern" url="marker/border_pattern_000.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset_0" id="Video_0" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
-        <a-marker id="marker_01" type="pattern" url="marker/border_pattern_001.patt" emitevents="true" button class="iOS">
-            <a-video src="#Video_Asset_01" id="Video_01" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        <a-marker id="marker_1" type="pattern" url="marker/border_pattern_001.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset_1" id="Video_1" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
-        <a-marker id="marker_02" type="pattern" url="marker/border_pattern_002.patt" emitevents="true" button class="iOS">
-            <a-video src="#Video_Asset_02" id="Video_02" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        <a-marker id="marker_2" type="pattern" url="marker/border_pattern_002.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset_2" id="Video_2" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
-        <a-marker id="marker_03" type="pattern" url="marker/border_pattern_003.patt" emitevents="true" button class="iOS">
-            <a-video src="#Video_Asset_03" id="Video_03" class="intersectable" width="1.65" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        <a-marker id="marker_3" type="pattern" url="marker/border_pattern_003.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset_3" id="Video_3" class="intersectable" width="1.65" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
-        <a-marker id="marker_04" type="pattern" url="marker/border_pattern_004.patt" emitevents="true" button class="iOS">
-            <a-video src="#Video_Asset_04" id="Video_04" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        <a-marker id="marker_4" type="pattern" url="marker/border_pattern_004.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset_4" id="Video_4" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
-        <a-marker id="marker_05" type="pattern" url="marker/border_pattern_005.patt" emitevents="true" button class="iOS">
-            <a-video src="#Video_Asset_05" id="Video_05" class="intersectable" width="1.6415" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        <a-marker id="marker_5" type="pattern" url="marker/border_pattern_005.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset_5" id="Video_5" class="intersectable" width="1.6415" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
-        <a-marker id="marker_06" type="pattern" url="marker/border_pattern_006.patt" emitevents="true" button class="iOS">
-            <a-video src="#Video_Asset_06" id="Video_06" class="intersectable" width="1.6875" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        <a-marker id="marker_6" type="pattern" url="marker/border_pattern_006.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset_6" id="Video_6" class="intersectable" width="1.6875" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
-        <a-marker id="marker_07" type="pattern" url="marker/border_pattern_007.patt" emitevents="true" button class="iOS">
-            <a-video src="#Video_Asset_07" id="Video_07" class="intersectable" width="3" height="1.698" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        <a-marker id="marker_7" type="pattern" url="marker/border_pattern_007.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset_7" id="Video_7" class="intersectable" width="3" height="1.698" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
         </a-marker>
 
         <a-entity camera></a-entity>
