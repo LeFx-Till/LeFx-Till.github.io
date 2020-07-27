@@ -39,9 +39,11 @@
                     var elem = document.documentElement;
                     var fullbutton = document.querySelector("#fullscreen");
                     var button = document.querySelector("#mutebutton");
+                    var debugButton = document.querySelector("#debugbutton");
                     var isPlaying = false;
 
                     button.hidden = true;
+                    debugButton.hidden = false;
 
                     for (var i = 0; i < amountMarkers; i++) {
 
@@ -65,6 +67,7 @@
                         button.hidden = false;
                         button.innerHTML = "-- PLAY VIDEO --";
 
+                        debugButton.innerHTML = marker.id;
                         currentMarker = marker.id;
                         console.log('Se Marker Is Found : ', marker.id, currentMarker);
                     });
@@ -77,6 +80,7 @@
                         isPlaying = false;
                         button.hidden = true;
 
+                        debugButton.innerHTML = "- - ";
                         currentMarker = '';
                         console.log('Se Marker Is Lost: ', marker.id);
                     });
@@ -157,6 +161,9 @@
     </div>
     <div style='position: absolute; bottom: 5px; left: 30px; width:100%; text-align: right; z-index: 1;'>
         <input type="image" id="fullscreen" src="vendor/fullscreen.png" style='position: absolute; bottom: 0px; right: 35px;'></input>
+    </div>
+    <div style='position: absolute; bottom: 10px; right: 90px; width:100%; text-align: center; z-index: 1;'>
+        <button id="debugbutton" style='position: absolute; bottom: 10px' hidden>Debug</button>
     </div>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
