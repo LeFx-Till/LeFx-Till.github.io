@@ -66,6 +66,13 @@
                         button.innerHTML = "-- PLAY VIDEO --";
 
                         currentMarker = marker.id;
+
+                        PauseVideosAll();
+
+                        var index = markerIDArray.indexOf(currentMarker);
+                        videoArray[index].muted = false;
+                        videoArray[index].play();
+                        
                         console.log('Se Marker Is Found : ', marker.id, currentMarker);
                     });
 
@@ -81,27 +88,27 @@
                         console.log('Se Marker Is Lost: ', marker.id);
                     });
 
-                    button.addEventListener("click", function (evt) {
-                        if (isPlaying) {
+                    //button.addEventListener("click", function (evt) {
+                    //    //if (isPlaying) {
 
-                            console.log('CALL PAUSING click');
-                            PauseVideosAll();
-                            isPlaying = false;
-                            button.innerHTML = "-- PLAY VIDEO --";
-                            return;
-                        }
+                    //    //    console.log('CALL PAUSING click');
+                    //    //    PauseVideosAll();
+                    //    //    isPlaying = false;
+                    //    //    button.innerHTML = "-- PLAY VIDEO --";
+                    //    //    return;
+                    //    //}
 
-                        if (currentMarker != '') {
-                            var index = markerIDArray.indexOf(currentMarker);
-                            console.log('Click on Index ', currentMarker);
-                            videoArray[index].muted = false;
-                            videoArray[index].play();
+                    //    //if (currentMarker != '') {
+                    //    //    var index = markerIDArray.indexOf(currentMarker);
+                    //    //    console.log('Click on Index ', currentMarker);
+                    //    //    videoArray[index].muted = false;
+                    //    //    videoArray[index].play();
 
-                            console.log('Me Try play ', videoArray[index].id);
-                            isPlaying = true;
-                            button.innerHTML = "Pause";
-                        }
-                    });
+                    //    //    console.log('Me Try play ', videoArray[index].id);
+                    //    //    isPlaying = true;
+                    //    //    button.innerHTML = "Pause";
+                    //    //}
+                    //});
 
                     fullbutton.addEventListener("click", function (evt) {
                         if (fullscreen == 0) {
