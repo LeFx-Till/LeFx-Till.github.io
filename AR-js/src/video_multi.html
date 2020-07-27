@@ -63,9 +63,9 @@
 
                     //PauseVideosAll()
 
-                    
+
                     marker.addEventListener("markerFound", () => {
-                                                
+
                         var markerID = String(marker.id).split('_');
 
                         if (currentMarkerID != markerID[1]) {
@@ -75,7 +75,7 @@
                         else {
                             debugButton.innerHTML = 'same ' + markerID[1];
                         }
-                        
+
 
                         //markerFound = 1;
 
@@ -195,39 +195,54 @@
         <video id="Video_Asset_8" autoplay="false" loop crossorigin="anonymous" src="media/Video_008.mp4" webkit-playsinline playsinline controls muted></video>
     </a-assets>-->
 
-        <a-marker id="marker_0" type="pattern" url="marker/border_pattern_000.patt" emitevents="true" button class="iOS">
-            <!--<a-video src="#Video_Asset_0" id="Video_0" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>-->
-        </a-marker>
-        <a-marker id="marker_1" type="pattern" url="marker/border_pattern_001.patt" emitevents="true" button class="iOS">
-            <!--<a-video src="#Video_Asset_1" id="Video_1" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>-->
-        </a-marker>
-        <a-marker id="marker_2" type="pattern" url="marker/border_pattern_002.patt" emitevents="true" button class="iOS">
-            <!--<a-video src="#Video_Asset_2" id="Video_2" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>-->
-        </a-marker>
-        <a-marker id="marker_3" type="pattern" url="marker/border_pattern_003.patt" emitevents="true" button class="iOS">
-            <!-- <a-video src="#Video_Asset_3" id="Video_3" class="intersectable" width="1.65" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>-->
-        </a-marker>
-        <a-marker id="marker_4" type="pattern" url="marker/border_pattern_004.patt" emitevents="true" button class="iOS">
-            <!--<a-video src="#Video_Asset_4" id="Video_4" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>-->
-        </a-marker>
-        <a-marker id="marker_5" type="pattern" url="marker/border_pattern_005.patt" emitevents="true" button class="iOS">
-            <!--<a-video src="#Video_Asset_5" id="Video_5" class="intersectable" width="1.6415" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>-->
-        </a-marker>
-        <a-marker id="marker_6" type="pattern" url="marker/border_pattern_006.patt" emitevents="true" button class="iOS">
-            <!--<a-video src="#Video_Asset_6" id="Video_6" class="intersectable" width="1.6875" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>-->
-        </a-marker>
-        <a-marker id="marker_7" type="pattern" url="marker/border_pattern_007.patt" emitevents="true" button class="iOS">
-            <!--<a-video src="#Video_Asset_7" id="Video_7" class="intersectable" width="3" height="1.698" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>-->
-        </a-marker>
-        <a-marker id="marker_8" type="pattern" url="marker/border_polygons_000.patt" emitevents="true" button class="iOS">
-            <!--<a-video src="#Video_Asset_8" id="Video_8" class="intersectable" width="1.65" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>-->
-        </a-marker>
+        <a-marker id="marker_0" type="pattern" url="marker/border_pattern_000.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_1" type="pattern" url="marker/border_pattern_001.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_2" type="pattern" url="marker/border_pattern_002.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_3" type="pattern" url="marker/border_pattern_003.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_4" type="pattern" url="marker/border_pattern_004.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_5" type="pattern" url="marker/border_pattern_005.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_6" type="pattern" url="marker/border_pattern_006.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_7" type="pattern" url="marker/border_pattern_007.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_8" type="pattern" url="marker/border_pattern_008.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_9" type="pattern" url="marker/border_pattern_009.patt" emitevents="true" button class="iOS"></a-marker>
 
-        <a-marker id="marker_8" type="pattern" url="marker/border_polygons_001.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_9" type="pattern" url="marker/border_polygons_002.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_10" type="pattern" url="marker/border_polygons_003.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_11" type="pattern" url="marker/border_polygons_004.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_12" type="pattern" url="marker/border_polygons_005.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_10" type="pattern" url="marker/border_polygons_001.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_11" type="pattern" url="marker/border_polygons_002.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_12" type="pattern" url="marker/border_polygons_003.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_13" type="pattern" url="marker/border_polygons_004.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_14" type="pattern" url="marker/border_polygons_005.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_15" type="pattern" url="marker/border_polygons_006.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_16" type="pattern" url="marker/border_polygons_007.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_17" type="pattern" url="marker/border_polygons_008.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_18" type="pattern" url="marker/border_polygons_009.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_19" type="pattern" url="marker/border_polygons_010.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_20" type="pattern" url="marker/border_polygons_011.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_21" type="pattern" url="marker/border_polygons_012.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_22" type="pattern" url="marker/border_polygons_013.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_23" type="pattern" url="marker/border_polygons_014.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_24" type="pattern" url="marker/border_polygons_015.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_25" type="pattern" url="marker/border_polygons_016.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_26" type="pattern" url="marker/border_polygons_017.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_27" type="pattern" url="marker/border_polygons_018.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_28" type="pattern" url="marker/border_polygons_019.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_29" type="pattern" url="marker/border_polygons_020.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_30" type="pattern" url="marker/border_polygons_021.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_31" type="pattern" url="marker/border_polygons_022.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_32" type="pattern" url="marker/border_polygons_023.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_33" type="pattern" url="marker/border_polygons_024.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_34" type="pattern" url="marker/border_polygons_025.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_35" type="pattern" url="marker/border_polygons_026.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_36" type="pattern" url="marker/border_polygons_027.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_37" type="pattern" url="marker/border_polygons_028.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_38" type="pattern" url="marker/border_polygons_029.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_39" type="pattern" url="marker/border_polygons_030.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_40" type="pattern" url="marker/border_polygons_031.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_41" type="pattern" url="marker/border_polygons_032.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_42" type="pattern" url="marker/border_polygons_033.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_43" type="pattern" url="marker/border_polygons_034.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_44" type="pattern" url="marker/border_polygons_035.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_45" type="pattern" url="marker/border_polygons_036.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_46" type="pattern" url="marker/border_polygons_037.patt" emitevents="true" button class="iOS"></a-marker>
 
         <a-entity camera></a-entity>
     </a-scene>
