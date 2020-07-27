@@ -66,11 +66,13 @@
                             currentMarkerID = markerID[1];
                             debugButton.innerHTML = 'new ' + markerID[1];
 
+                            var myAssets = document.createElement('a-assets');
                             var myVideo = document.createElement('video');
                             myVideo.id = 'Video_Asset_' + currentMarkerID;
                             myVideo.src = 'media/Video_000.mp4';
                             myVideo.autoplay = false;
                             myVideo.loop = true;
+                            myAssets.appendChild(myVideo);
 
                             var videoEl = document.createElement('a-video');
                             videoEl.setAttribute('Video_' + currentMarkerID, { src: '#' + myVideo.id, height: '3', width: '1.698', transparent: false, color: '#FFFFFF' });
