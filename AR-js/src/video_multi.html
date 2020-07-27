@@ -68,8 +68,8 @@
                                                 
                         var markerID = String(marker.id).split('_');
 
-                        if (currentMarkerID != markerID) {
-                            currentMarkerID = markerID;
+                        if (currentMarkerID != markerID[1]) {
+                            currentMarkerID = markerID[1];
                             debugButton.innerHTML = 'new ' + markerID[1];
                         }
                         else {
