@@ -69,7 +69,7 @@
 
                             var myVideo = document.createElement("VIDEO");
                             myVideo.id = 'Video_Asset_' + currentMarkerID;
-                            myVideo.autoplay = true;
+                            myVideo.autoplay = false;
                             myVideo.src = 'media/Video_000.mp4';
                             myVideo.loop = true;
                             myVideo.setAttribute("crossorigin", "anonymous");                            
@@ -90,7 +90,7 @@
                             videoEl.object3D.position.set(0, 1.6, 0);
                             videoEl.object3D.rotation.set(0, 0, 0);
 
-                            //marker.appendChild(videoEl);
+                            marker.appendChild(videoEl);
                             sceneEl.appendChild(videoEl);
 
                             debugButton.innerHTML = 'new ' + myVideo.id;
