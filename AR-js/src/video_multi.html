@@ -19,7 +19,7 @@
     <script>
         const amountMarkers = 9;
         var currentMarker = '';
-        var currentMarkerID = -1;
+        var currentMarkerID = '';
         var markerFound = 0;
         var markerIDArray = [];
         var videoArray = [];
@@ -67,7 +67,15 @@
                     marker.addEventListener("markerFound", () => {
                                                 
                         var markerID = String(marker.id).split('_');
-                        debugButton.innerHTML = markerID[1];
+
+                        if (currentMarkerID != markerID) {
+                            currentMarkerID = markerID;
+                            debugButton.innerHTML = 'new ' + markerID[1];
+                        }
+                        else {
+                            debugButton.innerHTML = 'same ' + markerID[1];
+                        }
+                        
 
                         //markerFound = 1;
 
