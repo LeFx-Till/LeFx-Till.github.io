@@ -68,16 +68,20 @@
                             currentMarkerID = markerID[1];
 
                             var myVideo = document.createElement("VIDEO");
-                            myVideo.setAttribute("id", "Video_Asset_" + currentMarkerID);
-                            myVideo.setAttribute("autoplay", "false");
-                            myVideo.setAttribute("loop", "true");
-                            myVideo.setAttribute("crossorigin", "anonymous");
-                            myVideo.setAttribute("src", "media/Video_000.mp4" + "webkit-playsinline playsinline controls muted");
+                            myVideo.id = 'Video_Asset_0'; //myVideo.setAttribute("id", "Video_Asset_" + currentMarkerID);
+                            myVideo.autoplay = false;
+                            myVideo.src = 'media/Video_000.mp4';
+                            myVideo.loop = true;
+                            myVideo.setAttribute("crossorigin", "anonymous");                            
+                            myVideo.setAttribute("webkit-playsinline", "");
+                            myVideo.setAttribute("playsinline", "");
+                            myVideo.setAttribute("controls", "");
+                            myVideo.setAttribute("muted", "");
                             assetsEl.appendChild(myVideo);
 
                             var videoEl = document.createElement('a-video');
-                            videoEl.setAttribute("src", "#" + myVideo.id);
-                            videoEl.setAttribute("id", "Video_" + currentMarkerID);                            
+                            videoEl.src = '#' + myVideo.id;
+                            videoEl.id = 'Video_' + currentMarkerID);
                             videoEl.setAttribute("class", "intersectable");
                             videoEl.setAttribute("width", "1.698");
                             videoEl.setAttribute("height", "3");                            
