@@ -42,7 +42,8 @@
                     var debugButton = document.querySelector("#debugbutton");
                     //var isPlaying = false;
                     var videoEl = document.querySelector('a-video');
-                    var markerEl = document.querySelector('a-marker');
+                    //var markerEl = document.querySelector('a-marker');
+                    const marker = this.el;
 
                     //button.hidden = true;
                     debugButton.hidden = false;
@@ -62,8 +63,8 @@
 
                     //PauseVideosAll()
 
-                    //const marker = this.el;                    
-                    markerEl.addEventListener("markerFound", () => {
+                    
+                    marker.addEventListener("markerFound", () => {
                         debugButton.innerHTML = marker.id;
 
                         //markerFound = 1;
@@ -75,8 +76,8 @@
                         //console.log('Se Marker Is Found : ', marker.id, currentMarker);
                     });
 
-                    markerEl.addEventListener("markerLost", () => {
-                        debugButton.innerHTML = "- - -";
+                    marker.addEventListener("markerLost", () => {
+                        debugButton.innerHTML = "- - - -";
 
                         //markerFound = 0;
 
@@ -167,7 +168,7 @@
         <input type="image" id="fullscreen" src="vendor/fullscreen.png" style='position: absolute; bottom: 0px; right: 35px;'></input>
     </div>
     <div style='position: absolute; bottom: 10px; right: 180px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 10px' hidden>Debug</button>
+        <button id="debugbutton" style='position: absolute; bottom: 10px' hidden>Debug Marker</button>
     </div>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
