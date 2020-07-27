@@ -41,9 +41,11 @@
                     //var button = document.querySelector("#mutebutton");
                     var debugButton = document.querySelector("#debugbutton");
                     //var isPlaying = false;
+                    var videoEl = document.querySelector('a-video');
+                    var markerEl = document.querySelector('a-marker');
 
                     //button.hidden = true;
-                    debugButton.hidden = false;                    
+                    debugButton.hidden = false;
 
                     //for (var i = 0; i < amountMarkers; i++) {
 
@@ -60,21 +62,21 @@
 
                     //PauseVideosAll()
 
-                    const marker = this.el;
-                    marker.addEventListener("markerFound", () => {
+                    //const marker = this.el;                    
+                    markerEl.addEventListener("markerFound", () => {
                         debugButton.innerHTML = marker.id;
 
                         //markerFound = 1;
 
                         //button.hidden = false;
                         //button.innerHTML = "-- PLAY VIDEO --";
-                                                
+
                         //currentMarker = marker.id;
                         //console.log('Se Marker Is Found : ', marker.id, currentMarker);
                     });
 
-                    marker.addEventListener("markerLost", () => {
-                        debugButton.innerHTML = "- - ";
+                    markerEl.addEventListener("markerLost", () => {
+                        debugButton.innerHTML = "- - -";
 
                         //markerFound = 0;
 
@@ -82,7 +84,7 @@
 
                         //isPlaying = false;
                         //button.hidden = true;
-                        
+
                         //currentMarker = '';
                         //console.log('Se Marker Is Lost: ', marker.id);
                     });
