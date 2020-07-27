@@ -33,7 +33,7 @@
 
         AFRAME.registerComponent('button',
             {
-                init: function () {                    
+                init: function () {
 
                     var elem = document.documentElement;
                     var fullbutton = document.querySelector("#fullscreen");
@@ -44,15 +44,23 @@
 
                     for (var i = 0; i < amountMarkers; i++) {
 
-                        // create marker array
                         var newMarker = document.querySelector("#marker_0" + i);
-                        console.log('pushing to marker array ', newMarker);
+
                         markerArray.push(newMarker);
                         markerIDArray.push(newMarker.id);
 
-                        // create video array
-                        var newVideo = document.querySelector("#Video_Asset_0" + i);
-                        videoArray.push(newVideo);
+                        if (i < 10)
+                            videoArray.push(document.querySelector("#Video_Asset_0" + i));
+                        else if (i >= 10 && i < 20)
+                            videoArray.push(document.querySelector("#Video_Asset_1" + i));
+                        else if (i >= 20 && i < 30)
+                            videoArray.push(document.querySelector("#Video_Asset_2" + i));
+                        else if (i >= 30 && i < 40)
+                            videoArray.push(document.querySelector("#Video_Asset_3" + i));
+                        else if (i >= 40 && i < 50)
+                            videoArray.push(document.querySelector("#Video_Asset_4" + i));
+                        else if (i >= 50 && i < 60)
+                            videoArray.push(document.querySelector("#Video_Asset_5" + i));
                     }
 
                     PauseVideosAll()
@@ -64,7 +72,7 @@
                         button.hidden = false;
                         button.innerHTML = "PLAY VIDEO";
 
-                        currentMarker = marker.id;                        
+                        currentMarker = marker.id;
                     });
 
                     marker.addEventListener("markerLost", () => {
@@ -75,27 +83,26 @@
                         isPlaying = false;
                         button.hidden = true;
 
-                        currentMarker = '';                        
+                        currentMarker = '';
                     });
 
                     button.addEventListener("click", function (evt) {
                         if (isPlaying) {
-                                                        
+
                             PauseVideosAll();
                             isPlaying = false;
-                            button.innerHTML = "-- PLAY VIDEO --";
+                            button.innerHTML = "PLAY VIDEO";
                             return;
                         }
 
                         if (currentMarker != '') {
                             var index = markerIDArray.indexOf(currentMarker);
-                            console.log('Click on Index ', currentMarker);
+
                             videoArray[index].muted = false;
                             videoArray[index].play();
 
-                            console.log('Me Try play ', videoArray[index].id);
                             isPlaying = true;
-                            button.innerHTML = "Pause";
+                            button.innerHTML = "PAUSE";
                         }
                     });
 
