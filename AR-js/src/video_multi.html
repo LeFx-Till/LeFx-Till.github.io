@@ -73,12 +73,18 @@
                             myVideo.setAttribute("autoplay", "false");
                             assetsEl.appendChild(myVideo);                            
 
-                            var videoEl = document.createElement('a-video');                            
-                            videoEl.setAttribute('Video_' + currentMarkerID, { src: '#' + myVideo.id, height: '3', width: '1.698', transparent: false, color: '#FFFFFF' });
+                            var videoEl = document.createElement('a-video');
+                            video.setAttribute("id", "Video_" + currentMarkerID);
+                            video.setAttribute("src", "#" + myVideo.id);
+                            video.setAttribute("height", "3");
+                            video.setAttribute("width", "1.698");
+                            video.setAttribute("transparent", "false");
+                            video.setAttribute("color", "#FFFFFF");                            
                             videoEl.object3D.position.set(0, 1.6, 0);
                             videoEl.object3D.rotation.set(0, 0, 0);
 
-                            marker.appendChild(videoEl);
+                            //marker.appendChild(videoEl);
+                            sceneEl.appendChild(videoEl);
 
                             debugButton.innerHTML = 'new ' + myVideo.id;
                         }
