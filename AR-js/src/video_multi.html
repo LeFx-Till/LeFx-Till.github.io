@@ -82,13 +82,13 @@
                         var newVideoEl = document.createElement('a-video');
                         //videoEl.src = '#' + newVideo.id;
                         newVideoEl.id = 'Video_' + currentMarkerID;
-                        videoEl.setAttribute("class", "intersectable");
-                        videoEl.setAttribute("width", "1.698");
-                        videoEl.setAttribute("height", "3");
-                        videoEl.setAttribute("transparent", "false");
-                        videoEl.setAttribute("color", "#FFFFFF");
-                        videoEl.object3D.position.set(0, 1.6, 0);
-                        videoEl.object3D.rotation.set(0, 0, 0);
+                        newVideoEl.setAttribute("class", "intersectable");
+                        newVideoEl.setAttribute("width", "1.698");
+                        newVideoEl.setAttribute("height", "3");
+                        newVideoEl.setAttribute("transparent", "false");
+                        newVideoEl.setAttribute("color", "#FFFFFF");
+                        newVideoEl.object3D.position.set(0, 1.6, 0);
+                        newVideoEl.object3D.rotation.set(0, 0, 0);
                         marker.appendChild(newVideoEl);
                     }
                     //else {
