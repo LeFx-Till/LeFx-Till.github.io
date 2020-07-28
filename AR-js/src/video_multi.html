@@ -65,14 +65,14 @@
 
                         var newVideo = document.createElement('video');
                         newVideo.id = 'Video_Asset_' + currentMarkerID;
-                        //myVideo.autoplay = false;
+                        newVideo.autoplay = false;
                         newVideo.src = 'media/Video_000.mp4';
-                        //myVideo.loop = true;
-                        //myVideo.setAttribute("crossorigin", "anonymous");
-                        //myVideo.setAttribute("webkit-playsinline", "");
-                        //myVideo.setAttribute("playsinline", "");
-                        //myVideo.setAttribute("controls", "");
-                        //myVideo.setAttribute("muted", "");
+                        newVideo.loop = true;
+                        newVideo.setAttribute("crossorigin", "anonymous");
+                        newVideo.setAttribute("webkit-playsinline", "");
+                        newVideo.setAttribute("playsinline", "");
+                        newVideo.setAttribute("controls", "");
+                        newVideo.setAttribute("muted", "");
                         assets.appendChild(newVideo);
 
                         //var videoEl = document.createElement('a-video');
@@ -104,7 +104,7 @@
                     //button.innerHTML = "-- PLAY VIDEO --";
 
                     //currentMarker = marker.id;
-                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video assets = " + assets.childElementCount + "\nactual element child id = " + assets.firstElementChild.id;
+                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video assets = " + assets.childElementCount + "\nactual element child id = " + assets.firstElementChild.id + "\nphysical video source= " + assets.firstElementChild.getAttribute("src");
                 });
 
                 marker.addEventListener('markerLost', () => {
