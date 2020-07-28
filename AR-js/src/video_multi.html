@@ -82,18 +82,14 @@
                         var newVideoEl = document.createElement('a-video');
                         //videoEl.src = '#' + newVideo.id;
                         newVideoEl.id = 'Video_' + currentMarkerID;
-                        //videoEl.setAttribute("class", "intersectable");
-                        //videoEl.setAttribute("width", "1.698");
-                        //videoEl.setAttribute("height", "3");
-                        //videoEl.setAttribute("transparent", "false");
-                        //videoEl.setAttribute("color", "#FFFFFF");
-                        //videoEl.object3D.position.set(0, 1.6, 0);
-                        //videoEl.object3D.rotation.set(0, 0, 0);
+                        videoEl.setAttribute("class", "intersectable");
+                        videoEl.setAttribute("width", "1.698");
+                        videoEl.setAttribute("height", "3");
+                        videoEl.setAttribute("transparent", "false");
+                        videoEl.setAttribute("color", "#FFFFFF");
+                        videoEl.object3D.position.set(0, 1.6, 0);
+                        videoEl.object3D.rotation.set(0, 0, 0);
                         marker.appendChild(newVideoEl);
-                        //sceneEl.appendChild(videoEl);
-
-                        //debugButton.innerHTML = 'new marker found #' + currentMarkerID + "\n and video " + myVideo.id;
-                        // + "\nwith myVideo " + myVideo.id + "\nand that videoElement " + videoEl.id;
                     }
                     //else {
 
