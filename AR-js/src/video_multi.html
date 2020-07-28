@@ -54,23 +54,22 @@
                 marker.addEventListener('markerFound', () => {
 
                     var markerID = String(marker.id).split('_')[1];
-
-                    textArea.innerHTML = "marker found on #" + currentMarkerID;
+                    
                     if (currentMarkerID != markerID) {
 
                         currentMarkerID = markerID;
 
-                        //var myVideo = document.createElement('video');
-                        //myVideo.id = 'Video_Asset_' + currentMarkerID;
-                        //myVideo.autoplay = false;
-                        //myVideo.src = 'media/Video_000.mp4';
-                        //myVideo.loop = true;
-                        //myVideo.setAttribute("crossorigin", "anonymous");
-                        //myVideo.setAttribute("webkit-playsinline", "");
-                        //myVideo.setAttribute("playsinline", "");
-                        //myVideo.setAttribute("controls", "");
-                        //myVideo.setAttribute("muted", "");
-                        //assetsEl.appendChild(myVideo);
+                        var myVideo = document.createElement('video');
+                        myVideo.id = 'Video_Asset_' + currentMarkerID;
+                        myVideo.autoplay = false;
+                        myVideo.src = 'media/Video_000.mp4';
+                        myVideo.loop = true;
+                        myVideo.setAttribute("crossorigin", "anonymous");
+                        myVideo.setAttribute("webkit-playsinline", "");
+                        myVideo.setAttribute("playsinline", "");
+                        myVideo.setAttribute("controls", "");
+                        myVideo.setAttribute("muted", "");
+                        assetsEl.appendChild(myVideo);
 
                         //var videoEl = document.createElement('a-video');
                         //videoEl.src = '#' + myVideo.id;
@@ -86,7 +85,7 @@
                         ////marker.appendChild(videoEl);
                         //sceneEl.appendChild(videoEl);
 
-                        debugButton.innerHTML = 'new marker found #' + currentMarkerID;
+                        debugButton.innerHTML = 'new marker found #' + currentMarkerID + "\n and video " + myVideo.id;
                          // + "\nwith myVideo " + myVideo.id + "\nand that videoElement " + videoEl.id;
                     }
                     else {
@@ -101,7 +100,7 @@
                     button.innerHTML = "-- PLAY VIDEO --";
 
                     //currentMarker = marker.id;
-                    //console.log('Se Marker Is Found : ', marker.id, currentMarker);
+                    textArea.innerHTML = "marker found on #" + currentMarkerID;
                 });
 
                 marker.addEventListener('markerLost', () => {
