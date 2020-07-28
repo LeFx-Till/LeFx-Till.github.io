@@ -101,12 +101,12 @@
                     //button.innerHTML = "-- PLAY VIDEO --";
 
                     //currentMarker = marker.id;                    
-                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video assets = " + assets.childNodes.length;
+                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video assets = " + assets.childElementCount;
                 });
 
                 marker.addEventListener('markerLost', () => {
                     debugButton.innerHTML = '_ _ _ _';
-
+                    textArea.innerHTML = "no markers visible";
                     //var videoAsset = document.querySelector("#Video_Asset_" + currentMarkerID);
                     //if (videoAsset != null) {
 
