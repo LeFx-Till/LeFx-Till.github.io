@@ -33,6 +33,7 @@
         var markerFound = 0;
         var markerIDArray = [];
         var videoArray = [];
+        var counter = 0;
 
         AFRAME.registerComponent('button', {
 
@@ -45,7 +46,8 @@
                 var sceneEl = this.el.sceneEl;
                 var assetsEl = this.el.assetsEl;
 
-                textArea.innerHTML += " " + this.el;
+                textArea.innerHTML += " " + counter;
+                counter++;
 
                 var isPlaying = false;
                 const marker = this.el;
