@@ -42,7 +42,7 @@
                 var debugButton = document.querySelector("#debugbutton");
                 var textArea = document.querySelector("#textArea");
                 var assets = document.querySelector("a-assets");
-                var dummyVideo = '';
+                var currentVideo = '';
 
                 var isPlaying = false;
                 const marker = this.el;
@@ -58,45 +58,62 @@
 
                         currentMarkerID = markerID[1];
 
-                        if (assets.childElementCount != 0)
+                        if (assets.childElementCount != 0) {
+
                             assets.removeChild(assets.firstElementChild);
+                        }
 
                         // create new video asset
-                        dummyVideo = document.createElement('video');
-                        dummyVideo.addEventListener("loadedmetadata", function (e) {
+                        currentVideo = document.createElement('video');
+                        currentVideo.addEventListener("loadedmetadata", function (e) {
 
                             var width = this.videoWidth;
                             var height = this.videoHeight;
 
-                            textArea.innerHTML = "marker found #" + currentMarkerID + " with physical video " + dummyVideo.src + "\nphysical video width = " + width + "px and physical video height = " + height + "px";
+                            var newVideoEl = document.createElement('a-video');
+                            //videoEl.src = '#' + currentVideo.id;
+                            newVideoEl.id = 'Video_' + currentMarkerID;
+                            newVideoEl.setAttribute("class", "intersectable");
+
+                            
+                            if (width < height) {
+
+                                var widthEl = 3 * width / height;
+                                newVideoEl.setAttribute("width", String(widthEl));
+                                newVideoEl.setAttribute("height", "3");
+                            }
+                            else {
+
+                                var heightEl = 3 * height / width;
+                                newVideoEl.setAttribute("width", "3");
+                                newVideoEl.setAttribute("height", String(heightEl));
+                            }                            
+                            
+                            newVideoEl.setAttribute("transparent", "false");
+                            newVideoEl.setAttribute("color", "#FFFFFF");
+                            newVideoEl.object3D.position.set(0, 1.6, 0);
+                            newVideoEl.object3D.rotation.set(0, 0, 0);
+                            marker.appendChild(newVideoEl);
+
+                            textArea.innerHTML = "marker found #" + currentMarkerID + " with physical video " + currentVideo.src +
+                                "\nphysical video width = " + width + "px and physical video height = " + height + "px" +
+                                "\nelement video width = " + newVideoEl.width + "and physical video height = " + newVideoEl.height;
 
                         }, false);
 
-                        dummyVideo.id = 'Video_Asset_' + currentMarkerID;
-                        dummyVideo.autoplay = false;
+                        currentVideo.id = 'Video_Asset_' + currentMarkerID;
+                        currentVideo.autoplay = false;
 
-                        if (currentMarkerID < 10) dummyVideo.src = 'media/Video_00' + currentMarkerID + '.mp4';
-                        else dummyVideo.src = 'media/Video_0' + currentMarkerID + '.mp4';
+                        if (currentMarkerID < 10) currentVideo.src = 'media/Video_00' + currentMarkerID + '.mp4';
+                        else currentVideo.src = 'media/Video_0' + currentMarkerID + '.mp4';
 
-                        dummyVideo.loop = true;
-                        dummyVideo.setAttribute("crossorigin", "anonymous");
-                        dummyVideo.setAttribute("webkit-playsinline", "");
-                        dummyVideo.setAttribute("playsinline", "");
-                        dummyVideo.setAttribute("controls", "");
-                        dummyVideo.setAttribute("muted", "");
-                        assets.appendChild(dummyVideo);
-
-                        //var newVideoEl = document.createElement('a-video');
-                        ////videoEl.src = '#' + dummyVideo.id;
-                        //newVideoEl.id = 'Video_' + currentMarkerID;
-                        //newVideoEl.setAttribute("class", "intersectable");
-                        //newVideoEl.setAttribute("width", "1.698");
-                        //newVideoEl.setAttribute("height", "3");
-                        //newVideoEl.setAttribute("transparent", "false");
-                        //newVideoEl.setAttribute("color", "#FFFFFF");
-                        //newVideoEl.object3D.position.set(0, 1.6, 0);
-                        //newVideoEl.object3D.rotation.set(0, 0, 0);
-                        //marker.appendChild(newVideoEl);
+                        currentVideo.loop = true;
+                        currentVideo.setAttribute("crossorigin", "anonymous");
+                        currentVideo.setAttribute("webkit-playsinline", "");
+                        currentVideo.setAttribute("playsinline", "");
+                        currentVideo.setAttribute("controls", "");
+                        currentVideo.setAttribute("muted", "");
+                        assets.appendChild(currentVideo);
                     }
 
                     //markerFound = 1;
@@ -110,7 +127,7 @@
                 marker.addEventListener('markerLost', () => {
                     debugButton.innerHTML = '_ _ _ _';
 
-                    textArea.innerHTML = "no markers visible\nnumber of video elements = " + marker.childElementCount + "\nwith physical video = " + dummyVideo.src;
+                    textArea.innerHTML = "no markers visible\nnumber of video elements = " + marker.childElementCount + "\nwith physical video = " + currentVideo.src;
                     //var videoAsset = document.querySelector("#Video_Asset_" + currentMarkerID);
                     //if (videoAsset != null) {
 
