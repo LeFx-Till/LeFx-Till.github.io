@@ -75,20 +75,20 @@
                             newVideoEl.id = 'Video_' + currentMarkerID;
                             newVideoEl.setAttribute("class", "intersectable");
 
-                            
-                            if (width < height) {
+                            //if (width < height) {
 
-                                var widthEl = 3 * width / height;
-                                newVideoEl.setAttribute("width", widthEl);
-                                newVideoEl.setAttribute("height", "3");
-                            }
-                            else {
+                            //    var widthEl = 3 * width / height;
+                            //    newVideoEl.setAttribute("width", widthEl);
+                            //    newVideoEl.setAttribute("height", "3");
+                            //}
+                            //else {
 
-                                var heightEl = 3 * height / width;
-                                newVideoEl.setAttribute("width", "3");
-                                newVideoEl.setAttribute("height", heightEl);
-                            }                            
-                            
+                            //    var heightEl = 3 * height / width;
+                            //    newVideoEl.setAttribute("width", "3");
+                            //    newVideoEl.setAttribute("height", heightEl);
+                            //}
+                            newVideoEl.setAttribute("width", "1.698");
+                            newVideoEl.setAttribute("height", "3");
                             newVideoEl.setAttribute("transparent", "false");
                             newVideoEl.setAttribute("color", "#FFFFFF");
                             newVideoEl.object3D.position.set(0, 1.6, 0);
