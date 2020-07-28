@@ -41,7 +41,7 @@
                     var button = document.querySelector("#mutebutton");
                     var isPlaying = false;
 
-                    button.hidden = true;
+                    //button.hidden = true;
 
                     for (var i = 0; i < amountMarkers; i++) {
 
@@ -63,7 +63,7 @@
                         markerFound = 1;
 
                         button.hidden = false;
-                        button.innerHTML = "-- PLAY VIDEO --";
+                            button.innerHTML = "Ready 2 PLAY VIDEO";
 
                         currentMarker = marker.id;
 
@@ -76,8 +76,8 @@
                         PauseVideosAll();
 
                         isPlaying = false;
-                        button.hidden = true;
-
+                        //button.hidden = true;
+                            button.innerHTML = "Lost Marker: not PLAY VIDEO";
                         currentMarker = '';
                         console.log('Se Marker Is Lost: ', marker.id);
                     });
