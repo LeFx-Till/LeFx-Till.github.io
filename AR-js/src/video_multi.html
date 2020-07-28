@@ -101,7 +101,7 @@
                     //button.innerHTML = "-- PLAY VIDEO --";
 
                     //currentMarker = marker.id;                    
-                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video assets = " + assets.childElementCount + "\nfirst child id = " + assets.children[0].id;
+                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video assets = " + assets.childElementCount + "\nlast element child id = " + assets.lastElementChild.id + "\nlast child id = " + assets.lastChild.id;
                 });
 
                 marker.addEventListener('markerLost', () => {
