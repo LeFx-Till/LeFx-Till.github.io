@@ -63,10 +63,16 @@
                         if (assets.childElementCount != 0)
                             assets.removeChild(assets.firstElementChild);
 
+                        // create new video asset
                         var newVideo = document.createElement('video');
                         newVideo.id = 'Video_Asset_' + currentMarkerID;
                         newVideo.autoplay = false;
-                        newVideo.src = 'media/Video_000.mp4';
+
+                        if (currentMarkerID < 10)
+                            newVideo.src = 'media/Video_00' + currentMarkerID + '.mp4';
+                        else
+                            newVideo.src = 'media/Video_0' + currentMarkerID + '.mp4';
+
                         newVideo.loop = true;
                         newVideo.setAttribute("crossorigin", "anonymous");
                         newVideo.setAttribute("webkit-playsinline", "");
