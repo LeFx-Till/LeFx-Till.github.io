@@ -60,6 +60,9 @@
 
                         currentMarkerID = markerID[1];
 
+                        if (assets.childElementCount != 0)
+                            assets.removeChild(assets.firstElementChild);
+
                         var newVideo = document.createElement('video');
                         newVideo.id = 'Video_Asset_' + currentMarkerID;
                         //myVideo.autoplay = false;
@@ -101,16 +104,11 @@
                     //button.innerHTML = "-- PLAY VIDEO --";
 
                     //currentMarker = marker.id;
-                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video assets = " + assets.childElementCount + "\actual element child id = " + assets.firstElementChild.id;
+                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video assets = " + assets.childElementCount + "\nactual element child id = " + assets.firstElementChild.id;
                 });
 
                 marker.addEventListener('markerLost', () => {
                     debugButton.innerHTML = '_ _ _ _';
-
-                    for (var i = 0; i < assets.childElementCount; i++) {
-
-                        assets.removeChild(assets.children[i]);
-                    }
 
                     textArea.innerHTML = "no markers visible\nnumber of video assets = " + assets.childElementCount;
                     //var videoAsset = document.querySelector("#Video_Asset_" + currentMarkerID);
