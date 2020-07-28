@@ -75,7 +75,7 @@
                             var height = this.videoHeight;
 
                             currentVideoEl = document.createElement('a-video');
-                            currentVideoEl.addEventListener("loadedmetadata", function (e) {
+                            currentVideoEl.addEventListener("loadedmetadata", function (event) {
 
                                 textArea.innerHTML = "marker found #" + currentMarkerID + " with physical video " + currentVideo.src +
                                     "\nphysical video width = " + width + "px and physical video height = " + height + "px" +
@@ -84,8 +84,7 @@
                                 currentVideoEl.object3D.position.set(0, 1.6, 0);
                                 currentVideoEl.object3D.rotation.set(0, 0, 0);
                                 marker.appendChild(currentVideoEl);
-
-                            }, false);
+                            });
 
                             //videoEl.src = '#' + currentVideo.id;
                             currentVideoEl.id = 'Video_' + currentMarkerID;
@@ -107,7 +106,7 @@
                             currentVideoEl.setAttribute("transparent", "false");
                             currentVideoEl.setAttribute("color", "#FFFFFF");                            
 
-                        }, false);
+                        });
 
                         currentVideo.id = 'Video_Asset_' + currentMarkerID;
                         currentVideo.autoplay = false;
