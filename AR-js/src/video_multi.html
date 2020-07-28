@@ -55,38 +55,39 @@
 
                     var markerID = String(marker.id).split('_')[1];
 
+                    textArea.innerHTML = "marker found on #" + currentMarkerID);
                     if (currentMarkerID != markerID) {
 
                         currentMarkerID = markerID;
 
-                        var myVideo = document.createElement('video');
-                        myVideo.id = 'Video_Asset_' + currentMarkerID;
-                        myVideo.autoplay = false;
-                        myVideo.src = 'media/Video_000.mp4';
-                        myVideo.loop = true;
-                        myVideo.setAttribute("crossorigin", "anonymous");
-                        myVideo.setAttribute("webkit-playsinline", "");
-                        myVideo.setAttribute("playsinline", "");
-                        myVideo.setAttribute("controls", "");
-                        myVideo.setAttribute("muted", "");
-                        assetsEl.appendChild(myVideo);
+                        //var myVideo = document.createElement('video');
+                        //myVideo.id = 'Video_Asset_' + currentMarkerID;
+                        //myVideo.autoplay = false;
+                        //myVideo.src = 'media/Video_000.mp4';
+                        //myVideo.loop = true;
+                        //myVideo.setAttribute("crossorigin", "anonymous");
+                        //myVideo.setAttribute("webkit-playsinline", "");
+                        //myVideo.setAttribute("playsinline", "");
+                        //myVideo.setAttribute("controls", "");
+                        //myVideo.setAttribute("muted", "");
+                        //assetsEl.appendChild(myVideo);
 
-                        var videoEl = document.createElement('a-video');
-                        videoEl.src = '#' + myVideo.id;
-                        videoEl.id = 'Video_' + currentMarkerID;
-                        videoEl.setAttribute("class", "intersectable");
-                        videoEl.setAttribute("width", "1.698");
-                        videoEl.setAttribute("height", "3");
-                        videoEl.setAttribute("transparent", "false");
-                        videoEl.setAttribute("color", "#FFFFFF");
-                        videoEl.object3D.position.set(0, 1.6, 0);
-                        videoEl.object3D.rotation.set(0, 0, 0);
+                        //var videoEl = document.createElement('a-video');
+                        //videoEl.src = '#' + myVideo.id;
+                        //videoEl.id = 'Video_' + currentMarkerID;
+                        //videoEl.setAttribute("class", "intersectable");
+                        //videoEl.setAttribute("width", "1.698");
+                        //videoEl.setAttribute("height", "3");
+                        //videoEl.setAttribute("transparent", "false");
+                        //videoEl.setAttribute("color", "#FFFFFF");
+                        //videoEl.object3D.position.set(0, 1.6, 0);
+                        //videoEl.object3D.rotation.set(0, 0, 0);
 
-                        //marker.appendChild(videoEl);
-                        sceneEl.appendChild(videoEl);
+                        ////marker.appendChild(videoEl);
+                        //sceneEl.appendChild(videoEl);
 
                         debugButton.innerHTML = 'new marker found #' + currentMarkerID;
-                        textArea.innerHTML = "marker found on #" + currentMarkerID + "\nwith myVideo " + myVideo.id + "\nand that videoElement " + videoEl.id;
+                         // + "\nwith myVideo " + myVideo.id + "\nand that videoElement " + videoEl.id;
                     }
                     else {
 
@@ -106,15 +107,15 @@
                 marker.addEventListener('markerLost', () => {
                     debugButton.innerHTML = '_ _ _ _';
 
-                    var videoAsset = document.querySelector("#Video_Asset_" + currentMarkerID);
-                    if (videoAsset != null) {
+                    //var videoAsset = document.querySelector("#Video_Asset_" + currentMarkerID);
+                    //if (videoAsset != null) {
 
-                        assetsEl.removeChild(videoAsset);
-                        debugButton.innerHTML = 'removed video';
-                    }
-                    else {
-                        debugButton.innerHTML = '_ _ _ _';
-                    }
+                    //    assetsEl.removeChild(videoAsset);
+                    //    debugButton.innerHTML = 'removed video';
+                    //}
+                    //else {
+                    //    debugButton.innerHTML = '_ _ _ _';
+                    //}
 
 
                     //document.documentElement.el.remove;
