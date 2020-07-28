@@ -42,8 +42,8 @@
                 var debugButton = document.querySelector("#debugbutton");
                 var textArea = document.querySelector("#textArea");
 
-                var sceneEl = this.el.sceneEl;
-                var assetsEl = this.el.assetsEl;
+                const sceneEl = this.el.sceneEl;
+                const assetsEl = this.el.assetsEl;
 
                 var isPlaying = false;
                 const marker = this.el;
@@ -99,13 +99,8 @@
                     //button.hidden = false;
                     //button.innerHTML = "-- PLAY VIDEO --";
 
-                    //currentMarker = marker.id;
-                    var postFix = "";
-                    if (assetsEl != null)
-                        postfix = assetsEl.id;
-                    else
-                        postFix = "niente";
-                    textArea.innerHTML = "marker found #" + currentMarkerID + "\ninside asset: " + postFix;
+                    //currentMarker = marker.id;                    
+                    textArea.innerHTML = "marker found #" + currentMarkerID + "\ninside asset: " + assetsEl.id;
                 });
 
                 marker.addEventListener('markerLost', () => {
@@ -176,7 +171,7 @@
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
 
-        <a-assets></a-assets>
+        <a-assets id="myAssets" ></a-assets>
 
         <a-marker id="marker_0" type="pattern" url="marker/border_pattern_000.patt" emitevents="true" button class="iOS"></a-marker>
         <a-marker id="marker_1" type="pattern" url="marker/border_pattern_001.patt" emitevents="true" button class="iOS"></a-marker>
