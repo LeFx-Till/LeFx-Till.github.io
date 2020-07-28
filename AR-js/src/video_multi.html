@@ -27,8 +27,7 @@
         }
     </style>
 
-    <script>
-        const amountMarkers = 9;
+    <script>        
         var currentMarker = '';
         var currentMarkerID = '';
         var markerFound = 0;
@@ -42,11 +41,11 @@
                 var button = document.querySelector("#mutebutton");
                 var debugButton = document.querySelector("#debugbutton");
                 var textArea = document.querySelector("#textArea");
-                textArea.innerHTML += "<br>Fifth Avenue, New York City";
-
 
                 var sceneEl = this.el.sceneEl;
                 var assetsEl = this.el.assetsEl;
+
+                textArea.innerHTML += " " + this.el;
 
                 var isPlaying = false;
                 const marker = this.el;
