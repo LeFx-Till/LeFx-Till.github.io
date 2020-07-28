@@ -21,7 +21,7 @@
             position: relative;
             top: 10px;
             left: 10px;
-            width: 20%;
+            width: 100%;
             text-align: left
         }
     </style>
@@ -39,8 +39,8 @@
             init: function () {
 
                 var button = document.querySelector("#mutebutton");
-                var debugButton = document.querySelector('#debugbutton');
-                var text = document.querySelector('#textArea');
+                var debugButton = document.querySelector("#debugbutton");
+                var text = document.getElementById("#textArea");
 
                 var sceneEl = this.el.sceneEl;
                 var assetsEl = this.el.assetsEl;
@@ -50,8 +50,8 @@
 
                 button.hidden = true;
                 debugButton.hidden = false;
-                text = 'Hello<br>';
-                text = 'World<br>';
+                text.nodeValue += 'Hello<br>';
+                text.nodeValue += 'World<br>';
                 marker.addEventListener('markerFound', () => {
 
                     var markerID = String(marker.id).split('_')[1];
@@ -59,7 +59,7 @@
                     if (currentMarkerID != markerID) {
 
                         currentMarkerID = markerID;
-                        text = 'Marker #' + currentMarkerID + '<br>';
+                        text.nodeValue += 'Marker #' + currentMarkerID + '<br>';
 
                         var myVideo = document.createElement('video');
                         myVideo.id = 'Video_Asset_' + currentMarkerID;
