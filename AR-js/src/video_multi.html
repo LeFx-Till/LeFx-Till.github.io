@@ -66,13 +66,13 @@
 
                         // create new video asset
                         currentVideo = document.createElement('video');
-                        currentVideo.addEventListener("loadedmetadata", function (e) {
+                        currentVideo.addEventListener("loadedmetadata", () => {
 
                             var width = this.videoWidth;
                             var height = this.videoHeight;
 
                             currentVideoEl = document.createElement('a-video');
-                            currentVideoEl.addEventListener("loadedmetadataElement", function (e) {
+                            currentVideoEl.addEventListener("loadedmetadataElement", () => {
 
                                 textArea.innerHTML = "marker found #" + currentMarkerID + " with physical video " + currentVideo.src +
                                     "\nphysical video width = " + width + "px and physical video height = " + height + "px" +
@@ -81,7 +81,7 @@
                                 currentVideoEl.object3D.position.set(0, 1.6, 0);
                                 currentVideoEl.object3D.rotation.set(0, 0, 0);
 
-                            }, false);
+                            });
 
                             //videoEl.src = '#' + currentVideo.id;
                             currentVideoEl.id = 'Video_' + currentMarkerID;
@@ -104,7 +104,7 @@
                             currentVideoEl.setAttribute("color", "#FFFFFF");                            
                             marker.appendChild(currentVideoEl);
 
-                        }, false);
+                        });
 
                         currentVideo.id = 'Video_Asset_' + currentMarkerID;
                         currentVideo.autoplay = false;
