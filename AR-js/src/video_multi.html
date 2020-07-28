@@ -27,12 +27,12 @@
         }
     </style>
 
-    <script>        
+    <script>
         var currentMarker = '';
         var currentMarkerID = '';
         var markerFound = 0;
         var markerIDArray = [];
-        var videoArray = [];        
+        var videoArray = [];
 
         AFRAME.registerComponent('button', {
 
@@ -100,13 +100,19 @@
                     //button.hidden = false;
                     //button.innerHTML = "-- PLAY VIDEO --";
 
-                    //currentMarker = marker.id;                    
-                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video assets = " + assets.childElementCount + "\nlast element child id = " + assets.lastElementChild.id + "\nlast child id = " + assets.lastChild.id;
+                    //currentMarker = marker.id;
+                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video assets = " + assets.childElementCount + "\actual element child id = " + assets.firstElementChild.id;
                 });
 
                 marker.addEventListener('markerLost', () => {
                     debugButton.innerHTML = '_ _ _ _';
-                    textArea.innerHTML = "no markers visible";
+
+                    for (var i = 0; i < assets.childElementCount; i++) {
+
+                        assets.removeChild(assets.children[i]);
+                    }
+
+                    textArea.innerHTML = "no markers visible\nnumber of video assets = " + assets.childElementCount;
                     //var videoAsset = document.querySelector("#Video_Asset_" + currentMarkerID);
                     //if (videoAsset != null) {
 
@@ -173,7 +179,6 @@
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
 
         <a-assets>
-            <video id="Video_Asset_0" autoplay="false" loop crossorigin="anonymous" src="media/Video_000.mp4" webkit-playsinline playsinline controls muted></video>
         </a-assets>
 
         <a-marker id="marker_0" type="pattern" url="marker/border_pattern_000.patt" emitevents="true" button class="iOS"></a-marker>
