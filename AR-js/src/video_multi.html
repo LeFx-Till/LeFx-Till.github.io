@@ -29,8 +29,6 @@
 
     <script>
 
-
-
         var currentMarker = '';
         var currentMarkerID = '';
         var markerFound = 0;
@@ -82,8 +80,7 @@
                                     "\nelement video width = " + currentVideoEl.width + " and physical video height = " + currentVideoEl.height;
 
                                 currentVideoEl.object3D.position.set(0, 1.6, 0);
-                                currentVideoEl.object3D.rotation.set(0, 0, 0);
-                                marker.appendChild(currentVideoEl);
+                                currentVideoEl.object3D.rotation.set(0, 0, 0);                                
                             });
 
                             //videoEl.src = '#' + currentVideo.id;
@@ -105,7 +102,7 @@
                             
                             currentVideoEl.setAttribute("transparent", "false");
                             currentVideoEl.setAttribute("color", "#FFFFFF");                            
-
+                            marker.appendChild(currentVideoEl);
                         });
 
                         currentVideo.id = 'Video_Asset_' + currentMarkerID;
