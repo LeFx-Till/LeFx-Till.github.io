@@ -65,6 +65,11 @@
                             assets.removeChild(assets.firstElementChild);
                         }
 
+                        if (marker.childElementCount != 0) {
+
+                            marker.removeChild(marker.firstElementChild);
+                        }
+
                         // create new video asset
                         currentVideo = document.createElement('video');
                         currentVideo.addEventListener("loadedmetadata", function (e) {
