@@ -42,7 +42,7 @@
                 var button = document.querySelector("#mutebutton");
                 var debugButton = document.querySelector("#debugbutton");
                 var textArea = document.getElementById("#textArea");
-                textArea.innerText = "Fifth Avenue, New York City";
+                textArea.innerHTML = "Fifth Avenue, New York City";
 
 
                 var sceneEl = this.el.sceneEl;
@@ -53,14 +53,14 @@
 
                 button.hidden = true;
                 debugButton.hidden = false;
-                
+
                 marker.addEventListener('markerFound', () => {
 
                     var markerID = String(marker.id).split('_')[1];
 
                     if (currentMarkerID != markerID) {
 
-                        currentMarkerID = markerID;                        
+                        currentMarkerID = markerID;
 
                         var myVideo = document.createElement('video');
                         myVideo.id = 'Video_Asset_' + currentMarkerID;
