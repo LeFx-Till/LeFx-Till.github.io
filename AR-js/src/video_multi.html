@@ -60,10 +60,10 @@
 
                         currentMarkerID = markerID[1];
 
-                        //var myVideo = document.createElement('video');
-                        //myVideo.id = 'Video_Asset_' + currentMarkerID;
+                        var newVideo = document.createElement('video');
+                        newVideo.id = 'Video_Asset_' + currentMarkerID;
                         //myVideo.autoplay = false;
-                        //myVideo.src = 'media/Video_000.mp4';
+                        newVideo.src = 'media/Video_000.mp4';
                         //myVideo.loop = true;
                         //myVideo.setAttribute("crossorigin", "anonymous");
                         //myVideo.setAttribute("webkit-playsinline", "");
@@ -101,7 +101,7 @@
                     //button.innerHTML = "-- PLAY VIDEO --";
 
                     //currentMarker = marker.id;                    
-                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video assets = " + assets.childElementCount + "\n first child id = " + assets.children[0].id;
+                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video assets = " + assets.childElementCount + "\nfirst child id = " + assets.children[0].id;
                 });
 
                 marker.addEventListener('markerLost', () => {
@@ -173,7 +173,7 @@
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
 
         <a-assets>
-            <video id="Video_Asset_00" autoplay="false" loop crossorigin="anonymous" src="media/Video_000.mp4" webkit-playsinline playsinline controls muted></video>
+            <video id="Video_Asset_0" autoplay="false" loop crossorigin="anonymous" src="media/Video_000.mp4" webkit-playsinline playsinline controls muted></video>
         </a-assets>
 
         <a-marker id="marker_0" type="pattern" url="marker/border_pattern_000.patt" emitevents="true" button class="iOS"></a-marker>
