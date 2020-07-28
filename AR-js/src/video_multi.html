@@ -32,7 +32,7 @@
         var currentMarkerID = '';
         var markerFound = 0;
         var markerIDArray = [];
-        var videoArray = [];
+        var videoArray = [];        
 
         AFRAME.registerComponent('button', {
 
@@ -41,10 +41,8 @@
                 var button = document.querySelector("#mutebutton");
                 var debugButton = document.querySelector("#debugbutton");
                 var textArea = document.querySelector("#textArea");
-                var assets = document.querySelector("a-assets");
-
-
-                //const sceneEl = this.el.sceneEl;
+                var assets = document.querySelector("a-assets");       
+                //var dummyVideo = '';
 
                 var isPlaying = false;
                 const marker = this.el;
@@ -79,6 +77,8 @@
                         newVideo.setAttribute("muted", "");
                         assets.appendChild(newVideo);
 
+                        dummyVideo = newVideo;
+
                         //var newVideoEl = document.createElement('a-video');
                         ////videoEl.src = '#' + newVideo.id;
                         //newVideoEl.id = 'Video_' + currentMarkerID;
@@ -99,8 +99,8 @@
 
                     //currentMarker = marker.id;
                     var currentPhysicalVideo = assets.firstElementChild.getAttribute("src");
-                    var currentPhysicalVideoWidth = newVideo.width;
-                    var currentPhysicalVideoHeight = newVideo.height;
+                    var currentPhysicalVideoWidth = newVideo.videoWidth;
+                    var currentPhysicalVideoHeight = newVideo.videoHeight;
 
                     //textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video elements = " + marker.childElementCount + "\nactual element child id = " + marker.firstElementChild.id; // + "\nphysical video source= " + assets.firstElementChild.getAttribute("src");
                     textArea.innerHTML = "marker found #" + currentMarkerID + " with physical video " + currentPhysicalVideo + "\nphysical video width = " + currentPhysicalVideoWidth + "px and height = " + currentPhysicalVideoHeight + "px";
