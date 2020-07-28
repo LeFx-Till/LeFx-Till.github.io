@@ -59,17 +59,17 @@
 
                         currentMarkerID = markerID[1];
 
-                        //var myVideo = document.createElement('video');
-                        //myVideo.id = 'Video_Asset_' + currentMarkerID;
-                        //myVideo.autoplay = false;
-                        //myVideo.src = 'media/Video_000.mp4';
-                        //myVideo.loop = true;
-                        //myVideo.setAttribute("crossorigin", "anonymous");
-                        //myVideo.setAttribute("webkit-playsinline", "");
-                        //myVideo.setAttribute("playsinline", "");
-                        //myVideo.setAttribute("controls", "");
-                        //myVideo.setAttribute("muted", "");
-                        //assetsEl.appendChild(myVideo);
+                        var myVideo = document.createElement('video');
+                        myVideo.id = 'Video_Asset_' + currentMarkerID;
+                        myVideo.autoplay = false;
+                        myVideo.src = 'media/Video_000.mp4';
+                        myVideo.loop = true;
+                        myVideo.setAttribute("crossorigin", "anonymous");
+                        myVideo.setAttribute("webkit-playsinline", "");
+                        myVideo.setAttribute("playsinline", "");
+                        myVideo.setAttribute("controls", "");
+                        myVideo.setAttribute("muted", "");
+                        assetsEl.appendChild(myVideo);
 
                         //var videoEl = document.createElement('a-video');
                         //videoEl.src = '#' + myVideo.id;
@@ -100,7 +100,7 @@
                     //button.innerHTML = "-- PLAY VIDEO --";
 
                     //currentMarker = marker.id;
-                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nTEST";
+                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nmyVideo = " + myVideo.id;
                 });
 
                 marker.addEventListener('markerLost', () => {
