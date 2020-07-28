@@ -59,7 +59,7 @@
                     //if (currentMarkerID != markerID[1]) {
 
                     currentMarkerID = markerID[1];
-                    textArea.innerHTML = "marker found #" + currentMarkerID;
+                    debugButton.innerHTML = "marker found #" + currentMarkerID;
 
                     if (assets.childElementCount != 0) {
 
@@ -81,7 +81,7 @@
                         currentVideoEl = document.createElement('a-video');
                         currentVideoEl.addEventListener("loadedmetadata", function (event) {
 
-                            textArea.innerHTML += " with physical video " + currentVideo.src + "\nelement video width = " + currentVideoEl.width + " and element video height = " + currentVideoEl.height;
+                            textArea.innerHTML = " physical video " + currentVideo.src + "\nelement video width = " + currentVideoEl.width + " and element video height = " + currentVideoEl.height;
 
                             currentVideoEl.object3D.position.set(0, 1.6, 0);
                             currentVideoEl.object3D.rotation.set(0, 0, 0);
@@ -135,7 +135,7 @@
                 marker.addEventListener('markerLost', () => {
                     debugButton.innerHTML = '_ _ _ _';
 
-                    textArea.innerHTML = "no markers visible\nnumber of video elements beneath marker = " + marker.childElementCount + "\nwith physical video = " + currentVideo.src;
+                    textArea.innerHTML = "NO markers visible\nnumber of video elements beneath marker = " + marker.childElementCount + "\ncurrent physical video = " + currentVideo.src;
                     //var videoAsset = document.querySelector("#Video_Asset_" + currentMarkerID);
                     //if (videoAsset != null) {
 
