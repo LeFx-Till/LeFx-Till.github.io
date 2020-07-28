@@ -32,8 +32,7 @@
         var currentMarkerID = '';
         var markerFound = 0;
         var markerIDArray = [];
-        var videoArray = [];
-        var counter = 0;
+        var videoArray = [];        
 
         AFRAME.registerComponent('button', {
 
@@ -45,9 +44,6 @@
 
                 var sceneEl = this.el.sceneEl;
                 var assetsEl = this.el.assetsEl;
-
-                textArea.innerHTML += " " + counter;
-                counter++;
 
                 var isPlaying = false;
                 const marker = this.el;
@@ -90,6 +86,7 @@
                         sceneEl.appendChild(videoEl);
 
                         debugButton.innerHTML = 'new marker found #' + currentMarkerID;
+                        textArea.innerHTML = "marker found on #" + currentMarkerID + "\nwith myVideo " + myVideo.id + "\nand that videoElement " + videoEl.id;
                     }
                     else {
 
@@ -223,7 +220,6 @@
         <a-marker id="marker_43" type="pattern" url="marker/border_polygons_034.patt" emitevents="true" button class="iOS"></a-marker>
         <a-marker id="marker_44" type="pattern" url="marker/border_polygons_035.patt" emitevents="true" button class="iOS"></a-marker>
         <a-marker id="marker_45" type="pattern" url="marker/border_polygons_036.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_46" type="pattern" url="marker/border_polygons_037.patt" emitevents="true" button class="iOS"></a-marker>
 
         <a-entity camera></a-entity>
     </a-scene>
