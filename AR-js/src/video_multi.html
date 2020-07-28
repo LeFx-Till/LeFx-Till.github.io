@@ -55,7 +55,7 @@
                 marker.addEventListener('markerFound', () => {
 
                     var markerID = String(marker.id).split('_');
-                    
+
                     if (currentMarkerID != markerID[1]) {
 
                         currentMarkerID = markerID[1];
@@ -87,11 +87,11 @@
                         //sceneEl.appendChild(videoEl);
 
                         //debugButton.innerHTML = 'new marker found #' + currentMarkerID + "\n and video " + myVideo.id;
-                         // + "\nwith myVideo " + myVideo.id + "\nand that videoElement " + videoEl.id;
+                        // + "\nwith myVideo " + myVideo.id + "\nand that videoElement " + videoEl.id;
                     }
                     //else {
 
-                        //debugButton.innerHTML = 'same marker found #' + currentMarkerID;
+                    //debugButton.innerHTML = 'same marker found #' + currentMarkerID;
                     //}
 
 
@@ -101,7 +101,7 @@
                     //button.innerHTML = "-- PLAY VIDEO --";
 
                     //currentMarker = marker.id;                    
-                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video assets = " + assets.childElementCount;
+                    textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video assets = " + assets.childElementCount + "\n first child id = " + assets.children[0].id;
                 });
 
                 marker.addEventListener('markerLost', () => {
