@@ -83,11 +83,12 @@
 
                             textArea.innerHTML = " physical video " + currentVideo.src + "\nelement video width = " + currentVideoEl.width + " and element video height = " + currentVideoEl.height;
 
+                            currentVideoEl.src = '#' + currentVideo.id;
                             currentVideoEl.object3D.position.set(0, 1.6, 0);
                             currentVideoEl.object3D.rotation.set(0, 0, 0);
                         });
 
-                        currentVideoEl.src = '#' + currentVideo.id;
+                        
                         currentVideoEl.id = 'Video_' + currentMarkerID;
                         currentVideoEl.setAttribute("class", "intersectable");
 
