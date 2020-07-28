@@ -79,14 +79,14 @@
                             if (width < height) {
 
                                 var widthEl = 3 * width / height;
-                                newVideoEl.setAttribute("width", String(widthEl));
+                                newVideoEl.setAttribute("width", widthEl);
                                 newVideoEl.setAttribute("height", "3");
                             }
                             else {
 
                                 var heightEl = 3 * height / width;
                                 newVideoEl.setAttribute("width", "3");
-                                newVideoEl.setAttribute("height", String(heightEl));
+                                newVideoEl.setAttribute("height", heightEl);
                             }                            
                             
                             newVideoEl.setAttribute("transparent", "false");
@@ -97,7 +97,7 @@
 
                             textArea.innerHTML = "marker found #" + currentMarkerID + " with physical video " + currentVideo.src +
                                 "\nphysical video width = " + width + "px and physical video height = " + height + "px" +
-                                "\nelement video width = " + newVideoEl.width + "and physical video height = " + newVideoEl.height;
+                                "\nelement video width = " + newVideoEl.width + " and physical video height = " + newVideoEl.height;
 
                         }, false);
 
