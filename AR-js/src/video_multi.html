@@ -63,10 +63,9 @@
 
                         // create new video asset
                         var newVideo = document.createElement('video');
-
                         newVideo.addEventListener("loadedmetadata", function (e) {
 
-                            var width = this.videoWidth,
+                            var width = this.videoWidth;
                             var height = this.videoHeight;
 
                             textArea.innerHTML = "marker found #" + currentMarkerID + " with physical video " + newVideo.src + "\nphysical video width = " + width + "px and physical video height = " + height + "px";
