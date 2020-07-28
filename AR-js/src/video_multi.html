@@ -72,7 +72,7 @@
                             var height = this.videoHeight;
 
                             currentVideoEl = document.createElement('a-video');
-                            currentVideoEl.addEventListener("loadedmetadata", function (e) {
+                            currentVideoEl.addEventListener("loadedmetadataElement", function (e) {
 
                                 textArea.innerHTML = "marker found #" + currentMarkerID + " with physical video " + currentVideo.src +
                                     "\nphysical video width = " + width + "px and physical video height = " + height + "px" +
@@ -103,8 +103,6 @@
                             currentVideoEl.setAttribute("transparent", "false");
                             currentVideoEl.setAttribute("color", "#FFFFFF");                            
                             marker.appendChild(currentVideoEl);
-
-
 
                         }, false);
 
