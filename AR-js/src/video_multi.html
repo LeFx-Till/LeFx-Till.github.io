@@ -32,7 +32,7 @@
         var currentMarkerID = '';
         var markerFound = 0;
         var markerIDArray = [];
-        var videoArray = [];        
+        var videoArray = [];
 
         AFRAME.registerComponent('button', {
 
@@ -41,7 +41,7 @@
                 var button = document.querySelector("#mutebutton");
                 var debugButton = document.querySelector("#debugbutton");
                 var textArea = document.querySelector("#textArea");
-                var assets = document.querySelector("a-assets");       
+                var assets = document.querySelector("a-assets");
                 //var dummyVideo = '';
 
                 var isPlaying = false;
@@ -63,6 +63,16 @@
 
                         // create new video asset
                         var newVideo = document.createElement('video');
+
+                        newVideo.addEventListener("loadedmetadata", function (e) {
+
+                            var width = this.videoWidth,
+                            var height = this.videoHeight;
+
+                            textArea.innerHTML = "marker found #" + currentMarkerID + " with physical video " + newVideo.src + "\nphysical video width = " + width + "px and physical video height = " + height + "px";
+
+                        }, false);
+
                         newVideo.id = 'Video_Asset_' + currentMarkerID;
                         newVideo.autoplay = false;
 
@@ -98,12 +108,6 @@
                     //button.innerHTML = "-- PLAY VIDEO --";
 
                     //currentMarker = marker.id;
-                    var currentPhysicalVideo = assets.firstElementChild.getAttribute("src");
-                    let currentPhysicalVideoWidth = newVideo.videoWidth;
-                    let currentPhysicalVideoHeight = newVideo.videoHeight;
-
-                    //textArea.innerHTML = "marker found #" + currentMarkerID + "\nwith number of video elements = " + marker.childElementCount + "\nactual element child id = " + marker.firstElementChild.id; // + "\nphysical video source= " + assets.firstElementChild.getAttribute("src");
-                    textArea.innerHTML = "marker found #" + currentMarkerID + " with physical video " + currentPhysicalVideo + "\nphysical video width = " + currentPhysicalVideoWidth + "px and physical video height = " + currentPhysicalVideoHeight + "px";
                 });
 
                 marker.addEventListener('markerLost', () => {
