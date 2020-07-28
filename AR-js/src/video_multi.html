@@ -56,73 +56,73 @@
 
                     var markerID = String(marker.id).split('_');
 
-                    if (currentMarkerID != markerID[1]) {
+                    //if (currentMarkerID != markerID[1]) {
 
-                        currentMarkerID = markerID[1];
+                    currentMarkerID = markerID[1];
+                    textArea.innerHTML = "marker found #" + currentMarkerID;
 
-                        if (assets.childElementCount != 0) {
+                    if (assets.childElementCount != 0) {
 
-                            assets.removeChild(assets.firstElementChild);
-                        }
+                        assets.removeChild(assets.firstElementChild);
+                    }
 
-                        if (marker.childElementCount != 0) {
+                    if (marker.childElementCount != 0) {
 
-                            marker.removeChild(marker.firstElementChild);
-                        }
+                        marker.removeChild(marker.firstElementChild);
+                    }
 
-                        // create new video asset
-                        currentVideo = document.createElement('video');
-                        currentVideo.addEventListener("loadedmetadata", function (e) {
+                    // create new video asset
+                    currentVideo = document.createElement('video');
+                    currentVideo.addEventListener("loadedmetadata", function (e) {
 
-                            var width = this.videoWidth;
-                            var height = this.videoHeight;
+                        var width = this.videoWidth;
+                        var height = this.videoHeight;
 
-                            currentVideoEl = document.createElement('a-video');
-                            currentVideoEl.addEventListener("loadedmetadata", function (event) {
+                        currentVideoEl = document.createElement('a-video');
+                        currentVideoEl.addEventListener("loadedmetadata", function (event) {
 
-                                textArea.innerHTML = "marker found #" + currentMarkerID + " with physical video " + currentVideo.src +                                    
-                                    "\nelement video width = " + currentVideoEl.width + " and element video height = " + currentVideoEl.height;
+                            textArea.innerHTML += " with physical video " + currentVideo.src + "\nelement video width = " + currentVideoEl.width + " and element video height = " + currentVideoEl.height;
 
-                                currentVideoEl.object3D.position.set(0, 1.6, 0);
-                                currentVideoEl.object3D.rotation.set(0, 0, 0);                                
-                            });
-
-                            //videoEl.src = '#' + currentVideo.id;
-                            currentVideoEl.id = 'Video_' + currentMarkerID;
-                            currentVideoEl.setAttribute("class", "intersectable");
-
-                            if (width < height) {
-
-                                var widthEl = 3 * width / height;
-                                currentVideoEl.setAttribute("width", String(widthEl));
-                                currentVideoEl.setAttribute("height", "3");
-                            }
-                            else {
-
-                                var heightEl = 3 * height / width;
-                                currentVideoEl.setAttribute("width", "3");
-                                currentVideoEl.setAttribute("height", String(heightEl));
-                            }
-                            
-                            currentVideoEl.setAttribute("transparent", "false");
-                            currentVideoEl.setAttribute("color", "#FFFFFF");                            
-                            marker.appendChild(currentVideoEl);
+                            currentVideoEl.object3D.position.set(0, 1.6, 0);
+                            currentVideoEl.object3D.rotation.set(0, 0, 0);
                         });
 
-                        currentVideo.id = 'Video_Asset_' + currentMarkerID;
-                        currentVideo.autoplay = false;
+                        currentVideoEl.src = '#' + currentVideo.id;
+                        currentVideoEl.id = 'Video_' + currentMarkerID;
+                        currentVideoEl.setAttribute("class", "intersectable");
 
-                        if (currentMarkerID < 10) currentVideo.src = 'media/Video_00' + currentMarkerID + '.mp4';
-                        else currentVideo.src = 'media/Video_0' + currentMarkerID + '.mp4';
+                        if (width < height) {
 
-                        currentVideo.loop = true;
-                        currentVideo.setAttribute("crossorigin", "anonymous");
-                        currentVideo.setAttribute("webkit-playsinline", "");
-                        currentVideo.setAttribute("playsinline", "");
-                        currentVideo.setAttribute("controls", "");
-                        currentVideo.setAttribute("muted", "");
-                        assets.appendChild(currentVideo);
-                    }
+                            var widthEl = 3 * width / height;
+                            currentVideoEl.setAttribute("width", String(widthEl));
+                            currentVideoEl.setAttribute("height", "3");
+                        }
+                        else {
+
+                            var heightEl = 3 * height / width;
+                            currentVideoEl.setAttribute("width", "3");
+                            currentVideoEl.setAttribute("height", String(heightEl));
+                        }
+
+                        currentVideoEl.setAttribute("transparent", "false");
+                        currentVideoEl.setAttribute("color", "#FFFFFF");
+                        marker.appendChild(currentVideoEl);
+                    });
+
+                    currentVideo.id = 'Video_Asset_' + currentMarkerID;
+                    currentVideo.autoplay = false;
+
+                    if (currentMarkerID < 10) currentVideo.src = 'media/Video_00' + currentMarkerID + '.mp4';
+                    else currentVideo.src = 'media/Video_0' + currentMarkerID + '.mp4';
+
+                    currentVideo.loop = true;
+                    currentVideo.setAttribute("crossorigin", "anonymous");
+                    currentVideo.setAttribute("webkit-playsinline", "");
+                    currentVideo.setAttribute("playsinline", "");
+                    currentVideo.setAttribute("controls", "");
+                    currentVideo.setAttribute("muted", "");
+                    assets.appendChild(currentVideo);
+                    //}
 
                     //markerFound = 1;
 
