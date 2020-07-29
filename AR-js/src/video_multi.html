@@ -52,6 +52,10 @@
 
                 function PlayVideo() {
 
+                    ready2play = 1;
+                    button.hidden = false;
+                    button.innerHTML = "-- PLAY VIDEO --";
+
                     button.addEventListener('click', function (evt) {
                         //if (isPlaying) {
 
@@ -62,7 +66,7 @@
                         //}
 
                         textArea.innerHTML = "TRY PLAY VIDEO";
-                        currentVideo.play();
+                        currentVideo.play()
 
                         //    if (currentMarker != '') {
                         //        var index = markerIDArray.indexOf(currentMarker);
@@ -147,10 +151,7 @@
                     currentVideoEl.src = '#' + currentVideo.id;                  
                     
                     marker.appendChild(currentVideoEl);
-
-                    ready2play = 1;
-                    button.hidden = false;
-                    button.innerHTML = "-- PLAY VIDEO --";
+                    PlayVideo();
                 }
 
                 marker.addEventListener('markerFound', () => {
