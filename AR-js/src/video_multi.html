@@ -55,12 +55,10 @@
                 marker.addEventListener('markerFound', () => {
 
                     var markerID = String(marker.id).split('_');
-                    debugButton.innerHTML = "marker found #" + markerID[1] + " == " + currentMarkerID;
-
                     if (currentMarkerID != markerID[1]) {
 
                         currentMarkerID = markerID[1];
-                        
+                        debugButton.innerHTML = "CURRENT MARKER ID SET TO " + currentMarkerID;
 
                         if (assets.childElementCount != 0) {
 
@@ -123,8 +121,9 @@
                         currentVideo.setAttribute("muted", "");
                         assets.appendChild(currentVideo);
                     }
-                    else {
+                    else if (currentMarkerID == markerID[1]) {
 
+                        debugButton.innerHTML = "SAME MARKER ID " + currentMarkerID;
                         textArea.innerHTML = "Same physical video " + currentVideo.src + "\nphysical video width = " + width + " and physical video height = " + height;
                     }
 
@@ -200,7 +199,7 @@
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
         <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>DEBUGG</button>
     </div>
-    <textarea id="textArea" name="textArea" rows="4" cols="50">AR START OUT NOW</textarea>
+    <textarea id="textArea" name="textArea" rows="4" cols="50">AR</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
 
