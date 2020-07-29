@@ -81,40 +81,47 @@
                             "\nchildcount marker = " + marker.childElementCount;
 
 
-                        //currentVideoEl = document.createElement('a-video');
-                        //CreateVideoElement();
-
-                        //currentVideoEl.id = 'Video_' + currentMarkerID;
-                        //currentVideoEl.setAttribute("class", "intersectable");
-
-                        //if (width < height) {
-
-                        //    var widthEl = 3 * width / height;
-                        //    currentVideoEl.setAttribute("width", String(widthEl));
-                        //    currentVideoEl.setAttribute("height", "3");
-                        //}
-                        //else {
-
-                        //    var heightEl = 3 * height / width;
-                        //    currentVideoEl.setAttribute("width", "3");
-                        //    currentVideoEl.setAttribute("height", String(heightEl));
-                        //}
-
-                        //currentVideoEl.setAttribute("transparent", "false");
-                        //currentVideoEl.setAttribute("color", "#FFFFFF");
-                        //marker.appendChild(currentVideoEl);
+                        currentVideoEl = document.createElement('a-video');
+                        CreateVideoElementListener();
+                        SetVideoElementAttributes();
                     });
                 }
 
-                function CreateVideoElement() {
+                function SetVideoElementAttributes() {
+
+                    currentVideoEl.id = 'Video_' + currentMarkerID;
+                    currentVideoEl.setAttribute("class", "intersectable");
+
+                    if (width < height) {
+
+                        var widthEl = 3 * width / height;
+                        currentVideoEl.setAttribute("width", String(widthEl));
+                        currentVideoEl.setAttribute("height", "3");
+                    }
+                    else {
+
+                        var heightEl = 3 * height / width;
+                        currentVideoEl.setAttribute("width", "3");
+                        currentVideoEl.setAttribute("height", String(heightEl));
+                    }
+
+                    currentVideoEl.setAttribute("transparent", "false");
+                    currentVideoEl.setAttribute("color", "#FFFFFF");
+                    marker.appendChild(currentVideoEl);
+                }
+
+                function CreateVideoElementListener() {
 
                     currentVideoEl.addEventListener("loadedmetadata", function (e) {
+
+                        textArea.innerHTML += "\n AND ADDED VIDEO ELEMENTS to " + currentVideoEl.id;
 
                         currentVideoEl.src = '#' + currentVideo.id;
                         currentVideoEl.object3D.position.set(0, 1.6, 0);
                         currentVideoEl.object3D.rotation.set(0, 0, 0);
                     });
                 }
+
 
                 marker.addEventListener('markerFound', () => {
 
@@ -217,7 +224,7 @@
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
         <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>LetGo</button>
     </div>
-    <textarea id="textArea" name="textArea" rows="10" cols="50">Again34</textarea>
+    <textarea id="textArea" name="textArea" rows="10" cols="50">Again35</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
 
