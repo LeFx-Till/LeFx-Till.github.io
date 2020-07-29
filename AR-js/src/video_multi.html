@@ -77,8 +77,21 @@
                         var height = this.videoHeight;
 
                         textArea.innerHTML += "\ndone creating asset. inside listener";
-                                                                        
+
+                        currentVideoEl = document.createElement('a-video');
+                        CreateVideoElementListener();
                         SetVideoElementAttributes(width, height);
+                    });
+                }
+
+                function CreateVideoElementListener() {
+
+                    currentVideoEl.addEventListener('loaded', function (event) {
+
+                        currentVideoEl.object3D.position.set(0, 1.6, 0);
+                        currentVideoEl.object3D.rotation.set(0, 0, 0);
+
+                        textArea.innerHTML += "\ndone creating element. inside listener";
                     });
                 }
 
@@ -86,7 +99,7 @@
 
                     textArea.innerHTML += "\nstart creating video element attributes";
 
-                    currentVideoEl = document.createElement('a-video');
+                    
                     currentVideoEl.id = 'Video_' + currentMarkerID;
                     currentVideoEl.setAttribute("class", "intersectable");
 
@@ -109,8 +122,6 @@
                     
                     marker.appendChild(currentVideoEl);
 
-                    currentVideoEl.object3D.position.set(0, 1.6, 0);
-                    currentVideoEl.object3D.rotation.set(0, 0, 0);
                 }
 
                 marker.addEventListener('markerFound', () => {
@@ -211,7 +222,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>START IT 2</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>START IT 123</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
