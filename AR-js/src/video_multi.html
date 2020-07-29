@@ -31,9 +31,9 @@
 
         var currentMarker = '';
         var currentMarkerID = '';
-        var markerFound = 0;
+        var ready2play = 0;
         var currentVideo = '';
-        var currentVideoEl = '';
+        var currentVideoEl = '';        
 
         AFRAME.registerComponent('button', {
 
@@ -49,6 +49,33 @@
 
                 button.hidden = true;
                 debugButton.hidden = false;
+
+                function PlayVideo() {
+
+                    button.addEventListener('click', function (evt) {
+                        //if (isPlaying) {
+
+                        //    //        PauseVideosAll();
+                        //    isPlaying = false;
+                        //    button.innerHTML = "-- PLAY VIDEO --";
+                        //    return;
+                        //}
+
+                        textArea.innerHTML = "TRY PLAY VIDEO";
+                        currentVideo.play();
+
+                        //    if (currentMarker != '') {
+                        //        var index = markerIDArray.indexOf(currentMarker);
+
+                        //        videoArray[index].muted = false;
+                        //        videoArray[index].play();
+
+                        //        console.log('Me Try play ', videoArray[index].id);
+                        isPlaying = true;
+                        //        button.innerHTML = "Pause";
+                        //    }
+                    });
+                }
 
                 function SetVideoAssetAttributes() {
 
@@ -79,21 +106,21 @@
                         textArea.innerHTML += "\n2. done creating asset. inside listener";
 
                         currentVideoEl = document.createElement('a-video');
-                        //CreateVideoElementListener();
+                        CreateVideoElementListener();
                         SetVideoElementAttributes(width, height);
                     });
                 }
 
-                //function CreateVideoElementListener() {
+                function CreateVideoElementListener() {
 
-                //    currentVideoEl.addEventListener('loadedmetadata', function (event) {
+                    currentVideoEl.addEventListener('loadedmetadata', function (event) {
 
-                //        currentVideoEl.object3D.position.set(0, 1.6, 0);
-                //        currentVideoEl.object3D.rotation.set(0, 0, 0);
+                        currentVideoEl.object3D.position.set(0, 1.6, 0);
+                        currentVideoEl.object3D.rotation.set(0, 0, 0);
 
-                //        textArea.innerHTML += "\n4. done creating element. inside listener";
-                //    });
-                //}
+                        textArea.innerHTML += "\n4. done creating element. inside listener";
+                    });
+                }
 
                 function SetVideoElementAttributes(width, height) {
 
@@ -117,16 +144,13 @@
 
                     currentVideoEl.setAttribute("transparent", "false");
                     currentVideoEl.setAttribute("color", "#FFFFFF");
-                    //currentVideoEl.src = '#' + currentVideo.id;                  
+                    currentVideoEl.src = '#' + currentVideo.id;                  
                     
                     marker.appendChild(currentVideoEl);
-                    marker.addEventListener('child-attached', function (event) {
 
-                        currentVideoEl.object3D.position.set(0, 1.6, 0);
-                        currentVideoEl.object3D.rotation.set(0, 0, 0);
-
-                        textArea.innerHTML += "\n4. done creating element. inside listener";
-                    });
+                    ready2play = 1;
+                    button.hidden = false;
+                    button.innerHTML = "-- PLAY VIDEO --";
                 }
 
                 marker.addEventListener('markerFound', () => {
@@ -156,13 +180,6 @@
                         textArea.innerHTML = "known video asset. assets child count = " + assets.childElementCount + " first asset child id = " + assets.firstElementChild.id;
                         debugButton.innerHTML = "SAME MARKER ID " + currentMarkerID;
                     }
-
-                    //markerFound = 1;
-
-                    button.hidden = false;
-                    button.innerHTML = "-- PLAY VIDEO --";
-
-                    //currentMarker = marker.id;
                 });
 
                 marker.addEventListener('markerLost', () => {
@@ -190,27 +207,6 @@
                     //currentMarker = '';
                     //console.log('Se Marker Is Lost: ', marker.id);
                 });
-
-                button.addEventListener('click', function (evt) {
-                    if (isPlaying) {
-
-                        //        PauseVideosAll();
-                        isPlaying = false;
-                        button.innerHTML = "-- PLAY VIDEO --";
-                        return;
-                    }
-
-                    //    if (currentMarker != '') {
-                    //        var index = markerIDArray.indexOf(currentMarker);
-
-                    //        videoArray[index].muted = false;
-                    //        videoArray[index].play();
-
-                    //        console.log('Me Try play ', videoArray[index].id);
-                    isPlaying = true;
-                    //        button.innerHTML = "Pause";
-                    //    }
-                });
             },
             tick: function (totalTime, deltaTime) {
                 var dTime = deltaTime / 1000;
@@ -227,7 +223,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTXYZ</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>123344</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
