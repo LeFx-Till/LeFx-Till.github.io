@@ -148,12 +148,12 @@
 
                         if (currentVideo != '') {
 
-                            CreateVideoAsset(false);
+                            //CreateVideoAsset(false);
                             textArea.innerHTML = "the current video element id is " + currentVideo.id;
-                        }
-                            
+                        }                            
                         else
                             textArea.innerHTML = "the current video element is null.";
+
                         debugButton.innerHTML = "SAME MARKER ID " + currentMarkerID;
                     }
 
@@ -229,7 +229,7 @@
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
         <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>LetGo</button>
     </div>
-    <textarea id="textArea" name="textArea" rows="10" cols="50">Again</textarea>
+    <textarea id="textArea" name="textArea" rows="10" cols="50">Again22</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
 
