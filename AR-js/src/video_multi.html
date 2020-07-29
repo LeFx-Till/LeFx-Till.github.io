@@ -54,12 +54,13 @@
 
                 function PlayVideo() {
 
-                    button.removeEventListener('click', PlayVideo);
+                    //button.removeEventListener('click', PlayVideo);
 
                     textArea.innerHTML = "I want to play " + currentVideoComponent.src + " for a time of " + currentVideoComponent.duration;;
 
-                    isPlaying = true;
-                    currentVideoComponent.play();
+                    //isPlaying = true;
+                    //currentVideoComponent.load();
+                    //currentVideoComponent.play();
                 }
 
                 function LetsPlayVideo() {
@@ -109,8 +110,6 @@
                 }
 
                 function CreateVideoAssetListener() {
-
-                    currentVideoComponent.load();
 
                     var width = this.videoWidth;
                     var height = this.videoHeight;
