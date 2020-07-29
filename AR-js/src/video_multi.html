@@ -58,7 +58,8 @@
 
                     button.addEventListener('click', function (evt) {
 
-                        textArea.innerHTML = "TRY PLAY VIDEO with child count " + currentVideo.childElementCount + " and video element child count " + currentVideoEl.childElementCount;
+                        textArea.innerHTML = "TRY PLAY VIDEO with child count " + currentVideo.childElementCount + " and video element child count " + currentVideoEl.childElementCount +
+                            "\ncurrent video asset source = " + currentVideo.src + " current video element source = " + currentVideoEl.src;
 
                         currentVideo.play()
                         isPlaying = true;
