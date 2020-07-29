@@ -96,6 +96,13 @@
                         currentVideoElement = document.createElement('a-video');
                         CreateVideoElementListener();
                         SetVideoElementAttributes(width, height);
+
+                        currentVideo = document.querySelector("video");
+                        currentVideo.load();
+                        currentVideo.onloadeddata = function () {
+
+                            LetsPlayVideo();
+                        };
                     });
                 }
 
@@ -135,13 +142,6 @@
                     currentVideoElement.src = '#' + currentVideoComponent.id;
 
                     marker.appendChild(currentVideoElement);
-
-                    currentVideo = document.querySelector("video");
-                    currentVideo.load();
-                    currentVideo.onloadeddata = function () {
-
-                        LetsPlayVideo();
-                    };
                 }
 
                 marker.addEventListener('markerFound', () => {
@@ -185,7 +185,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>BITTE STARTE 4</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>BITTE STARTE 5</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
