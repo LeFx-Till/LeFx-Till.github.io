@@ -32,8 +32,9 @@
         var currentMarker = '';
         var currentMarkerID = '';
         var ready2play = 0;
-        var currentVideo = '';
-        var currentVideoEl = '';
+        var currentVideoComponent = '';
+        var currentVideoElement = '';        
+        var currentVideo;
 
         AFRAME.registerComponent('button', {
 
@@ -44,13 +45,13 @@
                 var textArea = document.querySelector("#textArea");
                 var assets = document.querySelector("a-assets");
 
-                var isPlaying = false;
+                var isPlaying = false;                
                 const marker = this.el;
 
                 button.hidden = true;
                 debugButton.hidden = false;
 
-                function PlayVideo() {
+                function LetsPlayVideo() {
 
                     ready2play = 1;
                     button.hidden = false;
@@ -58,12 +59,9 @@
 
                     button.addEventListener('click', function (evt) {
                                                 
-                        var video = document.querySelector("video");
-                        textArea.innerHTML = "TRY PLAY VIDEO " + video.localName + " duration " + video.duration;
-
                         video.play();
-                        
-                        isPlaying = true;
+                        textArea.innerHTML *= "\nplay play play!!!!!";
+                        isPlaying = true;                                              
                     });
                 }
 
@@ -71,31 +69,31 @@
 
                     textArea.innerHTML = "1. start creating video asset attributes";
 
-                    currentVideo.id = 'Video_Asset_' + currentMarkerID;
-                    currentVideo.autoplay = false;
+                    currentVideoComponent.id = 'Video_Asset_' + currentMarkerID;
+                    currentVideoComponent.autoplay = false;
 
-                    if (currentMarkerID < 10) currentVideo.src = 'media/Video_00' + currentMarkerID + '.mp4';
-                    else currentVideo.src = 'media/Video_0' + currentMarkerID + '.mp4';
+                    if (currentMarkerID < 10) currentVideoComponent.src = 'media/Video_00' + currentMarkerID + '.mp4';
+                    else currentVideoComponent.src = 'media/Video_0' + currentMarkerID + '.mp4';
 
-                    currentVideo.loop = true;
-                    currentVideo.setAttribute("crossorigin", "anonymous");
-                    currentVideo.setAttribute("webkit-playsinline", "");
-                    currentVideo.setAttribute("playsinline", "");
-                    currentVideo.setAttribute("controls", "");
-                    currentVideo.setAttribute("muted", "");
-                    assets.appendChild(currentVideo);
+                    currentVideoComponent.loop = true;
+                    currentVideoComponent.setAttribute("crossorigin", "anonymous");
+                    currentVideoComponent.setAttribute("webkit-playsinline", "");
+                    currentVideoComponent.setAttribute("playsinline", "");
+                    currentVideoComponent.setAttribute("controls", "");
+                    currentVideoComponent.setAttribute("muted", "");
+                    assets.appendChild(currentVideoComponent);
                 }
 
                 function CreateVideoAssetListener() {
 
-                    currentVideo.addEventListener('loadedmetadata', function (event) {
+                    currentVideoComponent.addEventListener('loadedmetadata', function (event) {
 
                         var width = this.videoWidth;
                         var height = this.videoHeight;
 
                         textArea.innerHTML += "\n2. done creating asset. inside listener";
 
-                        currentVideoEl = document.createElement('a-video');
+                        currentVideoElement = document.createElement('a-video');
                         CreateVideoElementListener();
                         SetVideoElementAttributes(width, height);
                     });
@@ -103,10 +101,10 @@
 
                 function CreateVideoElementListener() {
 
-                    currentVideoEl.addEventListener('loadedmetadata', function (event) {
+                    currentVideoElement.addEventListener('loadedmetadata', function (event) {
 
-                        currentVideoEl.object3D.position.set(0, 1.6, 0);
-                        currentVideoEl.object3D.rotation.set(0, 0, 0);
+                        currentVideoElement.object3D.position.set(0, 1.6, 0);
+                        currentVideoElement.object3D.rotation.set(0, 0, 0);
 
                         textArea.innerHTML += "\n4. done creating element. inside listener";
                     });
@@ -116,28 +114,34 @@
 
                     textArea.innerHTML += "\n\n3.start creating video element attributes";
 
-                    currentVideoEl.id = 'Video_' + currentMarkerID;
-                    currentVideoEl.setAttribute("class", "intersectable");
+                    currentVideoElement.id = 'Video_' + currentMarkerID;
+                    currentVideoElement.setAttribute("class", "intersectable");
 
                     if (width < height) {
 
                         var widthEl = 3 * width / height;
-                        currentVideoEl.setAttribute("width", String(widthEl));
-                        currentVideoEl.setAttribute("height", "3");
+                        currentVideoElement.setAttribute("width", String(widthEl));
+                        currentVideoElement.setAttribute("height", "3");
                     }
                     else {
 
                         var heightEl = 3 * height / width;
-                        currentVideoEl.setAttribute("width", "3");
-                        currentVideoEl.setAttribute("height", String(heightEl));
+                        currentVideoElement.setAttribute("width", "3");
+                        currentVideoElement.setAttribute("height", String(heightEl));
                     }
 
-                    currentVideoEl.setAttribute("transparent", "false");
-                    currentVideoEl.setAttribute("color", "#FFFFFF");
-                    currentVideoEl.src = '#' + currentVideo.id;
+                    currentVideoElement.setAttribute("transparent", "false");
+                    currentVideoElement.setAttribute("color", "#FFFFFF");
+                    currentVideoElement.src = '#' + currentVideoComponent.id;
 
-                    marker.appendChild(currentVideoEl);
-                    PlayVideo();
+                    marker.appendChild(currentVideoElement);
+
+                    currentVideo = document.querySelector("video");
+                    currentVideo.load();
+                    currentVideo.onloadeddata = function () {
+
+                        LetsPlayVideo();
+                    };
                 }
 
                 marker.addEventListener('markerFound', () => {
@@ -154,7 +158,7 @@
                         if (marker.childElementCount != 0)
                             marker.removeChild(marker.firstElementChild);
 
-                        currentVideo = document.createElement("video");
+                        currentVideoComponent = document.createElement("video");                        
                         CreateVideoAssetListener();
                         SetVideoAssetAttributes();
                     }
@@ -167,7 +171,7 @@
 
                 marker.addEventListener('markerLost', () => {
                     debugButton.innerHTML = '_____';
-                    textArea.innerHTML = "NO markers visible"; //\nnumber of video elements beneath marker = " + marker.childElementCount + "\ncurrent physical video = " + currentVideo.src;
+                    textArea.innerHTML = "NO markers visible"; //\nnumber of video elements beneath marker = " + marker.childElementCount + "\ncurrent physical video = " + currentVideoComponent.src;
                     isPlaying = false;
                     button.hidden = true;
                 });
@@ -181,7 +185,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>BITTE STARTE 2</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>BITTE STARTE 4</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
