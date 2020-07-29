@@ -57,27 +57,11 @@
                     button.innerHTML = "-- PLAY VIDEO --";
 
                     button.addEventListener('click', function (evt) {
-                        //if (isPlaying) {
-
-                        //    //        PauseVideosAll();
-                        //    isPlaying = false;
-                        //    button.innerHTML = "-- PLAY VIDEO --";
-                        //    return;
-                        //}
 
                         textArea.innerHTML = "TRY PLAY VIDEO";
+                        
                         currentVideo.play()
-
-                        //    if (currentMarker != '') {
-                        //        var index = markerIDArray.indexOf(currentMarker);
-
-                        //        videoArray[index].muted = false;
-                        //        videoArray[index].play();
-
-                        //        console.log('Me Try play ', videoArray[index].id);
                         isPlaying = true;
-                        //        button.innerHTML = "Pause";
-                        //    }
                     });
                 }
 
@@ -224,7 +208,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>123344</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>1</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
