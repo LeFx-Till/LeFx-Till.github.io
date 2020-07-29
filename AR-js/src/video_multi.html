@@ -76,45 +76,38 @@
                         var width = this.videoWidth;
                         var height = this.videoHeight;
 
-                        textArea.innerHTML += "\ndone creating. inside listener";
-
-                        //textArea.innerHTML = "created video asset " + currentVideo.src +
-                        //    "\nphysical video width = " + width + " and physical video height = " + height +
-                        //    "\nchildcount assets = " + assets.childElementCount + " first asset child = " + assets.firstElementChild +
-                        //    "\nchildcount marker = " + marker.childElementCount;
+                        textArea.innerHTML += "\ndone creating asset. inside listener";
 
                         currentVideoEl = document.createElement('a-video');
-                        //CreateVideoElementListener();
-                        SetVideoElementAttributes();
+                        CreateVideoElementListener();
+                        SetVideoElementAttributes(width, height);
                     });
                 }
 
-                function SetVideoElementAttributes() {
+                function SetVideoElementAttributes(width, height) {
 
                     textArea.innerHTML += "\nstart creating video element attributes";
-                    //currentVideoEl.id = 'Video_' + currentMarkerID;
-                    //currentVideoEl.setAttribute("class", "intersectable");
 
-                    //if (width < height) {
+                    currentVideoEl.id = 'Video_' + currentMarkerID;
+                    currentVideoEl.setAttribute("class", "intersectable");
 
-                    //    var widthEl = 3 * width / height;
-                    //    currentVideoEl.setAttribute("width", String(widthEl));
-                    //    currentVideoEl.setAttribute("height", "3");
-                    //}
-                    //else {
+                    if (width < height) {
 
-                    //    var heightEl = 3 * height / width;
-                    //    currentVideoEl.setAttribute("width", "3");
-                    //    currentVideoEl.setAttribute("height", String(heightEl));
-                    //}
+                        var widthEl = 3 * width / height;
+                        currentVideoEl.setAttribute("width", String(widthEl));
+                        currentVideoEl.setAttribute("height", "3");
+                    }
+                    else {
 
-                    //currentVideoEl.setAttribute("transparent", "false");
-                    //currentVideoEl.setAttribute("color", "#FFFFFF");
-                    //currentVideoEl.object3D.position.set(0, 1.6, 0);
-                    //currentVideoEl.object3D.rotation.set(0, 0, 0);
+                        var heightEl = 3 * height / width;
+                        currentVideoEl.setAttribute("width", "3");
+                        currentVideoEl.setAttribute("height", String(heightEl));
+                    }
 
-                    //textArea.innerHTML = "\n ADDED VIDEO ELEMENTS to " + currentVideoEl.id;
-                    //marker.appendChild(currentVideoEl);
+                    currentVideoEl.setAttribute("transparent", "false");
+                    currentVideoEl.setAttribute("color", "#FFFFFF");
+                    
+                    marker.appendChild(currentVideoEl);
                 }
 
                 function CreateVideoElementListener() {
@@ -125,7 +118,7 @@
                         currentVideoEl.object3D.position.set(0, 1.6, 0);
                         currentVideoEl.object3D.rotation.set(0, 0, 0);
 
-                        textArea.innerHTML = "\n AND ADDED VIDEO ELEMENTS to " + currentVideoEl.id;
+                        textArea.innerHTML += "\ndone creating element. inside listener";
                     });
                 }
 
@@ -228,7 +221,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>Go12</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>Go123</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
