@@ -50,17 +50,29 @@
                 button.hidden = true;
                 debugButton.hidden = false;
 
-                function CreateVideoAsset() {
+                function CreateVideoAsset(newVideo) {
 
                     currentVideo.addEventListener("loadedmetadata", function (e) {
 
                         var width = this.videoWidth;
                         var height = this.videoHeight;
 
-                        textArea.innerHTML = "created video asset " + currentVideo.src +
-                            "\nphysical video width = " + width + " and physical video height = " + height +
-                            "\nchildcount assets = " + assets.childElementCount + " first asset child = " + assets.firstElementChild +
-                            "\nchildcount marker = " + marker.childElementCount;
+                        if (newVideo) {
+
+                            textArea.innerHTML = "created video asset " + currentVideo.src +
+                                "\nphysical video width = " + width + " and physical video height = " + height +
+                                "\nchildcount assets = " + assets.childElementCount + " first asset child = " + assets.firstElementChild +
+                                "\nchildcount marker = " + marker.childElementCount;
+                        }
+                        else {
+
+                            textArea.innerHTML = "created known video asset " + currentVideo.src +
+                                "\nphysical video width = " + width + " and physical video height = " + height +
+                                "\nchildcount assets = " + assets.childElementCount + " first asset child = " + assets.firstElementChild +
+                                "\nchildcount marker = " + marker.childElementCount;
+                        }
+
+
 
                         //currentVideoEl = document.createElement('a-video');
                         //CreateVideoElement();
@@ -116,7 +128,7 @@
                         }
 
                         currentVideo = document.createElement('video');
-                        CreateVideoAsset();
+                        CreateVideoAsset(true);
 
                         currentVideo.id = 'Video_Asset_' + currentMarkerID;
                         currentVideo.autoplay = false;
@@ -133,12 +145,8 @@
                         assets.appendChild(currentVideo);
                     }
                     else {
-                        
-                        textArea.innerHTML = "known video asset " + currentVideo.src +
-                            "\nphysical video width = " + currentVideo.width + " and physical video height = " + currentVideo.height +
-                            "\nchildcount assets = " + assets.childElementCount + " first asset child = " + assets.firstElementChild +
-                            "\nchildcount marker = " + marker.childElementCount;
 
+                        CreateVideoAsset(false);
                         debugButton.innerHTML = "SAME MARKER ID " + currentMarkerID;
                     }
 
@@ -214,7 +222,7 @@
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
         <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>LetGo</button>
     </div>
-    <textarea id="textArea" name="textArea" rows="10" cols="50">Ready Again</textarea>
+    <textarea id="textArea" name="textArea" rows="10" cols="50">Ready And Again</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
 
