@@ -73,6 +73,17 @@
                     });
                 }
 
+                function RestartSearchMarkers() {
+
+                    debugButton.innerHTML = '_____';
+                    textArea.innerHTML = "NO markers visible";
+                    isPlaying = false;
+                    button.hidden = true;
+
+                    if (markerFound == 1)
+                        marker.addEventListener('markerFound', SearchMarkers);
+                }
+
                 function SearchMarkers() {
 
                     var markerID = String(marker.id).split('_');
@@ -96,7 +107,7 @@
                         textArea.innerHTML = "known video asset. assets child count = " + assets.childElementCount + " first asset child id = " + assets.firstElementChild.id;
                         debugButton.innerHTML = "SAME MARKER ID " + currentMarkerID;
                     }
-                                        
+
                     marker.removeEventListener('markerFound', SearchMarkers);
                     markerFound = 1;
                 }
@@ -174,17 +185,8 @@
 
                 marker.addEventListener('markerFound', SearchMarkers);
 
-                marker.addEventListener('markerLost', () => {
-
-                    if (markerFound == 1)
-                        marker.addEventListener('markerFound', SearchMarkers);
-
-                    debugButton.innerHTML = '_____';
-                    textArea.innerHTML = "NO markers visible";
-                    isPlaying = false;
-                    button.hidden = true;
-                });
-            },
+                marker.addEventListener('markerLost', RestartSearchMarkers);
+            }
         });
 
     </script>
@@ -194,7 +196,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>BITTE STARTE 13</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>BITTE STARTE 14</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
