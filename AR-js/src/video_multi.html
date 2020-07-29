@@ -33,8 +33,8 @@
         var currentMarkerID = '';
         var ready2play = 0;
         var currentVideoComponent = '';
-        var currentVideoElement = '';        
-        
+        var currentVideoElement = '';
+
 
         AFRAME.registerComponent('button', {
 
@@ -45,7 +45,7 @@
                 var textArea = document.querySelector("#textArea");
                 var assets = document.querySelector("a-assets");
 
-                var isPlaying = false;                
+                var isPlaying = false;
                 const marker = this.el;
 
                 button.hidden = true;
@@ -59,7 +59,7 @@
 
                     var video = document.querySelector("video");
                     video.load();
-                    
+
                     button.addEventListener('click', function (evt) {
 
                         button.removeEventListener('click');
@@ -68,7 +68,7 @@
 
                         video.play();
 
-                        isPlaying = true;                                              
+                        isPlaying = true;
                     });
                 }
 
@@ -93,32 +93,26 @@
 
                 function CreateVideoAssetListener() {
 
-                    currentVideoComponent.addEventListener('loadedmetadata', function (event) {
+                    currentVideoComponent.removeEventListener('loadedmetadata');
 
-                        currentVideoComponent.removeEventListener('loadedmetadata');
+                    var width = this.videoWidth;
+                    var height = this.videoHeight;
 
-                        var width = this.videoWidth;
-                        var height = this.videoHeight;
+                    textArea.innerHTML += "\n2. done creating asset. inside listener";
 
-                        textArea.innerHTML += "\n2. done creating asset. inside listener";
-
-                        currentVideoElement = document.createElement('a-video');
-                        CreateVideoElementListener();
-                        SetVideoElementAttributes(width, height);
-                    });
+                    currentVideoElement = document.createElement('a-video');
+                    currentVideoElement.addEventListener('loadedmetadata', CreateVideoElementListener);
+                    SetVideoElementAttributes(width, height);
                 }
 
                 function CreateVideoElementListener() {
 
-                    currentVideoElement.addEventListener('loadedmetadata', function (event) {
+                    currentVideoElement.removeEventListener('loadedmetadata');
 
-                        currentVideoElement.removeEventListener('loadedmetadata');
+                    currentVideoElement.object3D.position.set(0, 1.6, 0);
+                    currentVideoElement.object3D.rotation.set(0, 0, 0);
 
-                        currentVideoElement.object3D.position.set(0, 1.6, 0);
-                        currentVideoElement.object3D.rotation.set(0, 0, 0);
-
-                        textArea.innerHTML += "\n4. done creating element. inside listener";
-                    });
+                    textArea.innerHTML += "\n4. done creating element. inside listener";
                 }
 
                 function SetVideoElementAttributes(width, height) {
@@ -163,8 +157,8 @@
                         if (marker.childElementCount != 0)
                             marker.removeChild(marker.firstElementChild);
 
-                        currentVideoComponent = document.createElement("video");                        
-                        CreateVideoAssetListener();
+                        currentVideoComponent = document.createElement("video");
+                        currentVideoComponent.addEventListener('loadedmetadata', CreateVideoAssetListener);
                         SetVideoAssetAttributes();
                     }
                     else {
@@ -190,7 +184,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>BITTE STARTE 10</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>BITTE STARTE 11</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
