@@ -139,15 +139,13 @@
                     textArea.innerHTML = "1. start creating video asset attributes";
 
                     currentVideoComponent.id = 'Video_Asset_' + currentMarkerID;
-                    currentVideoComponent.setAttribute("autoplay", "false");
-                    currentVideoComponent.setAttribute("loop", "true");                    
+                    currentVideoComponent.autoplay = false;
+
+                    if (currentMarkerID < 10) currentVideoComponent.src = 'media/Video_00' + currentMarkerID + '.mp4';
+                    else currentVideoComponent.src = 'media/Video_0' + currentMarkerID + '.mp4';
+
+                    currentVideoComponent.loop = true;
                     currentVideoComponent.setAttribute("crossorigin", "anonymous");
-
-                    if (currentMarkerID < 10)
-                        currentVideoComponent.src = 'media/Video_00' + currentMarkerID + '.mp4';
-                    else
-                        currentVideoComponent.src = 'media/Video_0' + currentMarkerID + '.mp4';
-
                     currentVideoComponent.setAttribute("webkit-playsinline", "");
                     currentVideoComponent.setAttribute("playsinline", "");
                     currentVideoComponent.setAttribute("controls", "");
