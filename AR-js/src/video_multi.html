@@ -59,9 +59,11 @@
 
                     var video = document.querySelector("video");
                     video.load();
-
+                    
                     button.addEventListener('click', function (evt) {
-                        
+
+                        button.removeEventListener('click');
+
                         textArea.innerHTML = "I want to play " + currentVideoComponent.src + " for a time of " + video.duration;
 
                         video.play();
@@ -101,19 +103,14 @@
                         currentVideoElement = document.createElement('a-video');
                         CreateVideoElementListener();
                         SetVideoElementAttributes(width, height);
-
-                        //var video = document.querySelector("video");
-                        //video.load();
-                        //video.onloadeddata = function () {
-
-                        //    LetsPlayVideo();
-                        //};
                     });
                 }
 
                 function CreateVideoElementListener() {
 
                     currentVideoElement.addEventListener('loadedmetadata', function (event) {
+
+                        currentVideoElement.removeEventListener('loadedmetadata');
 
                         currentVideoElement.object3D.position.set(0, 1.6, 0);
                         currentVideoElement.object3D.rotation.set(0, 0, 0);
@@ -147,6 +144,7 @@
                     currentVideoElement.src = '#' + currentVideoComponent.id;
 
                     marker.appendChild(currentVideoElement);
+                    LetsPlayVideo();
                 }
 
                 marker.addEventListener('markerFound', () => {
@@ -190,7 +188,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>BITTE STARTE 7</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>BITTE STARTE 8</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
