@@ -72,25 +72,6 @@
                     });
                 }
 
-                function SetVideoAssetAttributes() {
-
-                    textArea.innerHTML = "1. start creating video asset attributes";
-
-                    currentVideoComponent.id = 'Video_Asset_' + currentMarkerID;
-                    currentVideoComponent.autoplay = false;
-
-                    if (currentMarkerID < 10) currentVideoComponent.src = 'media/Video_00' + currentMarkerID + '.mp4';
-                    else currentVideoComponent.src = 'media/Video_0' + currentMarkerID + '.mp4';
-
-                    currentVideoComponent.loop = true;
-                    currentVideoComponent.setAttribute("crossorigin", "anonymous");
-                    currentVideoComponent.setAttribute("webkit-playsinline", "");
-                    currentVideoComponent.setAttribute("playsinline", "");
-                    currentVideoComponent.setAttribute("controls", "");
-                    currentVideoComponent.setAttribute("muted", "");
-                    assets.appendChild(currentVideoComponent);
-                }
-
                 function CreateVideoAssetListener() {
 
                     currentVideoComponent.removeEventListener('loadedmetadata');
@@ -113,6 +94,25 @@
                     currentVideoElement.object3D.rotation.set(0, 0, 0);
 
                     textArea.innerHTML += "\n4. done creating element. inside listener";
+                }
+
+                function SetVideoAssetAttributes() {
+
+                    textArea.innerHTML = "1. start creating video asset attributes";
+
+                    currentVideoComponent.id = 'Video_Asset_' + currentMarkerID;
+                    currentVideoComponent.autoplay = false;
+
+                    if (currentMarkerID < 10) currentVideoComponent.src = 'media/Video_00' + currentMarkerID + '.mp4';
+                    else currentVideoComponent.src = 'media/Video_0' + currentMarkerID + '.mp4';
+
+                    currentVideoComponent.loop = true;
+                    currentVideoComponent.setAttribute("crossorigin", "anonymous");
+                    currentVideoComponent.setAttribute("webkit-playsinline", "");
+                    currentVideoComponent.setAttribute("playsinline", "");
+                    currentVideoComponent.setAttribute("controls", "");
+                    currentVideoComponent.setAttribute("muted", "");
+                    assets.appendChild(currentVideoComponent);
                 }
 
                 function SetVideoElementAttributes(width, height) {
@@ -170,7 +170,7 @@
 
                 marker.addEventListener('markerLost', () => {
                     debugButton.innerHTML = '_____';
-                    textArea.innerHTML = "NO markers visible"; //\nnumber of video elements beneath marker = " + marker.childElementCount + "\ncurrent physical video = " + currentVideoComponent.src;
+                    textArea.innerHTML = "NO markers visible";
                     isPlaying = false;
                     button.hidden = true;
                 });
