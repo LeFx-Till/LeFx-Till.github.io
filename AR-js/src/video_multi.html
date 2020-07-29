@@ -55,11 +55,12 @@
                 marker.addEventListener('markerFound', () => {
 
                     var markerID = String(marker.id).split('_');
+                    debugButton.innerHTML = "marker found #" + markerID[1] + " == " + currentMarkerID;
 
                     if (currentMarkerID != markerID[1]) {
 
                         currentMarkerID = markerID[1];
-                        debugButton.innerHTML = "new marker found #" + currentMarkerID;
+                        
 
                         if (assets.childElementCount != 0) {
 
@@ -125,7 +126,6 @@
                     else {
 
                         textArea.innerHTML = "Same physical video " + currentVideo.src + "\nphysical video width = " + width + " and physical video height = " + height;
-                        debugButton.innerHTML = "Same marker found #" + currentMarkerID;
                     }
 
                     //markerFound = 1;
