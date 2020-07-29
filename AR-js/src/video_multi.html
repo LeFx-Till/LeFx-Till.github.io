@@ -52,7 +52,7 @@
 
                 function SetVideoAssetAttributes() {
 
-                    textArea.innerHTML = "start creating video attributes";
+                    textArea.innerHTML = "start creating video asset attributes";
 
                     currentVideo.id = 'Video_Asset_' + currentMarkerID;
                     currentVideo.autoplay = false;
@@ -83,37 +83,38 @@
                         //    "\nchildcount assets = " + assets.childElementCount + " first asset child = " + assets.firstElementChild +
                         //    "\nchildcount marker = " + marker.childElementCount;
 
-                        //currentVideoEl = document.createElement('a-video');
+                        currentVideoEl = document.createElement('a-video');
                         //CreateVideoElementListener();
-                        //SetVideoElementAttributes();
+                        SetVideoElementAttributes();
                     });
                 }
 
                 function SetVideoElementAttributes() {
 
-                    currentVideoEl.id = 'Video_' + currentMarkerID;
-                    currentVideoEl.setAttribute("class", "intersectable");
+                    textArea.innerHTML += "\start creating video element attributes";
+                    //currentVideoEl.id = 'Video_' + currentMarkerID;
+                    //currentVideoEl.setAttribute("class", "intersectable");
 
-                    if (width < height) {
+                    //if (width < height) {
 
-                        var widthEl = 3 * width / height;
-                        currentVideoEl.setAttribute("width", String(widthEl));
-                        currentVideoEl.setAttribute("height", "3");
-                    }
-                    else {
+                    //    var widthEl = 3 * width / height;
+                    //    currentVideoEl.setAttribute("width", String(widthEl));
+                    //    currentVideoEl.setAttribute("height", "3");
+                    //}
+                    //else {
 
-                        var heightEl = 3 * height / width;
-                        currentVideoEl.setAttribute("width", "3");
-                        currentVideoEl.setAttribute("height", String(heightEl));
-                    }
+                    //    var heightEl = 3 * height / width;
+                    //    currentVideoEl.setAttribute("width", "3");
+                    //    currentVideoEl.setAttribute("height", String(heightEl));
+                    //}
 
-                    currentVideoEl.setAttribute("transparent", "false");
-                    currentVideoEl.setAttribute("color", "#FFFFFF");
-                    currentVideoEl.object3D.position.set(0, 1.6, 0);
-                    currentVideoEl.object3D.rotation.set(0, 0, 0);
+                    //currentVideoEl.setAttribute("transparent", "false");
+                    //currentVideoEl.setAttribute("color", "#FFFFFF");
+                    //currentVideoEl.object3D.position.set(0, 1.6, 0);
+                    //currentVideoEl.object3D.rotation.set(0, 0, 0);
 
-                    textArea.innerHTML = "\n ADDED VIDEO ELEMENTS to " + currentVideoEl.id;
-                    marker.appendChild(currentVideoEl);
+                    //textArea.innerHTML = "\n ADDED VIDEO ELEMENTS to " + currentVideoEl.id;
+                    //marker.appendChild(currentVideoEl);
                 }
 
                 function CreateVideoElementListener() {
@@ -227,7 +228,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>Go</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>Go1</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
