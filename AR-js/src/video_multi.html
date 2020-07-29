@@ -77,7 +77,7 @@
                             var width = this.videoWidth;
                             var height = this.videoHeight;
 
-                            textArea.innerHTML = "created physical video " + currentVideo.src + "\nphysical video width = " + width + " and physical video height = " + height;
+                            textArea.innerHTML = "created physical video " + currentVideo.src + "\nphysical video width = " + width + " and physical video height = " + height + "\nwith childcount assets = " + assets.childElementCount + " and marker = " + marker.childElementCount;
                             currentVideoEl = document.createElement('a-video');
                             currentVideoEl.addEventListener("loadedmetadata", function (e) {
 
@@ -199,7 +199,7 @@
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
         <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>Let ss Go</button>
     </div>
-    <textarea id="textArea" name="textArea" rows="4" cols="50">AR</textarea>
+    <textarea id="textArea" name="textArea" rows="4" cols="50">AR READY</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
 
