@@ -46,6 +46,7 @@
             currentVideo.setAttribute("playsinline", "");
             currentVideo.setAttribute("controls", "");
             currentVideo.setAttribute("muted", "");
+            assets.appendChild(currentVideo);
         }
 
         function AddNewVideoListener() {
@@ -54,8 +55,7 @@
 
                 var width = this.videoWidth;
                 var height = this.videoHeight;
-
-                assets.appendChild(currentVideo);
+                
                 textArea.innerHTML = "created physical video " + currentVideo.src + "\nphysical video width = " + width + " and physicalvideo height = " + height;
                 //currentVideoEl = document.createElement('a-video');
                 //currentVideoEl.addEventListener("loadedmetadata", function (event) {
@@ -209,7 +209,7 @@
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
         <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>Info</button>
     </div>
-    <textarea id="textArea" name="textArea" rows="4" cols="50">Hello</textarea>
+    <textarea id="textArea" name="textArea" rows="4" cols="50">AR START</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
 
