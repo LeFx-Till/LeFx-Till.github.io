@@ -71,7 +71,7 @@
 
                 function CreateVideoAssetListener() {
 
-                    currentVideo.addEventListener("loadedmetadata", function (event) {
+                    currentVideo.addEventListener('loadedmetadata', function (event) {
 
                         var width = this.videoWidth;
                         var height = this.videoHeight;
@@ -120,14 +120,13 @@
                     //currentVideoEl.src = '#' + currentVideo.id;                  
                     
                     marker.appendChild(currentVideoEl);
-                    marker.addEventListener('child-attached'), function (event) {
+                    marker.addEventListener('child-attached', function (event) {
 
                         currentVideoEl.object3D.position.set(0, 1.6, 0);
                         currentVideoEl.object3D.rotation.set(0, 0, 0);
 
                         textArea.innerHTML += "\n4. done creating element. inside listener";
                     });
-
                 }
 
                 marker.addEventListener('markerFound', () => {
@@ -192,7 +191,7 @@
                     //console.log('Se Marker Is Lost: ', marker.id);
                 });
 
-                button.addEventListener("click", function (evt) {
+                button.addEventListener('click', function (evt) {
                     if (isPlaying) {
 
                         //        PauseVideosAll();
