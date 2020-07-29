@@ -77,34 +77,34 @@
                             var width = this.videoWidth;
                             var height = this.videoHeight;
 
-                            textArea.innerHTML = "created physical video " + currentVideo.src + "\nphysical video width = " + width + " and physicalvideo height = " + height;
-                            //currentVideoEl = document.createElement('a-video');
-                            //currentVideoEl.addEventListener("loadedmetadata", function (event) {
+                            textArea.innerHTML = "created physical video " + currentVideo.src + "\nphysical video width = " + width + " and physical video height = " + height;
+                            currentVideoEl = document.createElement('a-video');
+                            currentVideoEl.addEventListener("loadedmetadata", function (e) {
 
-                            //    currentVideoEl.src = '#' + currentVideo.id;
-                            //    currentVideoEl.object3D.position.set(0, 1.6, 0);
-                            //    currentVideoEl.object3D.rotation.set(0, 0, 0);
-                            //});
+                                currentVideoEl.src = '#' + currentVideo.id;
+                                currentVideoEl.object3D.position.set(0, 1.6, 0);
+                                currentVideoEl.object3D.rotation.set(0, 0, 0);
+                            });
 
-                            //currentVideoEl.id = 'Video_' + currentMarkerID;
-                            //currentVideoEl.setAttribute("class", "intersectable");
+                            currentVideoEl.id = 'Video_' + currentMarkerID;
+                            currentVideoEl.setAttribute("class", "intersectable");
 
-                            //if (width < height) {
+                            if (width < height) {
 
-                            //    var widthEl = 3 * width / height;
-                            //    currentVideoEl.setAttribute("width", String(widthEl));
-                            //    currentVideoEl.setAttribute("height", "3");
-                            //}
-                            //else {
+                                var widthEl = 3 * width / height;
+                                currentVideoEl.setAttribute("width", String(widthEl));
+                                currentVideoEl.setAttribute("height", "3");
+                            }
+                            else {
 
-                            //    var heightEl = 3 * height / width;
-                            //    currentVideoEl.setAttribute("width", "3");
-                            //    currentVideoEl.setAttribute("height", String(heightEl));
-                            //}
+                                var heightEl = 3 * height / width;
+                                currentVideoEl.setAttribute("width", "3");
+                                currentVideoEl.setAttribute("height", String(heightEl));
+                            }
 
-                            //currentVideoEl.setAttribute("transparent", "false");
-                            //currentVideoEl.setAttribute("color", "#FFFFFF");
-                            //marker.appendChild(currentVideoEl);
+                            currentVideoEl.setAttribute("transparent", "false");
+                            currentVideoEl.setAttribute("color", "#FFFFFF");
+                            marker.appendChild(currentVideoEl);
                         });
 
                         currentVideo.id = 'Video_Asset_' + currentMarkerID;
