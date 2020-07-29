@@ -126,10 +126,15 @@
 
                         if (marker.childElementCount != 0) {
 
-                            marker.removeChild(marker.firstElementChild);                            
+                            marker.removeChild(marker.firstElementChild);
                         }
-                        
-                        AddNewVideo();                        
+
+                        AddNewVideo();
+                    }
+                    else {
+
+                        textArea.innerHTML = "same physical video " + currentVideo.src + "\nphysical video width = " + width + " and physicalvideo height = " + height;
+                        debugButton.innerHTML = "same marker found #" + currentMarkerID;
                     }
 
                     //markerFound = 1;
