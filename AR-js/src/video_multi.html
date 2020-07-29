@@ -71,15 +71,13 @@
 
                 function CreateVideoAssetListener() {
 
-                    currentVideo.addEventListener("loadedmetadata", function (e) {
+                    currentVideo.addEventListener("loadedmetadata", function (event) {
 
                         var width = this.videoWidth;
                         var height = this.videoHeight;
 
                         textArea.innerHTML += "\ndone creating asset. inside listener";
-
-                        currentVideoEl = document.createElement('a-video');
-                        //CreateVideoElementListener();
+                                                                        
                         SetVideoElementAttributes(width, height);
                     });
                 }
@@ -88,6 +86,7 @@
 
                     textArea.innerHTML += "\nstart creating video element attributes";
 
+                    currentVideoEl = document.createElement('a-video');
                     currentVideoEl.id = 'Video_' + currentMarkerID;
                     currentVideoEl.setAttribute("class", "intersectable");
 
@@ -106,22 +105,12 @@
 
                     currentVideoEl.setAttribute("transparent", "false");
                     currentVideoEl.setAttribute("color", "#FFFFFF");
+                    //currentVideoEl.src = '#' + currentVideo.id;
+                    currentVideoEl.object3D.position.set(0, 1.6, 0);
+                    currentVideoEl.object3D.rotation.set(0, 0, 0);
                     
                     marker.appendChild(currentVideoEl);
                 }
-
-                function CreateVideoElementListener() {
-
-                    currentVideoEl.addEventListener("loadedmetadata", function (e) {
-
-                        //currentVideoEl.src = '#' + currentVideo.id;
-                        currentVideoEl.object3D.position.set(0, 1.6, 0);
-                        currentVideoEl.object3D.rotation.set(0, 0, 0);
-
-                        textArea.innerHTML += "\ndone creating element. inside listener";
-                    });
-                }
-
 
                 marker.addEventListener('markerFound', () => {
 
@@ -221,7 +210,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>START</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>START IT</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
