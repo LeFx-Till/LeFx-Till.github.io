@@ -32,8 +32,8 @@
         var currentMarker = '';
         var currentMarkerID = '';
         var ready2play = 0;
-        var currentVideoComponent;
-        var currentVideoElement;
+        //var currentVideoComponent;
+        //var currentVideoElement;
         var markerFound = 0;
 
 
@@ -57,7 +57,7 @@
                     button.removeEventListener('click', PlayVideo);
 
                     try {
-                        
+
                         document.querySelector(currentVideoElement.src).play();
                         debugButton.innerHTML = "PLAYING THE VIDEO";
 
@@ -89,53 +89,56 @@
                 function SearchMarkers() {
 
                     var markerID = String(marker.id).split('_');
-                    if (currentMarkerID != markerID[1]) {
+                    //if (currentMarkerID != markerID[1]) {
 
-                        currentMarkerID = markerID[1];
-                        debugButton.innerHTML = "current marker id = " + currentMarkerID;
+                    currentMarkerID = markerID[1];
+                    debugButton.innerHTML = "current marker id = " + currentMarkerID;
 
-                        if (assets.childElementCount != 0)
-                            assets.removeChild(assets.firstElementChild);
+                    if (assets.childElementCount != 0)
+                        assets.removeChild(assets.firstElementChild);
 
-                        if (marker.childElementCount != 0)
-                            marker.removeChild(marker.firstElementChild);
+                    if (marker.childElementCount != 0)
+                        marker.removeChild(marker.firstElementChild);
 
-                        var newVideoComponent = document.createElement("video");
-                        newVideoComponent.load().addEventListener('loaded', CreateVideoAssetListener);                        
-                        SetVideoAssetAttributes(newVideoComponent);
-                    }
-                    else {
+                    var newVideoComponent = document.createElement('video');
+                    newVideoComponent.load().addEventListener('loaded', CreateVideoAssetListener);
+                    SetVideoAssetAttributes(newVideoComponent);
+                    //}
+                    //else {
 
-                        textArea.innerHTML = "known video asset. assets child count = " + assets.childElementCount + " first asset child id = " + assets.firstElementChild.id;
-                        debugButton.innerHTML = "SAME MARKER ID " + currentMarkerID;
-                    }
+                    //    textArea.innerHTML = "known video asset. assets child count = " + assets.childElementCount + " first asset child id = " + assets.firstElementChild.id;
+                    //    debugButton.innerHTML = "SAME MARKER ID " + currentMarkerID;
+                    //}
 
-                    marker.removeEventListener('markerFound', SearchMarkers);
+                    //marker.removeEventListener('markerFound', SearchMarkers);
                     markerFound = 1;
                 }
 
                 function CreateVideoAssetListener() {
-                    
+
                     var width = this.videoWidth;
                     var height = this.videoHeight;
 
-                    textArea.innerHTML += "\n2. done creating asset. inside listener";                    
-                    //currentVideoElement = document.createElement('a-video');
-                    //currentVideoElement.addEventListener('loadeddata', CreateVideoElementListener);
+                    var newVideoElement = document.createElement('a-video');
+                    newVideoElement.load().addEventListener('loaded', CreateVideoElementListener);
 
-                    //SetVideoElementAttributes(width, height);
+                    SetVideoElementAttributes(newVideoElement, width, height);
+
+                    textArea.innerHTML += "\n2. done creating asset. inside listener.";
 
                     //currentVideoComponent.removeEventListener('loadedmetadata', CreateVideoAssetListener);
                 }
 
                 function CreateVideoElementListener() {
 
+                    var currentVideoElement = document.querySelector('a-video');
+
                     currentVideoElement.object3D.position.set(0, 1.6, 0);
                     currentVideoElement.object3D.rotation.set(0, 0, 0);
 
-                    textArea.innerHTML = "4. done creating element. inside listener";
+                    textArea.innerHTML += "\n4. done creating element. inside listener.";
 
-                    currentVideoElement.removeEventListener('loadeddata', CreateVideoElementListener);
+                    //currentVideoElement.removeEventListener('loadeddata', CreateVideoElementListener);
                 }
 
                 function SetVideoAssetAttributes(videoComponent) {
@@ -146,8 +149,6 @@
                     if (currentMarkerID < 10) videoComponent.src = 'media/Video_00' + currentMarkerID + '.mp4';
                     else videoComponent.src = 'media/Video_0' + currentMarkerID + '.mp4';
 
-                    textArea.innerHTML = "1. start creating video asset attributes with source " + videoComponent.src;
-
                     videoComponent.loop = true;
                     videoComponent.setAttribute("crossorigin", "anonymous");
                     videoComponent.setAttribute("webkit-playsinline", "");
@@ -156,36 +157,40 @@
                     videoComponent.setAttribute("muted", "");
                     videoComponent.setAttribute("preload", "auto");
                     assets.appendChild(videoComponent);
+
+                    textArea.innerHTML = "1. start creating video asset attributes with source " + videoComponent.src;
                 }
 
-                function SetVideoElementAttributes(width, height) {
+                function SetVideoElementAttributes(videoElement, width, height) {
 
-                    currentVideoElement.src = '#' + currentVideoComponent.id;
-                    currentVideoElement.id = 'Video_' + currentMarkerID;
-                    currentVideoElement.setAttribute("class", "intersectable");
+                    var currentVideoComponent = document.querySelector('video');
 
-                    textArea.innerHTML += "\n\n3.start creating video element attributes " + currentVideoComponent.src + " == " + currentVideoElement.src;
+                    videoElement.src = '#' + currentVideoComponent.id;
+                    videoElement.id = 'Video_' + currentMarkerID;
+                    videoElement.setAttribute("class", "intersectable");
 
                     if (width < height) {
 
                         var widthEl = 3 * width / height;
-                        currentVideoElement.setAttribute("width", String(widthEl));
-                        currentVideoElement.setAttribute("height", "3");
+                        videoElement.setAttribute("width", String(widthEl));
+                        videoElement.setAttribute("height", "3");
                     }
                     else {
 
                         var heightEl = 3 * height / width;
-                        currentVideoElement.setAttribute("width", "3");
-                        currentVideoElement.setAttribute("height", String(heightEl));
+                        videoElement.setAttribute("width", "3");
+                        videoElement.setAttribute("height", String(heightEl));
                     }
 
-                    currentVideoElement.setAttribute("transparent", "false");
-                    currentVideoElement.setAttribute("color", "#E8FF00");
+                    videoElement.setAttribute("transparent", "false");
+                    videoElement.setAttribute("color", "#E8FF00");
 
-                    marker.appendChild(currentVideoElement);
+                    marker.appendChild(videoElement);
 
                     button.addEventListener('click', PlayVideo);
                     LetsPlayVideo();
+
+                    textArea.innerHTML += "\n\n3.start creating video element attributes " + currentVideoComponent.src + " == " + videoElement.src;
                 }
 
                 marker.addEventListener('markerFound', SearchMarkers);
@@ -201,7 +206,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 2b</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 3</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
