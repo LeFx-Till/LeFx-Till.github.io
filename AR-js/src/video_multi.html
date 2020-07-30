@@ -59,8 +59,10 @@
                     try {
 
                         var currentVideoElement = document.querySelector('a-video');
-                        document.querySelector(currentVideoElement.src).play();
-                        debugButton.innerHTML = "PLAYING THE VIDEO";
+
+                        var videoSource = document.querySelector(currentVideoElement.src);
+                        videoSource.play();
+                        debugButton.innerHTML = "PLAYING THE VIDEO at video source state " + videoSource.readyState + " and video element state = " + currentVideoElement.readyState;
 
                     }
                     catch (e) {
@@ -90,8 +92,7 @@
                 function SearchMarkers() {
 
                     var markerID = String(marker.id).split('_');
-                    //if (currentMarkerID != markerID[1]) {
-
+                    
                     currentMarkerID = markerID[1];
                     debugButton.innerHTML = "current marker id = " + currentMarkerID;
 
@@ -104,14 +105,7 @@
                     var newVideoComponent = document.createElement('video');                    
                     newVideoComponent.addEventListener('loadedmetadata', CreateVideoAssetListener);
                     SetVideoAssetAttributes(newVideoComponent);
-                    //}
-                    //else {
 
-                    //    textArea.innerHTML = "known video asset. assets child count = " + assets.childElementCount + " first asset child id = " + assets.firstElementChild.id;
-                    //    debugButton.innerHTML = "SAME MARKER ID " + currentMarkerID;
-                    //}
-
-                    //marker.removeEventListener('markerFound', SearchMarkers);
                     markerFound = 1;
                 }
 
@@ -185,7 +179,7 @@
                     button.addEventListener('click', PlayVideo);
                     LetsPlayVideo();
 
-                    textArea.innerHTML += "\n\n3.start creating video element attributes " + currentVideoComponent.src + " == " + videoElement.src + " with video asset ready state = " + currentVideoComponent.readyState;
+                    textArea.innerHTML += "\n3. start creating video element attributes " + currentVideoComponent.src + " == " + videoElement.src + " with video asset ready state = " + currentVideoComponent.readyState;
                 }
 
                 marker.addEventListener('markerFound', SearchMarkers);
@@ -201,7 +195,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 7</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 8</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
