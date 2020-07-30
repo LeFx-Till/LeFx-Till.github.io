@@ -109,8 +109,8 @@
                     textArea.innerHTML += "\n1. done setting video asset attributes with source " + myVideoAsset.src;
 
                     var myVideoElement = marker.querySelector('a-video');
-
                     myVideoElement.addEventListener('loadedmetadata', VideoElementMetaDataLoaded);
+                    
 
                     myVideoElement.src = '#' + myVideoAsset.id;
                     myVideoElement.id = 'Video_' + currentMarkerID;
@@ -128,6 +128,8 @@
                         myVideoElement.setAttribute("width", "3");
                         myVideoElement.setAttribute("height", String(heightEl));
                     }
+
+                    myVideoElement.load();
                 }
 
                 function VideoElementMetaDataLoaded() {
@@ -150,7 +152,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 36b</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 40</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">Debug AR VIDEO</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
