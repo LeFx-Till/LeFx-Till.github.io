@@ -58,7 +58,7 @@
 
                     try {
 
-                        document.querySelector('video').play();
+                        document.querySelector(currentVideoElement.src).play();
                         debugButton.innerHTML = "PLAYING VIDEO";
                     }
                     catch (e) {
