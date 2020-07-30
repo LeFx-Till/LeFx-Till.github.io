@@ -102,7 +102,7 @@
 
                         var newVideoComponent = document.createElement("video");
                         newVideoComponent.load();                        
-                        newVideoComponent.addEventListener('loadedmetadata', CreateVideoAssetListener);                                                
+                        newVideoComponent.addEventListener('loadeddata', CreateVideoAssetListener);
                         SetVideoAssetAttributes(newVideoComponent);
                     }
                     else {
@@ -120,8 +120,7 @@
                     var width = this.videoWidth;
                     var height = this.videoHeight;
 
-                    textArea.innerHTML += "\n2. done creating asset. inside listener";
-
+                    textArea.innerHTML += "\n2. done creating asset. inside listener";                    
                     //currentVideoElement = document.createElement('a-video');
                     //currentVideoElement.addEventListener('loadeddata', CreateVideoElementListener);
 
@@ -203,7 +202,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 2</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 2a</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
