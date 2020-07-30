@@ -36,23 +36,21 @@
         var setVideoElement = 0;
         var ready2play = 0;
         var videoArray = [];
+        var myVideoAsset = [];
+        var myVideoElement = [];
 
         AFRAME.registerComponent('myScene', {
 
             init: function () {
 
                 var textArea = document.querySelector("#textArea");
-                var myVideoAsset = document.querySelector("#Video_Asset");
-                myVideoAsset.addEventListener('loadeddata', LoadedVideo);
+                var videoAsset = document.querySelector("#Video_Asset");
+                videoAsset.pause();
 
-                //myVideoAsset.load();                
+                myVideoAsset.push(videoAsset);
 
-                myVideoAsset.pause();
-
-                videoArray.push(myVideoAsset);
-
-                textArea.innerHTML = " START with video " + myVideoAsset.src + " w " + myVideoAsset.width + " h " + myVideoAsset.height +
-                    "\n from array " + videoArray[0].src + " w " + videoArray[0].width + " h " + videoArray[0].height;
+                textArea.innerHTML = " START with video " + videoAsset.src + " w " + videoAsset.width + " h " + videoAsset.height +
+                    "\n from array " + myVideoAsset[0].src + " w " + myVideoAsset[0].width + " h " + myVideoAsset[0].height;
             }
         });
 
@@ -200,7 +198,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 2323322222</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 666666</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">Debug AR VIDEO</textarea>
     <a-scene myScene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
