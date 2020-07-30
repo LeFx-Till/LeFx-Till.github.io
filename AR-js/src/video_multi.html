@@ -32,10 +32,7 @@
         var currentMarker = '';
         var currentMarkerID = '';
         var ready2play = 0;
-        //var currentVideoComponent;
-        //var currentVideoElement;
-        var markerFound = 0;
-
+        var myVideoAsset;
 
         AFRAME.registerComponent('button', {
 
@@ -45,6 +42,9 @@
                 var debugButton = document.querySelector("#debugbutton");
                 var textArea = document.querySelector("#textArea");
                 var assets = document.querySelector("a-assets");
+
+                myVideoAsset = assets.querySelector("video");
+                myVideoAsset.pause();
 
                 var isPlaying = false;
                 const marker = this.el;
@@ -58,15 +58,9 @@
 
                     try {
 
-                        var currentVideoComponent = document.querySelector('video');
-                        debugButton.innerHTML = "Play Video " + currentVideoComponent.src;
-                        textArea.innerHTML += "\n\nplay video with current source " + currentVideoComponent.currentSrc +
-                            "\n currentTime = " + currentVideoComponent.currentTime +
-                            "\n buffered = " + currentVideoComponent.buffered +
-                            "\n readyState = " + currentVideoComponent.readyState +
-                            "\n error = " + currentVideoComponent.error;
-
-                            }
+                        assets.querySelector("video").play();
+                        textArea += "\n\n I Want to play a video";
+                    }
                     catch (e) {
 
                         debugButton.innerHTML = e.message;
@@ -96,92 +90,43 @@
                     var markerID = String(marker.id).split('_');
 
                     currentMarkerID = markerID[1];
+
                     debugButton.innerHTML = "current marker id = " + currentMarkerID;
 
-                    if (assets.childElementCount != 0)
-                        assets.removeChild(assets.firstElementChild);
-
-                    if (marker.childElementCount != 0)
-                        marker.removeChild(marker.firstElementChild);
-
-                    var newVideoComponent = document.createElement('video');
-                    newVideoComponent.addEventListener('loadedmetadata', CreateVideoAssetListener);
-                    SetVideoAssetAttributes(newVideoComponent);
-
-                    markerFound = 1;
+                    SetVideoAttributes();
                 }
 
-                function CreateVideoAssetListener() {
+                function SetVideoAttributes() {
 
-                    textArea.innerHTML += "\n2. done creating asset. inside listener.";
+                    myVideoAsset.id = 'Video_Asset_' + currentMarkerID;
 
-                    var width = this.videoWidth;
-                    var height = this.videoHeight;
+                    if (currentMarkerID < 10) myVideoAsset.src = 'media/Video_00' + currentMarkerID + '.mp4';
+                    else myVideoAsset.src = 'media/Video_0' + currentMarkerID + '.mp4';
 
-                    var newVideoElement = document.createElement('a-video');
-                    newVideoElement.addEventListener('loaded', CreateVideoElementListener);
-                    SetVideoElementAttributes(newVideoElement, width, height);
-                }
+                    textArea.innerHTML = "1. done setting video asset attributes with source " + myVideoAsset.src;
 
-                function CreateVideoElementListener() {
+                    var myVideoElement = marker.querySelector('a-video');
+                    myVideoElement.src = '#' + myVideoAsset.id;
+                    myVideoElement.id = 'Video_' + currentMarkerID;
 
-                    textArea.innerHTML += "\n4. done creating element. inside listener.";
+                    if (myVideoAsset.width < myVideoAsset.height) {
 
-                    var currentVideoElement = document.querySelector('a-video');
-                    currentVideoElement.object3D.position.set(0, 1.6, 0);
-                    currentVideoElement.object3D.rotation.set(0, 0, 0);
-                }
+                        var widthEl = 3 * myVideoAsset.width / myVideoAsset.height;
+                        myVideoElement.setAttribute("width", String(widthEl));
+                        myVideoElement.setAttribute("height", "3");
 
-                function SetVideoAssetAttributes(videoComponent) {
-
-                    videoComponent.id = 'Video_Asset_' + currentMarkerID;
-                    videoComponent.autoplay = false;
-
-                    if (currentMarkerID < 10) videoComponent.src = 'media/Video_00' + currentMarkerID + '.mp4';
-                    else videoComponent.src = 'media/Video_0' + currentMarkerID + '.mp4';
-
-                    videoComponent.loop = true;
-                    videoComponent.setAttribute("crossorigin", "anonymous");
-                    videoComponent.setAttribute("webkit-playsinline", "");
-                    videoComponent.setAttribute("playsinline", "");
-                    videoComponent.setAttribute("controls", "");
-                    videoComponent.setAttribute("muted", "");
-                    videoComponent.setAttribute("preload", "auto");
-                    assets.appendChild(videoComponent);
-
-                    textArea.innerHTML = "1. start creating video asset attributes with source " + videoComponent.src;
-                }
-
-                function SetVideoElementAttributes(videoElement, width, height) {
-
-                    var currentVideoComponent = document.querySelector('video');
-
-                    videoElement.src = '#' + currentVideoComponent.id;
-                    videoElement.id = 'Video_' + currentMarkerID;
-                    videoElement.setAttribute("class", "intersectable");
-
-                    if (width < height) {
-
-                        var widthEl = 3 * width / height;
-                        videoElement.setAttribute("width", String(widthEl));
-                        videoElement.setAttribute("height", "3");
                     }
                     else {
 
-                        var heightEl = 3 * height / width;
-                        videoElement.setAttribute("width", "3");
-                        videoElement.setAttribute("height", String(heightEl));
+                        var heightEl = 3 * myVideoAsset.height / myVideoAsset.width;
+                        myVideoElement.setAttribute("width", "3");
+                        myVideoElement.setAttribute("height", String(heightEl));
                     }
 
-                    videoElement.setAttribute("transparent", "false");
-                    videoElement.setAttribute("color", "#E8FF00");
-
-                    marker.appendChild(videoElement);
+                    textArea.innerHTML += "\n2. done setting video element attributes " + myVideoAsset.src + " == " + myVideoElement.src + " with video asset ready state = " + myVideoAsset.readyState;
 
                     button.addEventListener('click', PlayVideo);
                     LetsPlayVideo();
-
-                    textArea.innerHTML += "\n3. start creating video element attributes " + currentVideoComponent.src + " == " + videoElement.src + " with video asset ready state = " + currentVideoComponent.readyState;
                 }
 
                 marker.addEventListener('markerFound', SearchMarkers);
@@ -197,62 +142,155 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 10</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 12</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
 
         <a-assets>
+            <video id="Video_Asset" autoplay="false" loop crossorigin="anonymous" src="media/Video_000.mp4" webkit-playsinline playsinline controls muted></video>
         </a-assets>
 
-        <a-marker id="marker_0" type="pattern" url="marker/border_pattern_000.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_1" type="pattern" url="marker/border_pattern_001.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_2" type="pattern" url="marker/border_pattern_002.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_3" type="pattern" url="marker/border_pattern_003.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_4" type="pattern" url="marker/border_pattern_004.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_5" type="pattern" url="marker/border_pattern_005.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_6" type="pattern" url="marker/border_pattern_006.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_7" type="pattern" url="marker/border_pattern_007.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_8" type="pattern" url="marker/border_pattern_008.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_9" type="pattern" url="marker/border_pattern_009.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_0" type="pattern" url="marker/border_pattern_000.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_1" type="pattern" url="marker/border_pattern_001.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_2" type="pattern" url="marker/border_pattern_002.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_3" type="pattern" url="marker/border_pattern_003.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_4" type="pattern" url="marker/border_pattern_004.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_5" type="pattern" url="marker/border_pattern_005.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_6" type="pattern" url="marker/border_pattern_006.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_7" type="pattern" url="marker/border_pattern_007.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_8" type="pattern" url="marker/border_pattern_008.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_9" type="pattern" url="marker/border_pattern_009.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
 
-        <a-marker id="marker_10" type="pattern" url="marker/border_polygons_001.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_11" type="pattern" url="marker/border_polygons_002.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_12" type="pattern" url="marker/border_polygons_003.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_13" type="pattern" url="marker/border_polygons_004.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_14" type="pattern" url="marker/border_polygons_005.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_15" type="pattern" url="marker/border_polygons_006.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_16" type="pattern" url="marker/border_polygons_007.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_17" type="pattern" url="marker/border_polygons_008.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_18" type="pattern" url="marker/border_polygons_009.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_19" type="pattern" url="marker/border_polygons_010.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_20" type="pattern" url="marker/border_polygons_011.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_21" type="pattern" url="marker/border_polygons_012.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_22" type="pattern" url="marker/border_polygons_013.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_23" type="pattern" url="marker/border_polygons_014.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_24" type="pattern" url="marker/border_polygons_015.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_25" type="pattern" url="marker/border_polygons_016.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_26" type="pattern" url="marker/border_polygons_017.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_27" type="pattern" url="marker/border_polygons_018.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_28" type="pattern" url="marker/border_polygons_019.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_29" type="pattern" url="marker/border_polygons_020.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_30" type="pattern" url="marker/border_polygons_021.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_31" type="pattern" url="marker/border_polygons_022.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_32" type="pattern" url="marker/border_polygons_023.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_33" type="pattern" url="marker/border_polygons_024.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_34" type="pattern" url="marker/border_polygons_025.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_35" type="pattern" url="marker/border_polygons_026.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_36" type="pattern" url="marker/border_polygons_027.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_37" type="pattern" url="marker/border_polygons_028.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_38" type="pattern" url="marker/border_polygons_029.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_39" type="pattern" url="marker/border_polygons_030.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_40" type="pattern" url="marker/border_polygons_031.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_41" type="pattern" url="marker/border_polygons_032.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_42" type="pattern" url="marker/border_polygons_033.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_43" type="pattern" url="marker/border_polygons_034.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_44" type="pattern" url="marker/border_polygons_035.patt" emitevents="true" button class="iOS"></a-marker>
-        <a-marker id="marker_45" type="pattern" url="marker/border_polygons_036.patt" emitevents="true" button class="iOS"></a-marker>
+        <a-marker id="marker_10" type="pattern" url="marker/border_polygons_001.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_11" type="pattern" url="marker/border_polygons_002.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_12" type="pattern" url="marker/border_polygons_003.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_13" type="pattern" url="marker/border_polygons_004.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_14" type="pattern" url="marker/border_polygons_005.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_15" type="pattern" url="marker/border_polygons_006.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_16" type="pattern" url="marker/border_polygons_007.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_17" type="pattern" url="marker/border_polygons_008.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_18" type="pattern" url="marker/border_polygons_009.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_19" type="pattern" url="marker/border_polygons_010.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_20" type="pattern" url="marker/border_polygons_011.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_21" type="pattern" url="marker/border_polygons_012.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_22" type="pattern" url="marker/border_polygons_013.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_23" type="pattern" url="marker/border_polygons_014.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_24" type="pattern" url="marker/border_polygons_015.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_25" type="pattern" url="marker/border_polygons_016.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_26" type="pattern" url="marker/border_polygons_017.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_27" type="pattern" url="marker/border_polygons_018.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_28" type="pattern" url="marker/border_polygons_019.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_29" type="pattern" url="marker/border_polygons_020.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_30" type="pattern" url="marker/border_polygons_021.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_31" type="pattern" url="marker/border_polygons_022.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_32" type="pattern" url="marker/border_polygons_023.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_33" type="pattern" url="marker/border_polygons_024.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_34" type="pattern" url="marker/border_polygons_025.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_35" type="pattern" url="marker/border_polygons_026.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_36" type="pattern" url="marker/border_polygons_027.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_37" type="pattern" url="marker/border_polygons_028.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_38" type="pattern" url="marker/border_polygons_029.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_39" type="pattern" url="marker/border_polygons_030.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_40" type="pattern" url="marker/border_polygons_031.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_41" type="pattern" url="marker/border_polygons_032.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_42" type="pattern" url="marker/border_polygons_033.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_43" type="pattern" url="marker/border_polygons_034.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_44" type="pattern" url="marker/border_polygons_035.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
+        <a-marker id="marker_45" type="pattern" url="marker/border_polygons_036.patt" emitevents="true" button class="iOS">
+            <a-video src="#Video_Asset" id="Video" class="intersectable" width="1.698" height="3" position="0 1.6 0" rotation="0 0 0" color="#FFFFFF" transparent=False></a-video>
+        </a-marker>
 
         <a-entity camera></a-entity>
     </a-scene>
