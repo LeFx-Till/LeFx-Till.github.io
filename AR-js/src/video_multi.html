@@ -32,7 +32,7 @@
         var currentMarker = '';
         var currentMarkerID = '';
         var ready2play = 0;
-        var currentVideoComponent = '';
+        var currentVideoComponent;
         var currentVideoElement = '';
         var markerFound = 0;
 
@@ -100,9 +100,10 @@
                         if (marker.childElementCount != 0)
                             marker.removeChild(marker.firstElementChild);
 
-                        currentVideoComponent = document.createElement("video");
-                        currentVideoComponent.addEventListener('loaded', CreateVideoAssetListener);
-                        SetVideoAssetAttributes();
+                        var newVideoComponent = document.createElement("video");
+                        newVideoComponent.load();                        
+                        newVideoComponent.addEventListener('loadedmetadata', CreateVideoAssetListener);                                                
+                        SetVideoAssetAttributes(newVideoComponent);
                     }
                     else {
 
@@ -115,18 +116,18 @@
                 }
 
                 function CreateVideoAssetListener() {
-
+                    
                     var width = this.videoWidth;
                     var height = this.videoHeight;
 
                     textArea.innerHTML += "\n2. done creating asset. inside listener";
 
-                    currentVideoElement = document.createElement('a-video');
-                    currentVideoElement.addEventListener('loaded', CreateVideoElementListener);
+                    //currentVideoElement = document.createElement('a-video');
+                    //currentVideoElement.addEventListener('loadeddata', CreateVideoElementListener);
 
-                    SetVideoElementAttributes(width, height);
+                    //SetVideoElementAttributes(width, height);
 
-                    currentVideoComponent.removeEventListener('loaded', CreateVideoAssetListener);
+                    //currentVideoComponent.removeEventListener('loadedmetadata', CreateVideoAssetListener);
                 }
 
                 function CreateVideoElementListener() {
@@ -136,27 +137,27 @@
 
                     textArea.innerHTML = "4. done creating element. inside listener";
 
-                    currentVideoElement.removeEventListener('loaded', CreateVideoElementListener);
+                    currentVideoElement.removeEventListener('loadeddata', CreateVideoElementListener);
                 }
 
-                function SetVideoAssetAttributes() {
+                function SetVideoAssetAttributes(videoComponent) {
 
                     textArea.innerHTML = "1. start creating video asset attributes";
 
-                    currentVideoComponent.id = 'Video_Asset_' + currentMarkerID;
-                    currentVideoComponent.autoplay = false;
+                    videoComponent.id = 'Video_Asset_' + currentMarkerID;
+                    videoComponent.autoplay = false;
 
-                    if (currentMarkerID < 10) currentVideoComponent.src = 'media/Video_00' + currentMarkerID + '.mp4';
-                    else currentVideoComponent.src = 'media/Video_0' + currentMarkerID + '.mp4';
+                    if (currentMarkerID < 10) videoComponent.src = 'media/Video_00' + currentMarkerID + '.mp4';
+                    else videoComponent.src = 'media/Video_0' + currentMarkerID + '.mp4';
 
-                    currentVideoComponent.loop = true;
-                    currentVideoComponent.setAttribute("crossorigin", "anonymous");
-                    currentVideoComponent.setAttribute("webkit-playsinline", "");
-                    currentVideoComponent.setAttribute("playsinline", "");
-                    currentVideoComponent.setAttribute("controls", "");
-                    currentVideoComponent.setAttribute("muted", "");
-                    currentVideoComponent.setAttribute("preload", "auto");
-                    assets.appendChild(currentVideoComponent);
+                    videoComponent.loop = true;
+                    videoComponent.setAttribute("crossorigin", "anonymous");
+                    videoComponent.setAttribute("webkit-playsinline", "");
+                    videoComponent.setAttribute("playsinline", "");
+                    videoComponent.setAttribute("controls", "");
+                    videoComponent.setAttribute("muted", "");
+                    videoComponent.setAttribute("preload", "auto");
+                    assets.appendChild(videoComponent);
                 }
 
                 function SetVideoElementAttributes(width, height) {
@@ -202,7 +203,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 1e</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 1f</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
