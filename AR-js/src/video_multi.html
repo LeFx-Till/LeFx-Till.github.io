@@ -101,7 +101,7 @@
                             marker.removeChild(marker.firstElementChild);
 
                         currentVideoComponent = document.createElement("video");
-                        currentVideoComponent.addEventListener('loadedmetadata', CreateVideoAssetListener);
+                        currentVideoComponent.addEventListener('loadeddata', CreateVideoAssetListener);
                         SetVideoAssetAttributes();
                     }
                     else {
@@ -122,11 +122,11 @@
                     textArea.innerHTML += "\n2. done creating asset. inside listener";
 
                     currentVideoElement = document.createElement('a-video');
-                    currentVideoElement.addEventListener('loadedmetadata', CreateVideoElementListener);
+                    currentVideoElement.addEventListener('loadeddata', CreateVideoElementListener);
 
                     SetVideoElementAttributes(width, height);
 
-                    currentVideoComponent.removeEventListener('loadedmetadata', CreateVideoAssetListener);
+                    currentVideoComponent.removeEventListener('loadeddata', CreateVideoAssetListener);
                 }
 
                 function CreateVideoElementListener() {
@@ -136,7 +136,7 @@
 
                     textArea.innerHTML = "4. done creating element. inside listener";
 
-                    currentVideoElement.removeEventListener('loadedmetadata', CreateVideoElementListener);
+                    currentVideoElement.removeEventListener('loadeddata', CreateVideoElementListener);
                 }
 
                 function SetVideoAssetAttributes() {
@@ -202,7 +202,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 1c</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 1d</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
