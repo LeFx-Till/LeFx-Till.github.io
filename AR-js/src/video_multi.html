@@ -37,7 +37,7 @@
         var ready2play = 0;
         var videoArray = [];
 
-        AFRAME.registerComponent('video', {
+        AFRAME.registerComponent('myScene', {
 
             init: function () {
 
@@ -199,10 +199,10 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 3333</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 232322</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">Debug AR VIDEO</textarea>
-    <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <a-scene myScene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
         <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
 
         <a-assets>
