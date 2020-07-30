@@ -37,7 +37,7 @@
         var ready2play = 0;
         var videoArray = [];
         var myVideoAsset = [];
-        var myVideoElement = [];
+        var myVideoElement = [];        
 
         AFRAME.registerComponent('myScene', {
 
@@ -123,14 +123,14 @@
 
                         foundMarker == 1;
 
-                        textArea.innerHTML = "0. start setting video asset attributes " + myVideoAsset.width;
+                        textArea.innerHTML = "0. start setting video asset attributes " + myVideoAsset[0].width;
 
-                        myVideoAsset.addEventListener('loadedmetadata', VideoAssetMetaDataLoaded);
+                        myVideoAsset[0].addEventListener('loadedmetadata', VideoAssetMetaDataLoaded);
 
-                        myVideoAsset.id = 'Video_Asset_' + currentMarkerID;
+                        myVideoAsset[0].id = 'Video_Asset_' + currentMarkerID;
 
-                        if (currentMarkerID < 10) myVideoAsset.src = 'media/Video_00' + currentMarkerID + '.mp4';
-                        else myVideoAsset.src = 'media/Video_0' + currentMarkerID + '.mp4';
+                        if (currentMarkerID < 10) myVideoAsset[0].src = 'media/Video_00' + currentMarkerID + '.mp4';
+                        else myVideoAsset[0].src = 'media/Video_0' + currentMarkerID + '.mp4';
                     }
                 }
 
@@ -142,12 +142,12 @@
 
                         var myVideoElement = marker.querySelector('a-video');
 
-                        textArea.innerHTML += "\n1. done setting video asset attributes on marker " + marker.id + " with source " + myVideoAsset.src + " and width " + myVideoElement.width + " height " + myVideoElement.height + " asset w = " + myVideoAsset.width + " h = " + myVideoAsset.height;
+                        textArea.innerHTML += "\n1. done setting video asset attributes on marker " + marker.id + " with source " + myVideoAsset[0].src + " and width " + myVideoElement.width + " height " + myVideoElement.height + " asset w = " + myVideoAsset[0].width + " h = " + myVideoAsset[0].height;
 
                         myVideoElement.src = '#' + myVideoAsset.id;
                         myVideoElement.id = 'Video_' + currentMarkerID;
 
-                        if (myVideoAsset.width < myVideoAsset.height) {
+                        if (myVideoAsset[0].width < myVideoAsset[0].height) {
 
                             var widthEl = 3 * myVideoAsset.width / myVideoAsset.height;
                             myVideoElement.setAttribute("width", String(widthEl));
@@ -155,19 +155,19 @@
                         }
                         else {
 
-                            var heightEl = 3 * myVideoAsset.height / myVideoAsset.width;
+                            var heightEl = 3 * myVideoAsset[0].height / myVideoAsset[0].width;
                             myVideoElement.setAttribute("width", "3");
                             myVideoElement.setAttribute("height", String(heightEl));
                         }
 
-                        textArea.innerHTML += "\n>> width " + myVideoElement.width + " height " + myVideoElement.height + " asset w = " + myVideoAsset.width + " h = " + myVideoAsset.height;
+                        textArea.innerHTML += "\n>> width " + myVideoElement.width + " height " + myVideoElement.height + " asset w = " + myVideoAsset[0].width + " h = " + myVideoAsset[0].height;
                         myVideoElement.load();
                     }
 
                     if (setVideoElement == 0) {
 
                         setVideoElement = 1;
-                        textArea.innerHTML += "\n2. done setting video element attributes " + myVideoAsset.src + " == " + myVideoElement.src + " with video asset ready state = " + myVideoAsset.readyState;
+                        textArea.innerHTML += "\n2. done setting video element attributes " + myVideoAsset[0].src + " == " + myVideoElement.src + " with video asset ready state = " + myVideoAsset[0].readyState;
                         button.addEventListener('click', PlayVideo);
                         LetsPlayVideo();
                     }
@@ -198,7 +198,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 666666</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 1212112</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">Debug AR VIDEO</textarea>
     <a-scene myScene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
