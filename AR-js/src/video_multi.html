@@ -33,7 +33,7 @@
         var currentMarkerID = '';
         var ready2play = 0;
         var currentVideoComponent;
-        var currentVideoElement = '';
+        var currentVideoElement;
         var markerFound = 0;
 
 
@@ -142,13 +142,13 @@
 
                 function SetVideoAssetAttributes(videoComponent) {
 
-                    textArea.innerHTML = "1. start creating video asset attributes";
-
                     videoComponent.id = 'Video_Asset_' + currentMarkerID;
                     videoComponent.autoplay = false;
 
                     if (currentMarkerID < 10) videoComponent.src = 'media/Video_00' + currentMarkerID + '.mp4';
                     else videoComponent.src = 'media/Video_0' + currentMarkerID + '.mp4';
+
+                    textArea.innerHTML = "1. start creating video asset attributes with source " + videoComponent.src;
 
                     videoComponent.loop = true;
                     videoComponent.setAttribute("crossorigin", "anonymous");
@@ -203,7 +203,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 1f</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 2</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
