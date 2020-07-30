@@ -31,7 +31,7 @@
 
         var currentMarker = '';
         var currentMarkerID = '';
-        var ready2play = 0;        
+        var ready2play = 0;
 
         AFRAME.registerComponent('button', {
 
@@ -43,7 +43,7 @@
 
                 var myVideoAsset = document.querySelector("video");
                 myVideoAsset.pause();
-                                
+
                 const marker = this.el;
 
                 button.hidden = true;
@@ -56,7 +56,8 @@
 
                     try {
 
-                        assets.querySelector("video").play();
+                        myVideoAsset.load();
+                        myVideoAsset.play();
                         textArea += "\n\n I Want to play a video";
                     }
                     catch (e) {
@@ -90,41 +91,52 @@
                     currentMarkerID = markerID[1];
 
                     debugButton.innerHTML = "current marker id = " + currentMarkerID;
-                                        
+
                     SetVideoAttributes();
                 }
 
+                function VideoElementMetaDataLoaded() {
+
+                    textArea.innerHTML += "\n2. done setting video element attributes " + myVideoAsset.src + " == " + myVideoElement.src + " with video asset ready state = " + myVideoAsset.readyState;
+                    button.addEventListener('click', PlayVideo);
+                    LetsPlayVideo();
+                }
+
+                function VideoAssetMetaDataLoaded() {
+
+                    textArea.innerHTML += "\n1. done setting video asset attributes with source " + myVideoAsset.src;
+
+                    var myVideoElement = marker.querySelector('a-video');
+                    myVideoElement.addEventListener('loadedmetadata', VideoElementMetaDataLoaded);
+
+                    myVideoElement.src = '#' + myVideoAsset.id;
+                    myVideoElement.id = 'Video_' + currentMarkerID;
+
+                    if (myVideoAsset.width < myVideoAsset.height) {
+
+                        var widthEl = 3 * myVideoAsset.width / myVideoAsset.height;
+                        myVideoElement.setAttribute("width", String(widthEl));
+                        myVideoElement.setAttribute("height", "3");
+
+                    }
+                    else {
+
+                        var heightEl = 3 * myVideoAsset.height / myVideoAsset.width;
+                        myVideoElement.setAttribute("width", "3");
+                        myVideoElement.setAttribute("height", String(heightEl));
+                    }                    
+                }
+
                 function SetVideoAttributes() {
-                                        
+
+                    textArea.innerHTML = "0. start setting video asset attributes";
+
+                    myVideoAsset.addEventListener('loadedmetadata', VideoAssetMetaDataLoaded);
+
                     myVideoAsset.id = 'Video_Asset_' + currentMarkerID;
 
                     if (currentMarkerID < 10) myVideoAsset.src = 'media/Video_00' + currentMarkerID + '.mp4';
                     else myVideoAsset.src = 'media/Video_0' + currentMarkerID + '.mp4';
-
-                    textArea.innerHTML = "1. done setting video asset attributes with source " + myVideoAsset.src;
-
-                    var myVideoElement = marker.querySelector('a-video');
-                    myVideoElement.src = '#' + myVideoAsset.id;
-                    myVideoElement.id = 'Video_' + currentMarkerID;
-
-                    //if (myVideoAsset.width < myVideoAsset.height) {
-
-                    //    var widthEl = 3 * myVideoAsset.width / myVideoAsset.height;
-                    //    myVideoElement.setAttribute("width", String(widthEl));
-                    //    myVideoElement.setAttribute("height", "3");
-
-                    //}
-                    //else {
-
-                    //    var heightEl = 3 * myVideoAsset.height / myVideoAsset.width;
-                    //    myVideoElement.setAttribute("width", "3");
-                    //    myVideoElement.setAttribute("height", String(heightEl));
-                    //}
-                                        
-                    textArea.innerHTML += "\n2. done setting video element attributes " + myVideoAsset.src + " == " + myVideoElement.src + " with video asset ready state = " + myVideoAsset.readyState;
-
-                    button.addEventListener('click', PlayVideo);
-                    LetsPlayVideo();
                 }
 
                 marker.addEventListener('markerFound', SearchMarkers);
@@ -140,7 +152,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 13</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 36</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
