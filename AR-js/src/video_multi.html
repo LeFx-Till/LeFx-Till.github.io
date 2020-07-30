@@ -31,8 +31,7 @@
 
         var currentMarker = '';
         var currentMarkerID = '';
-        var ready2play = 0;
-        var myVideoAsset;
+        var ready2play = 0;        
 
         AFRAME.registerComponent('button', {
 
@@ -41,16 +40,15 @@
                 var button = document.querySelector("#mutebutton");
                 var debugButton = document.querySelector("#debugbutton");
                 var textArea = document.querySelector("#textArea");
-                var assets = document.querySelector("a-assets");
 
-                myVideoAsset = assets.querySelector("video");
+                var myVideoAsset = document.querySelector("video");
                 myVideoAsset.pause();
-
-                var isPlaying = false;
+                                
                 const marker = this.el;
 
                 button.hidden = true;
                 debugButton.hidden = false;
+
 
                 function PlayVideo() {
 
@@ -92,12 +90,12 @@
                     currentMarkerID = markerID[1];
 
                     debugButton.innerHTML = "current marker id = " + currentMarkerID;
-
+                                        
                     SetVideoAttributes();
                 }
 
                 function SetVideoAttributes() {
-
+                                        
                     myVideoAsset.id = 'Video_Asset_' + currentMarkerID;
 
                     if (currentMarkerID < 10) myVideoAsset.src = 'media/Video_00' + currentMarkerID + '.mp4';
@@ -109,20 +107,20 @@
                     myVideoElement.src = '#' + myVideoAsset.id;
                     myVideoElement.id = 'Video_' + currentMarkerID;
 
-                    if (myVideoAsset.width < myVideoAsset.height) {
+                    //if (myVideoAsset.width < myVideoAsset.height) {
 
-                        var widthEl = 3 * myVideoAsset.width / myVideoAsset.height;
-                        myVideoElement.setAttribute("width", String(widthEl));
-                        myVideoElement.setAttribute("height", "3");
+                    //    var widthEl = 3 * myVideoAsset.width / myVideoAsset.height;
+                    //    myVideoElement.setAttribute("width", String(widthEl));
+                    //    myVideoElement.setAttribute("height", "3");
 
-                    }
-                    else {
+                    //}
+                    //else {
 
-                        var heightEl = 3 * myVideoAsset.height / myVideoAsset.width;
-                        myVideoElement.setAttribute("width", "3");
-                        myVideoElement.setAttribute("height", String(heightEl));
-                    }
-
+                    //    var heightEl = 3 * myVideoAsset.height / myVideoAsset.width;
+                    //    myVideoElement.setAttribute("width", "3");
+                    //    myVideoElement.setAttribute("height", String(heightEl));
+                    //}
+                                        
                     textArea.innerHTML += "\n2. done setting video element attributes " + myVideoAsset.src + " == " + myVideoElement.src + " with video asset ready state = " + myVideoAsset.readyState;
 
                     button.addEventListener('click', PlayVideo);
@@ -142,7 +140,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 12</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 13</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
