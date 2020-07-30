@@ -106,7 +106,6 @@
                     debugButton.innerHTML = "current marker id = " + currentMarkerID;
 
                     SetVideoAttributes();
-
                 }
 
                 function SetVideoAttributes() {
@@ -115,7 +114,7 @@
 
                         foundMarker == 1;
 
-                        textArea.innerHTML = "0. start setting video asset attributes";
+                        textArea.innerHTML = "0. start setting video asset attributes " + myVideoAsset.width;
 
                         myVideoAsset.addEventListener('loadedmetadata', VideoAssetMetaDataLoaded);
 
@@ -123,7 +122,6 @@
 
                         if (currentMarkerID < 10) myVideoAsset.src = 'media/Video_00' + currentMarkerID + '.mp4';
                         else myVideoAsset.src = 'media/Video_0' + currentMarkerID + '.mp4';
-
                     }
                 }
 
@@ -133,10 +131,9 @@
 
                         setVideoAsset == 1;
 
-                        var myVideoElement = marker.querySelector('a-video');
-                        //myVideoElement.addEventListener('loaded', VideoElementMetaDataLoaded);
+                        var myVideoElement = marker.querySelector('a-video');                        
 
-                        textArea.innerHTML += "\n1. done setting video asset attributes with source " + myVideoAsset.src + " and width " + myVideoElement.width + " height " + myVideoElement.height + " asset w = " + myVideoAsset.width + " h = " + myVideoAsset.height;
+                        textArea.innerHTML += "\n1. done setting video asset attributes on marker " + marker.id + " with source " + myVideoAsset.src + " and width " + myVideoElement.width + " height " + myVideoElement.height + " asset w = " + myVideoAsset.width + " h = " + myVideoAsset.height;
 
                         myVideoElement.src = '#' + myVideoAsset.id;
                         myVideoElement.id = 'Video_' + currentMarkerID;
@@ -192,7 +189,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 4004</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 40066</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">Debug AR VIDEO</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
