@@ -35,14 +35,7 @@
         var setVideoAsset = 0;
         var setVideoElement = 0;
         var ready2play = 0;
-
-        function ResetTriggers() {
-
-            foundMarker = 0;
-            setVideoAsset = 0;
-            setVideoElement = 0;
-            ready2play = 0;
-        }
+        var videoArray = [];
 
         AFRAME.registerComponent('button', {
 
@@ -52,8 +45,14 @@
                 var debugButton = document.querySelector("#debugbutton");
                 var textArea = document.querySelector("#textArea");
 
-                var myVideoAsset = document.querySelector("video");
-                myVideoAsset.pause();
+
+                var myVideoAsset = document.querySelector("#Video_Asset");
+                videoArray.push(myVideoAsset);
+                myVideoAsset.pause();               
+
+                textArea.innerHTML = " START with video " + myVideoAsset.src + " w " + myVideoAsset.width + " h " + myVideoAsset.height +
+                    "\n from array " + videoArray[0].src + " w " + videoArray[0].width + " h " + videoArray[0].height; 
+                
 
                 const marker = this.el;
 
@@ -89,7 +88,10 @@
 
                 function RestartSearchMarkers() {
 
-                    ResetTriggers();
+                    foundMarker = 0;
+                    setVideoAsset = 0;
+                    setVideoElement = 0;
+                    ready2play = 0;
 
                     debugButton.innerHTML = '_____';
                     textArea.innerHTML = "NO markers visible";
@@ -189,7 +191,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 40066</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 1111</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">Debug AR VIDEO</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
