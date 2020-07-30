@@ -100,8 +100,7 @@
                     if (marker.childElementCount != 0)
                         marker.removeChild(marker.firstElementChild);
 
-                    var newVideoComponent = document.createElement('video');
-                    newVideoComponent.load();
+                    var newVideoComponent = document.createElement('video');                    
                     newVideoComponent.addEventListener('loadedmetadata', CreateVideoAssetListener);
                     SetVideoAssetAttributes(newVideoComponent);
                     //}
@@ -117,13 +116,13 @@
 
                 function CreateVideoAssetListener() {
 
-                    //var width = this.videoWidth;
-                    //var height = this.videoHeight;
+                    var width = this.videoWidth;
+                    var height = this.videoHeight;
 
-                    //var newVideoElement = document.createElement('a-video');
-                    //newVideoElement.load().addEventListener('loaded', CreateVideoElementListener);
+                    var newVideoElement = document.createElement('a-video');
+                    newVideoElement.load().addEventListener('loaded', CreateVideoElementListener);
 
-                    //SetVideoElementAttributes(newVideoElement, width, height);
+                    SetVideoElementAttributes(newVideoElement, width, height);
 
                     textArea.innerHTML += "\n2. done creating asset. inside listener.";
 
@@ -191,7 +190,7 @@
                     button.addEventListener('click', PlayVideo);
                     LetsPlayVideo();
 
-                    textArea.innerHTML += "\n\n3.start creating video element attributes " + currentVideoComponent.src + " == " + videoElement.src;
+                    textArea.innerHTML += "\n\n3.start creating video element attributes " + currentVideoComponent.src + " == " + videoElement.src + " with video asset ready state = " + currentVideoComponent.readyState;
                 }
 
                 marker.addEventListener('markerFound', SearchMarkers);
@@ -207,7 +206,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 3c</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 4</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">!!Again!!</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
