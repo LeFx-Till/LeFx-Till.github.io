@@ -79,9 +79,6 @@
                     textArea.innerHTML = "NO markers visible";
                     isPlaying = false;
                     button.hidden = true;
-
-                    if (markerFound == 1)
-                        marker.addEventListener('markerFound', SearchMarkers);
                 }
 
                 function SearchMarkers() {
@@ -95,11 +92,24 @@
                     SetVideoAttributes();
                 }
 
+                function SetVideoAttributes() {
+
+                    textArea.innerHTML = "0. start setting video asset attributes";
+
+                    myVideoAsset.addEventListener('loadedmetadata', VideoAssetMetaDataLoaded);
+
+                    myVideoAsset.id = 'Video_Asset_' + currentMarkerID;
+
+                    if (currentMarkerID < 10) myVideoAsset.src = 'media/Video_00' + currentMarkerID + '.mp4';
+                    else myVideoAsset.src = 'media/Video_0' + currentMarkerID + '.mp4';
+                }
+
                 function VideoAssetMetaDataLoaded() {
 
                     textArea.innerHTML += "\n1. done setting video asset attributes with source " + myVideoAsset.src;
 
                     var myVideoElement = marker.querySelector('a-video');
+
                     myVideoElement.addEventListener('loadedmetadata', VideoElementMetaDataLoaded);
 
                     myVideoElement.src = '#' + myVideoAsset.id;
@@ -127,18 +137,6 @@
                     LetsPlayVideo();
                 }
 
-                function SetVideoAttributes() {
-
-                    textArea.innerHTML = "0. start setting video asset attributes";
-
-                    myVideoAsset.addEventListener('loadedmetadata', VideoAssetMetaDataLoaded);
-
-                    myVideoAsset.id = 'Video_Asset_' + currentMarkerID;
-
-                    if (currentMarkerID < 10) myVideoAsset.src = 'media/Video_00' + currentMarkerID + '.mp4';
-                    else myVideoAsset.src = 'media/Video_0' + currentMarkerID + '.mp4';
-                }
-
                 marker.addEventListener('markerFound', SearchMarkers);
 
                 marker.addEventListener('markerLost', RestartSearchMarkers);
@@ -152,7 +150,7 @@
         <button id="mutebutton" style='position: absolute; bottom: 10px' hidden>Play</button>
     </div>
     <div style='position: absolute; bottom: 50px; right: 30px; width:100%; text-align: center; z-index: 1;'>
-        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 36a</button>
+        <button id="debugbutton" style='position: absolute; bottom: 50px' hidden>STARTE 36b</button>
     </div>
     <textarea id="textArea" name="textArea" rows="10" cols="50">Debug AR VIDEO</textarea>
     <a-scene embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
