@@ -1,21 +1,16 @@
 
 //Global Variable
-var markersURLArray = [];
-var markersNameArray = [];
 var currentMarkerID = -1;
-
-AFRAME.registerComponent('markers_start', {
-    init: function () {
-
-        var textArea = document.querySelector("#textArea");
-        console.log("marker start with textarea " + texta.innerHTML);
-    }
-});
+var myVideoAsset;
+var myVideoElement;
+var textArea;
 
 AFRAME.registerComponent('button', {
     init: function () {
-            
-        console.log("button registered");
+
+        console.log("button registration for " + this.el.id);
+        textArea = document.querySelector("#textArea");
+        myVideoAsset = document.querySelector("#Video_Asset");
     }
 });
 
@@ -24,7 +19,11 @@ AFRAME.registerComponent('registerevents', {
     init: function () {
 
         const marker = this.el;
-        var debug = document.querySelector('a-scene').components.textArea;
+        const videoElement = this.el.querySelector('a-video');
+
+        textArea = document.querySelector("#textArea");
+        myVideoAsset = document.querySelector("#Video_Asset");
+        
 
         marker.addEventListener("markerFound", () => {
 
