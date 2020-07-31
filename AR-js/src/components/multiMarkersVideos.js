@@ -6,6 +6,48 @@ var currentVideoElement = [];
 var textArea = [];
 var playButton = [];
 
+function ButtonClicked() {
+
+
+}
+
+function MarkerFound() {
+
+    //console.log("added found-event listener for marker  #" + currentMarkerID);
+    //var markerID = String(marker.id).split('_');
+
+    //currentMarkerID = markerID[1];
+    //currentVideoElement = videoElement;
+
+    //text.innerHTML = "current marker id = " + currentMarkerID;
+
+    //SetVideoAttributes();
+}
+
+function MarkerLost() {
+
+    //console.log("added lost-event listener for marker  #" + currentMarkerID);
+    //foundMarker = 0;
+    //setVideoAsset = 0;
+    //setVideoElement = 0;
+    //ready2play = 0;
+
+    //textArea.innerHTML = "NO markers visible";
+    //isPlaying = false;
+    //button.hidden = true;
+}
+
+function VideoAssetMetaDataLoaded() {
+
+    //console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
+}
+
+function VideoElementMetaDataLoaded() {
+
+    //console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
+}
+
+
 function SetVideoAttributes() {
 
     if (currentMarkerID < 0)
@@ -19,50 +61,7 @@ function SetVideoAttributes() {
     myVideoAsset.load();
 }
 
-//AFRAME.registerComponent('button', {
-//    init: function () {
-
-//        console.log("button registration for " + this.el.id);
-//        console.log("found video asset in button, with source #" + myVideoAsset.src);                
-//        console.log("found text area in button, with innerHTML = " + textArea.innerHTML);
-//    }
-//});
-
-AFRAME.registerComponent('markers_start', {
-
-    init: function () {
-
-        var myVideoAsset = document.querySelector("video");        
-        var myTextArea = document.querySelector("textarea");
-        var myButton = document.querySelector("button");
-
-        console.log("markers_start registration for " + this.el.id + " with video asset #" + myVideoAsset.id + " and its source " + myVideoAsset.src);
-        console.log("found text area, with innerHTML = " + myTextArea.innerHTML);
-        console.log("found button, with source #" + myButton.innerHTML);
-    },
-});
-
-AFRAME.registerComponent('baseVideo', {
-
-    init: function () {
-
-        const myVideoAsset = this.el;        
-        var myTextArea = document.querySelector("textarea");
-        var myButton = document.querySelector("button");
-
-        console.log("baseVideo registration ä" + myVideoAsset.id + " and source " + myVideoAsset.src);
-        console.log("found text area, with innerHTML = " + myTextArea.innerHTML);
-        console.log("found button, with source #" + myButton.innerHTML);
-
-        myVideoAsset.addEventListener("loadedMetaData", () => {
-
-            console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
-        });
-    },
-});
-
-AFRAME.registerComponent('registerevents', {
-
+AFRAME.registerComponent('button', {
     init: function () {
 
         const marker = this.el;
@@ -71,37 +70,41 @@ AFRAME.registerComponent('registerevents', {
         console.log("marker registration for " + this.el.id + " with video element #" + videoElement.id + " and its source " + videoElement.src);
         //console.log("found text area in button, with innerHTML = " + textArea.innerHTML);
         //console.log("found video asset in button, with source #" + myVideoAsset.src);
+                
+        marker.addEventListener("markerFound", MarkerFound);
+        marker.addEventListener("markerLost", MarkerLost);
+        videoElement.addEventListener("loadedMetaData", VideoElementMetaDataLoaded);
+    }
+});
 
-        videoElement.addEventListener("loadedMetaData", () => {
+AFRAME.registerComponent('markers_start', {
 
-            console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
-        });
+    init: function () {
 
+        var myVideoAsset = document.querySelector("video");
+        var myTextArea = document.querySelector("textarea");
+        var myButton = document.querySelector("button");
 
-        marker.addEventListener("markerFound", () => {
+        console.log("markers_start registration for " + this.el.id + " with video asset #" + myVideoAsset.id + " and its source " + myVideoAsset.src);
+        console.log("found text area, with innerHTML = " + myTextArea.innerHTML);
+        console.log("found button, with source #" + myButton.innerHTML);
 
-            console.log("added found-event listener for marker  #" + currentMarkerID);
-            //var markerID = String(marker.id).split('_');
+        myButton.addEventListener('click', ButtonClicked);
+    }
+});
 
-            //currentMarkerID = markerID[1];
-            //currentVideoElement = videoElement;
+AFRAME.registerComponent('baseVideo', {
 
-            //text.innerHTML = "current marker id = " + currentMarkerID;
+    init: function () {
 
-            //SetVideoAttributes();
-        });
+        const myVideoAsset = this.el;
+        var myTextArea = document.querySelector("textarea");
+        var myButton = document.querySelector("button");
 
-        marker.addEventListener("markerLost", () => {
+        console.log("baseVideo registration ä" + myVideoAsset.id + " and source " + myVideoAsset.src);
+        console.log("found text area, with innerHTML = " + myTextArea.innerHTML);
+        console.log("found button, with source #" + myButton.innerHTML);
 
-            console.log("added lost-event listener for marker  #" + currentMarkerID);
-            //foundMarker = 0;
-            //setVideoAsset = 0;
-            //setVideoElement = 0;
-            //ready2play = 0;
-
-            //textArea.innerHTML = "NO markers visible";
-            //isPlaying = false;
-            //button.hidden = true;
-        });
-    },
+        myVideoAsset.addEventListener("loadedMetaData", VideoAssetMetaDataLoaded);
+    }
 });
