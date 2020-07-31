@@ -3,7 +3,7 @@
 var currentMarkerID = -1;
 var myVideoAsset = document.querySelector("video");
 var myVideoElement;
-var textArea = document.querySelector("#textArea");
+var textArea = document.querySelector("textarea");
 
 AFRAME.registerComponent('button', {
     init: function () {
