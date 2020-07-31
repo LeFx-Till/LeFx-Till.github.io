@@ -106,7 +106,9 @@ AFRAME.registerComponent('markersstart', {
 
     update: function () {
 
+        var myVideoAsset = document.querySelector("video");
         if (initialized == 0 && (myVideoAsset.height == 0 || myVideoAsset.width == 0)) {
+
 
             if (videoAssetHeight.length == 0) videoAssetHeight.push(myVideoAsset.height);
             if (videoAssetWidth.length == 0) videoAssetWidth.push(myVideoAsset.width);
