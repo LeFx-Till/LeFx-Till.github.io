@@ -43,13 +43,16 @@ function MarkerLost() {
 
 function VideoAssetMetaDataLoaded(videoelement) {
 
-    if (videoAssetHeight.length == 0) videoAssetHeight.push(myVideoAsset.height);
-    if (videoAssetWidth.length == 0) videoAssetWidth.push(myVideoAsset.width);
+    if (initialized == 0) {
 
-    console.log("d baseVideo registration h = " + videoAssetHeight[0]);
-    console.log("e baseVideo registration w = " + videoAssetWidth[0]);
-    initialized = 1;
+        if (videoAssetHeight.length == 0) videoAssetHeight.push(myVideoAsset.height);
+        if (videoAssetWidth.length == 0) videoAssetWidth.push(myVideoAsset.width);
 
+        console.log("d baseVideo registration h = " + videoAssetHeight[0]);
+        console.log("e baseVideo registration w = " + videoAssetWidth[0]);
+        return;
+    }
+    
     textArea[0].innerHTML += "\n1. done setting video asset attributes to source = " + videoAssetSource[0];
     textArea[0].innerHTML += "\n2. start setting video element attributes from w = " + videoAssetWidth[0] + " and h = " + videoAssetHeight[0];
 
