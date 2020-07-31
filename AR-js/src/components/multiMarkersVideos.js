@@ -77,7 +77,7 @@ AFRAME.registerComponent('basevideo', {
         console.log("a baseVideo registration #" + myVideoAsset.id + " and source " + myVideoAsset.src);
         console.log("b baseVideo registration #" + videoAsset[0].id + " and source " + videoAsset[0].src);
         
-        myVideoAsset.addEventListener("loadedMetaData", VideoAssetMetaDataLoaded);
+        //myVideoAsset.addEventListener("loadedMetaData", VideoAssetMetaDataLoaded);
     }
 });
 
