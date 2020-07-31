@@ -2,8 +2,9 @@
 //Global Variable
 var currentMarkerID = -1;
 var myVideoAsset = document.querySelector("video");
-var myVideoElement;
+var currentVideoElement;
 var textArea = document.querySelector("textarea");
+var playButton = document.querySelector("button");
 
 AFRAME.registerComponent('button', {
     init: function () {
