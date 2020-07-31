@@ -2,6 +2,9 @@
 //Global Variable
 var currentMarkerID = -1;
 var videoAsset = [];
+var videoAssetSource = [];
+var videoAssetWidth = [];
+var videoAssetHeight = [];
 var currentVideoElement = [];
 var textArea = [];
 var playButton = [];
@@ -73,9 +76,17 @@ AFRAME.registerComponent('basevideo', {
 
         var myVideoAsset = document.querySelector("video");
         if (videoAsset.length == 0) videoAsset.push(myVideoAsset);
+        if (videoAssetHeight.length == 0) videoAssetHeight.push(myVideoAsset.height);
+        if (videoAssetSource.length == 0) videoAssetSource.push(myVideoAsset.src);
+        if (videoAssetWidth.length == 0) videoAssetWidth.push(myVideoAsset.width);
 
         console.log("a baseVideo registration #" + myVideoAsset.id + " and source " + myVideoAsset.src);
         console.log("b baseVideo registration #" + videoAsset[0].id + " and source " + videoAsset[0].src);
+        console.log("c baseVideo registration h" + videoAssetHeight[0]);
+        console.log("d baseVideo registration src" + videoAssetSource[0]);
+        console.log("e baseVideo registration w" + videoAssetWidth[0]);
+        
+
         
         //myVideoAsset.addEventListener("loadedMetaData", VideoAssetMetaDataLoaded);
     }
