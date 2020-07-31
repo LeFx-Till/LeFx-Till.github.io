@@ -99,10 +99,10 @@ AFRAME.registerComponent('button', {
         const myMarker = this.el;
         const myVideoElement = this.el.querySelector('a-video');
 
-        console.log("marker registration for " + this.el.id + " with video element #" + myVideoElement.id + " and its source " + myVideoElement.src);
-        //console.log("found text area in button, with innerHTML = " + textArea.innerHTML);
-        //console.log("found video asset in button, with source #" + myVideoAsset.src);
-                
+        console.log("marker registration for " + this.el.id + " with video element #" + myVideoElement.id + " and its source " + myVideoElement.src);        
+        console.log("found text area, with innerHTML = " + textArea[0].innerHTML);
+        console.log("found button, with innerHTML = " + playButton[0].innerHTML);
+        
         myMarker.addEventListener("markerFound", MarkerFound);
         myMarker.addEventListener("markerLost", MarkerLost);
         myVideoElement.addEventListener("loadedMetaData", VideoElementMetaDataLoaded);
