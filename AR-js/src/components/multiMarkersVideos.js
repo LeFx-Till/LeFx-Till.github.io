@@ -86,18 +86,17 @@ AFRAME.registerComponent('markersstart', {
     init: function () {
 
         var myTextArea = document.querySelector("textarea");
-        myTextArea.innerHTML = "Hey Tillos";
-        if (textArea.length == 0) textArea.push(myTextArea);
-
         var myButton = document.querySelector("button");
-        myButton.addEventListener('click', ButtonClicked);
-        if (playButton.length == 0) playButton.push(myButton);
-        
         var myVideoAsset = document.querySelector("video");
-        myVideoAsset.addEventListener("loadedMetaData", VideoAssetLoaded);
 
+        if (textArea.length == 0) textArea.push(myTextArea);
+        if (playButton.length == 0) playButton.push(myButton);
         if (videoAsset.length == 0) videoAsset.push(myVideoAsset);
         if (videoAssetSource.length == 0) videoAssetSource.push(myVideoAsset.src);
+
+        myTextArea.innerHTML = "Hey Tillos";        
+        myButton.addEventListener('click', ButtonClicked);
+        myVideoAsset.addEventListener('loadedmetadata', VideoAssetLoaded);
 
         console.log("found text area, with innerHTML = " + textArea[0].innerHTML);
         console.log("found button, with innerHTML = " + playButton[0].innerHTML);
@@ -118,8 +117,8 @@ AFRAME.registerComponent('button', {
         if (videoElement.length == 0) videoElement.push(myVideoElement);
         else videoElement[1] = myVideoElement;
         
-        myMarker.addEventListener("markerFound", MarkerFound(myMarker.id));
-        myMarker.addEventListener("markerLost", MarkerLost);
+        myMarker.addEventListener('markerFound', MarkerFound(myMarker.id));
+        myMarker.addEventListener('markerLost', MarkerLost);
         myVideoElement.addEventListener("loadedMetaData", VideoElementLoaded);
     }
 });
