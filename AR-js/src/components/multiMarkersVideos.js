@@ -12,8 +12,13 @@ AFRAME.registerComponent('markers_start', {
     }
 });
 
+AFRAME.registerComponent('button', {
+    init: function () {
+            
+        console.log("button registered");
+    }
+});
 
-//Detect marker found and lost
 AFRAME.registerComponent('registerevents', {
 
     init: function () {
