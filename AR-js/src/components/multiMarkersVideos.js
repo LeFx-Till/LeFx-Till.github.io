@@ -22,9 +22,7 @@ function MarkerFound(markerID, videoElement) {
     if (currentMarkerID < 10) myVideoAsset[0].src = 'media/Video_00' + currentMarkerID + '.mp4';
     else myVideoAsset[0].src = 'media/Video_0' + currentMarkerID + '.mp4';
 
-    //myVideoAsset.load();
-
-    text.innerHTML += "\n\n1. done setting video asset attributes to source = " + myVideoAsset[0].src;
+    myVideoAsset.load();
 }
 
 function MarkerLost() {
@@ -42,7 +40,26 @@ function MarkerLost() {
 
 function VideoAssetMetaDataLoaded() {
 
-    //console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
+    text.innerHTML += "\n1. done setting video asset attributes to source = " + myVideoAsset[0].src;
+    text.innerHTML += "\n2. start setting video element attributes from w = " + videoElement[0].width + " and h = " + videoElement.height;
+
+    if (myVideoAsset[0].width < myVideoAsset[0].height) {
+
+        var widthEl = 3 * myVideoAsset.width / myVideoAsset.height;
+        videoElement.setAttribute("width", String(widthEl));
+        videoElement.setAttribute("height", "3");
+    }
+    else {
+
+        var heightEl = 3 * myVideoAsset[0].height / myVideoAsset[0].width;
+        videoElement.setAttribute("width", "3");
+        videoElement.setAttribute("height", String(heightEl));
+    }
+
+    //videoElement.load();
+
+    text.innerHTML += "\n3. done setting video element attributes to w = " + videoElement[0].width + " and h = " + videoElement.height;
+    text.innerHTML += "\n4. I am ready to play the correct video";
 }
 
 function VideoElementMetaDataLoaded() {
