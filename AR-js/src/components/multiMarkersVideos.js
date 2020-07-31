@@ -91,8 +91,6 @@ AFRAME.registerComponent('markers_start', {
     }
 });
 
-
-
 AFRAME.registerComponent('button', {
     init: function () {
 
