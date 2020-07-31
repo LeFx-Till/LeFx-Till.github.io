@@ -1,10 +1,10 @@
 
 //Global Variable
 var currentMarkerID = -1;
-var myVideoAsset = document.querySelector("video");
-var currentVideoElement;
-var textArea = document.querySelector("textarea");
-var playButton = document.querySelector("button");
+var videoAsset = [];
+var currentVideoElement = [];
+var textArea = [];
+var playButton = [];
 
 function SetVideoAttributes() {
 
@@ -19,13 +19,33 @@ function SetVideoAttributes() {
     myVideoAsset.load();
 }
 
-AFRAME.registerComponent('button', {
+//AFRAME.registerComponent('button', {
+//    init: function () {
+
+//        console.log("button registration for " + this.el.id);
+//        console.log("found video asset in button, with source #" + myVideoAsset.src);                
+//        console.log("found text area in button, with innerHTML = " + textArea.innerHTML);
+//    }
+//});
+
+AFRAME.registerComponent('markers_start', {
+
     init: function () {
 
-        console.log("button registration for " + this.el.id);
-        console.log("found video asset in button, with source #" + myVideoAsset.src);
-        console.log("found text area in button, with innerHTML = " + textArea.innerHTML);
-    }
+        var myVideoAsset = document.querySelector("video");        
+        var myTextArea = document.querySelector("textarea");
+        var myButton = document.querySelector("button");
+
+        console.log("markers_start registration for " + this.el.id + " with video asset #" + myVideoAsset.id + " and its source " + myVideoAsset.src);
+        console.log("found text area, with innerHTML = " + myTextArea.innerHTML);
+        console.log("found button, with source #" + myButton.innerHTML);
+
+        videoElement.addEventListener("loadedMetaData", () => {
+
+            console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
+
+        });
+    },
 });
 
 AFRAME.registerComponent('registerevents', {
@@ -52,6 +72,7 @@ AFRAME.registerComponent('registerevents', {
             var markerID = String(marker.id).split('_');
 
             currentMarkerID = markerID[1];
+            currentVideoElement = videoElement;
 
             text.innerHTML = "current marker id = " + currentMarkerID;
 
