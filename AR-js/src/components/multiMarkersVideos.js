@@ -56,27 +56,26 @@ AFRAME.registerComponent('registerevents', {
         const videoElement = this.el.querySelector('a-video');
 
         console.log("marker registration for " + this.el.id + " with video element #" + videoElement.id + " and its source " + videoElement.src);
-        console.log("found text area in button, with innerHTML = " + textArea.innerHTML);
-        console.log("found video asset in button, with source #" + myVideoAsset.src);
+        //console.log("found text area in button, with innerHTML = " + textArea.innerHTML);
+        //console.log("found video asset in button, with source #" + myVideoAsset.src);
 
         videoElement.addEventListener("loadedMetaData", () => {
 
             console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
-
         });
 
 
         marker.addEventListener("markerFound", () => {
 
             console.log("added found-event listener for marker  #" + currentMarkerID);
-            var markerID = String(marker.id).split('_');
+            //var markerID = String(marker.id).split('_');
 
-            currentMarkerID = markerID[1];
-            currentVideoElement = videoElement;
+            //currentMarkerID = markerID[1];
+            //currentVideoElement = videoElement;
 
-            text.innerHTML = "current marker id = " + currentMarkerID;
+            //text.innerHTML = "current marker id = " + currentMarkerID;
 
-            SetVideoAttributes();
+            //SetVideoAttributes();
         });
 
         marker.addEventListener("markerLost", () => {
