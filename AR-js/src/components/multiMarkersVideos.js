@@ -20,8 +20,11 @@ function MarkerFound(markerID) {
 
     currentMarkerID = String(markerID).split('_')[1];        
 
-    textArea[0].innerHTML = "found marker " + markerID + " with id = " + currentMarkerID + " and current video element " + videoElement[0];
-    textArea[0].innerHTML += "\n\n0. start setting video asset attributes from source = " + videoAsset[0].src;
+    if (textArea[0] != null) {
+
+        textArea[0].innerHTML = "found marker " + markerID + " with id = " + currentMarkerID + " and current video element " + videoElement[0];
+        textArea[0].innerHTML += "\n\n0. start setting video asset attributes from source = " + videoAsset[0].src;
+    }    
 
     if (currentMarkerID < 10) videoAsset[0].src = 'media/Video_00' + currentMarkerID + '.mp4';
     else videoAsset[0].src = 'media/Video_0' + currentMarkerID + '.mp4';
