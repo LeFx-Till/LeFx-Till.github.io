@@ -23,8 +23,8 @@ AFRAME.registerComponent('button', {
     init: function () {
 
         console.log("button registration for " + this.el.id);
-        console.log("found text area in button, with innerHTML = " + textArea.innerHTML);
         console.log("found video asset in button, with source #" + myVideoAsset.src);
+        console.log("found text area in button, with innerHTML = " + textArea.innerHTML);
     }
 });
 
