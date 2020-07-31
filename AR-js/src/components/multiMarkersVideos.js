@@ -1,5 +1,6 @@
 
 //Global Variable
+var initialized = 0;
 var currentMarkerID = -1;
 var videoAsset = [];
 var videoAssetSource = [];
@@ -9,71 +10,72 @@ var currentVideoElement = [];
 var textArea = [];
 var playButton = [];
 
-//function ButtonClicked() {
+function ButtonClicked() {
 
 
-//}
+}
 
-//function MarkerFound(markerID, videoElement) {
+function MarkerFound(markerID, videoElement) {
 
-//    currentMarkerID = String(markerID).split('_')[1];        
+    currentMarkerID = String(markerID).split('_')[1];        
 
-//    text.innerHTML = "found marker " + markerID + " with id = " + currentMarkerID + " and current video element " + videoElement;
+    textArea[0].innerHTML = "found marker " + markerID + " with id = " + currentMarkerID + " and current video element " + videoElement;
+    textArea[0].innerHTML += "\n\n0. start setting video asset attributes from source = " + videoAsset[0].src;
 
-//    text.innerHTML += "\n\n0. start setting video asset attributes from source = " + myVideoAsset[0].src;
+    if (currentMarkerID < 10) videoAsset[0].src = 'media/Video_00' + currentMarkerID + '.mp4';
+    else videoAsset[0].src = 'media/Video_0' + currentMarkerID + '.mp4';
 
-//    if (currentMarkerID < 10) myVideoAsset[0].src = 'media/Video_00' + currentMarkerID + '.mp4';
-//    else myVideoAsset[0].src = 'media/Video_0' + currentMarkerID + '.mp4';
+    myVideoAsset.load();
+}
 
-//    myVideoAsset.load();
-//}
+function MarkerLost() {
 
-//function MarkerLost() {
+    //console.log("added lost-event listener for marker  #" + currentMarkerID);
+    //foundMarker = 0;
+    //setVideoAsset = 0;
+    //setVideoElement = 0;
+    //ready2play = 0;
 
-//    //console.log("added lost-event listener for marker  #" + currentMarkerID);
-//    //foundMarker = 0;
-//    //setVideoAsset = 0;
-//    //setVideoElement = 0;
-//    //ready2play = 0;
+    //textArea.innerHTML = "NO markers visible";
+    //isPlaying = false;
+    //button.hidden = true;
+}
 
-//    //textArea.innerHTML = "NO markers visible";
-//    //isPlaying = false;
-//    //button.hidden = true;
-//}
-
-function VideoAssetMetaDataLoaded() {
+function VideoAssetMetaDataLoaded(videoelement) {
 
     if (videoAssetHeight.length == 0) videoAssetHeight.push(myVideoAsset.height);
     if (videoAssetWidth.length == 0) videoAssetWidth.push(myVideoAsset.width);
 
     console.log("d baseVideo registration h = " + videoAssetHeight[0]);
     console.log("e baseVideo registration w = " + videoAssetWidth[0]);
-    //text.innerHTML += "\n1. done setting video asset attributes to source = " + myVideoAsset[0].src;
-    //text.innerHTML += "\n2. start setting video element attributes from w = " + videoElement[0].width + " and h = " + videoElement.height;
+    initialized = 1;
 
-    //if (myVideoAsset[0].width < myVideoAsset[0].height) {
+    textArea[0].innerHTML += "\n1. done setting video asset attributes to source = " + videoAssetSource[0];
+    textArea[0].innerHTML += "\n2. start setting video element attributes from w = " + videoAssetWidth[0] + " and h = " + videoAssetHeight[0];
 
-    //    var widthEl = 3 * myVideoAsset.width / myVideoAsset.height;
-    //    videoElement.setAttribute("width", String(widthEl));
-    //    videoElement.setAttribute("height", "3");
-    //}
-    //else {
+    if (videoAssetWidth[0] < videoAssetHeight[0]) {
 
-    //    var heightEl = 3 * myVideoAsset[0].height / myVideoAsset[0].width;
-    //    videoElement.setAttribute("width", "3");
-    //    videoElement.setAttribute("height", String(heightEl));
-    //}
+        var widthEl = 3 * videoAssetWidth[0] / videoAssetHeight[0];
+        videoElement.setAttribute("width", String(widthEl));
+        videoElement.setAttribute("height", "3");
+    }
+    else {
 
-    ////videoElement.load();
+        var heightEl = 3 * videoAssetHeight[0] / videoAssetWidth[0];
+        videoElement.setAttribute("width", "3");
+        videoElement.setAttribute("height", String(heightEl));
+    }
 
-    //text.innerHTML += "\n3. done setting video element attributes to w = " + videoElement[0].width + " and h = " + videoElement.height;
-    //text.innerHTML += "\n4. I am ready to play the correct video";
+    //videoElement.load();
+
+    text.innerHTML += "\n3. done setting video element attributes to w = " + videoElement[0].width + " and h = " + videoElement.height;
+    text.innerHTML += "\n4. I am ready to play the correct video";
 }
 
-//function VideoElementMetaDataLoaded() {
+function VideoElementMetaDataLoaded() {
 
-//    //console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
-//}
+    //console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
+}
 
 AFRAME.registerComponent('markersstart', {
 
@@ -101,26 +103,18 @@ AFRAME.registerComponent('markersstart', {
     }
 });
 
-//AFRAME.registerComponent('markersstart', {
+AFRAME.registerComponent('button', {
+    init: function () {
 
-//    init: function () {
+        const myMarker = this.el;
+        const myVideoElement = this.el.querySelector('a-video');
 
+        console.log("marker registration for " + this.el.id + " with video element #" + myVideoElement.id + " and its source " + myVideoElement.src);        
+        console.log("found text area, with innerHTML = " + textArea[0].innerHTML);
+        console.log("found button, with innerHTML = " + playButton[0].innerHTML);
 
-//    }
-//});
-
-//AFRAME.registerComponent('button', {
-//    init: function () {
-
-//        const myMarker = this.el;
-//        const myVideoElement = this.el.querySelector('a-video');
-
-//        console.log("marker registration for " + this.el.id + " with video element #" + myVideoElement.id + " and its source " + myVideoElement.src);        
-//        console.log("found text area, with innerHTML = " + textArea[0].innerHTML);
-//        console.log("found button, with innerHTML = " + playButton[0].innerHTML);
-
-//        myMarker.addEventListener("markerFound", MarkerFound(myMarker.id, myVideoElement));
-//        myMarker.addEventListener("markerLost", MarkerLost);
-//        myVideoElement.addEventListener("loadedMetaData", VideoElementMetaDataLoaded);
-//    }
-//});
+        myMarker.addEventListener("markerFound", MarkerFound(myMarker.id, myVideoElement));
+        myMarker.addEventListener("markerLost", MarkerLost);
+        myVideoElement.addEventListener("loadedMetaData", VideoElementMetaDataLoaded);
+    }
+});
