@@ -6,6 +6,19 @@ var currentVideoElement;
 var textArea = document.querySelector("textarea");
 var playButton = document.querySelector("button");
 
+function SetVideoAttributes() {
+
+    if (currentMarkerID < 0)
+        return;
+
+    console.log("0. start setting video asset attributes ");
+
+    if (currentMarkerID < 10) myVideoAsset[0].src = 'media/Video_00' + currentMarkerID + '.mp4';
+    else myVideoAsset[0].src = 'media/Video_0' + currentMarkerID + '.mp4';
+
+    myVideoAsset.load();
+}
+
 AFRAME.registerComponent('button', {
     init: function () {
 
@@ -20,12 +33,18 @@ AFRAME.registerComponent('registerevents', {
     init: function () {
 
         const marker = this.el;
-        const videoElement = this.el.querySelector('a-video');        
+        const videoElement = this.el.querySelector('a-video');
 
         console.log("marker registration for " + this.el.id + " with video element #" + videoElement.id + " and its source " + videoElement.src);
         console.log("found text area in button, with innerHTML = " + textArea.innerHTML);
         console.log("found video asset in button, with source #" + myVideoAsset.src);
-        
+
+        videoElement.addEventListener("loadedMetaData", () => {
+
+            console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
+
+        });
+
 
         marker.addEventListener("markerFound", () => {
 
@@ -33,7 +52,7 @@ AFRAME.registerComponent('registerevents', {
             var markerID = String(marker.id).split('_');
 
             currentMarkerID = markerID[1];
-                        
+
             text.innerHTML = "current marker id = " + currentMarkerID;
 
             SetVideoAttributes();
