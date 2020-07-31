@@ -10,7 +10,9 @@ AFRAME.registerComponent('button', {
 
         console.log("button registration for " + this.el.id);
         textArea = document.querySelector("#textArea");
-        myVideoAsset = document.querySelector("#Video_Asset");
+
+        myVideoAsset = document.querySelector("video");
+        console.log("found video asset with source#" + myVideoAsset.src);
     }
 });
 
