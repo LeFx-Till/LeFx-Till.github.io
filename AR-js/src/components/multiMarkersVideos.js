@@ -8,7 +8,7 @@ AFRAME.registerComponent('markers_start', {
     init: function () {
 
         var textArea = document.querySelector("#textArea");
-        console.log("marker start with textarea " + texta.innerHTML;
+        console.log("marker start with textarea " + texta.innerHTML);
     }
 });
 
