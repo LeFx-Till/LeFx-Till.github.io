@@ -87,6 +87,7 @@ AFRAME.registerComponent('markersstart', {
         var myTextArea = document.querySelector("textarea");
         var myButton = document.querySelector("button");
         var myVideoAsset = document.querySelector("video");
+        myVideoAsset.load();
 
         if (textArea.length == 0) textArea.push(myTextArea);
         if (playButton.length == 0) playButton.push(myButton);
