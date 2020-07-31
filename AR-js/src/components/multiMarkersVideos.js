@@ -11,11 +11,11 @@ var playButton = [];
 
 //function ButtonClicked() {
 
-    
+
 //}
 
 //function MarkerFound(markerID, videoElement) {
-   
+
 //    currentMarkerID = String(markerID).split('_')[1];        
 
 //    text.innerHTML = "found marker " + markerID + " with id = " + currentMarkerID + " and current video element " + videoElement;
@@ -41,29 +41,34 @@ var playButton = [];
 //    //button.hidden = true;
 //}
 
-//function VideoAssetMetaDataLoaded() {
+function VideoAssetMetaDataLoaded() {
 
-//    text.innerHTML += "\n1. done setting video asset attributes to source = " + myVideoAsset[0].src;
-//    text.innerHTML += "\n2. start setting video element attributes from w = " + videoElement[0].width + " and h = " + videoElement.height;
+    if (videoAssetHeight.length == 0) videoAssetHeight.push(myVideoAsset.height);
+    if (videoAssetWidth.length == 0) videoAssetWidth.push(myVideoAsset.width);
 
-//    if (myVideoAsset[0].width < myVideoAsset[0].height) {
+    console.log("d baseVideo registration h = " + videoAssetHeight[0]);
+    console.log("e baseVideo registration w = " + videoAssetWidth[0]);
+    //text.innerHTML += "\n1. done setting video asset attributes to source = " + myVideoAsset[0].src;
+    //text.innerHTML += "\n2. start setting video element attributes from w = " + videoElement[0].width + " and h = " + videoElement.height;
 
-//        var widthEl = 3 * myVideoAsset.width / myVideoAsset.height;
-//        videoElement.setAttribute("width", String(widthEl));
-//        videoElement.setAttribute("height", "3");
-//    }
-//    else {
+    //if (myVideoAsset[0].width < myVideoAsset[0].height) {
 
-//        var heightEl = 3 * myVideoAsset[0].height / myVideoAsset[0].width;
-//        videoElement.setAttribute("width", "3");
-//        videoElement.setAttribute("height", String(heightEl));
-//    }
+    //    var widthEl = 3 * myVideoAsset.width / myVideoAsset.height;
+    //    videoElement.setAttribute("width", String(widthEl));
+    //    videoElement.setAttribute("height", "3");
+    //}
+    //else {
 
-//    //videoElement.load();
+    //    var heightEl = 3 * myVideoAsset[0].height / myVideoAsset[0].width;
+    //    videoElement.setAttribute("width", "3");
+    //    videoElement.setAttribute("height", String(heightEl));
+    //}
 
-//    text.innerHTML += "\n3. done setting video element attributes to w = " + videoElement[0].width + " and h = " + videoElement.height;
-//    text.innerHTML += "\n4. I am ready to play the correct video";
-//}
+    ////videoElement.load();
+
+    //text.innerHTML += "\n3. done setting video element attributes to w = " + videoElement[0].width + " and h = " + videoElement.height;
+    //text.innerHTML += "\n4. I am ready to play the correct video";
+}
 
 //function VideoElementMetaDataLoaded() {
 
@@ -75,30 +80,24 @@ AFRAME.registerComponent('markersstart', {
     init: function () {
 
         var myVideoAsset = document.querySelector("video");
+        myVideoAsset.addEventListener("loadedMetaData", VideoAssetMetaDataLoaded);
+
         if (videoAsset.length == 0) videoAsset.push(myVideoAsset);
-        if (videoAssetHeight.length == 0) videoAssetHeight.push(myVideoAsset.height);
         if (videoAssetSource.length == 0) videoAssetSource.push(myVideoAsset.src);
-        if (videoAssetWidth.length == 0) videoAssetWidth.push(myVideoAsset.width);
 
         console.log("a baseVideo registration #" + myVideoAsset.id + " and source " + myVideoAsset.src);
         console.log("b baseVideo registration #" + videoAsset[0].id + " and source " + videoAsset[0].src);
-        console.log("c baseVideo registration h" + videoAssetHeight[0]);
-        console.log("d baseVideo registration src" + videoAssetSource[0]);
-        console.log("e baseVideo registration w" + videoAssetWidth[0]);
-        
-
-        
-        //myVideoAsset.addEventListener("loadedMetaData", VideoAssetMetaDataLoaded);
+        console.log("c baseVideo registration src = " + videoAssetSource[0]);
     }
 });
 
 //AFRAME.registerComponent('markersstart', {
 
 //    init: function () {
-            
+
 //        var myTextArea = document.querySelector("textarea");
 //        var myButton = document.querySelector("button");
-        
+
 //        if (textArea.length == 0) textArea.push(myTextArea);
 //        if (playButton.length == 0) playButton.push(myButton);
 
