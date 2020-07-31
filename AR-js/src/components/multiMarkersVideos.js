@@ -79,12 +79,22 @@ AFRAME.registerComponent('markersstart', {
 
     init: function () {
 
+        var myTextArea = document.querySelector("textarea");
+        myTextArea.innerHTML = "Hey Tillos";
+        if (textArea.length == 0) textArea.push(myTextArea);
+
+        var myButton = document.querySelector("button");
+        myButton.addEventListener('click', ButtonClicked);
+        if (playButton.length == 0) playButton.push(myButton);
+        
         var myVideoAsset = document.querySelector("video");
         myVideoAsset.addEventListener("loadedMetaData", VideoAssetMetaDataLoaded);
 
         if (videoAsset.length == 0) videoAsset.push(myVideoAsset);
         if (videoAssetSource.length == 0) videoAssetSource.push(myVideoAsset.src);
 
+        console.log("found text area, with innerHTML = " + textArea[0].innerHTML);
+        console.log("found button, with innerHTML = " + playButton[0].innerHTML);
         console.log("a baseVideo registration #" + myVideoAsset.id + " and source " + myVideoAsset.src);
         console.log("b baseVideo registration #" + videoAsset[0].id + " and source " + videoAsset[0].src);
         console.log("c baseVideo registration src = " + videoAssetSource[0]);
@@ -95,17 +105,7 @@ AFRAME.registerComponent('markersstart', {
 
 //    init: function () {
 
-//        var myTextArea = document.querySelector("textarea");
-//        var myButton = document.querySelector("button");
 
-//        if (textArea.length == 0) textArea.push(myTextArea);
-//        if (playButton.length == 0) playButton.push(myButton);
-
-//        console.log("markers_start registration for " + this.el.id + " with video asset #" + videoAsset[0].id + " and its source " + videoAsset[0].src);
-//        console.log("found text area, with innerHTML = " + textArea[0].innerHTML);
-//        console.log("found button, with innerHTML = " + playButton[0].innerHTML);
-
-//        playButton[0].addEventListener('click', ButtonClicked);
 //    }
 //});
 
