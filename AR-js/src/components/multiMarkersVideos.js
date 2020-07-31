@@ -18,6 +18,9 @@ function ButtonClicked() {
 
 function MarkerFound(markerID) {
 
+    if (initialized == 0)
+        return;
+
     currentMarkerID = String(markerID).split('_')[1];        
 
     if (textArea[0] != null) {
@@ -47,15 +50,8 @@ function MarkerLost() {
 
 function VideoAssetLoaded() {
 
-    if (initialized == 0) {
-
-        if (videoAssetHeight.length == 0) videoAssetHeight.push(myVideoAsset.height);
-        if (videoAssetWidth.length == 0) videoAssetWidth.push(myVideoAsset.width);
-
-        console.log("d baseVideo registration h = " + videoAssetHeight[0]);
-        console.log("e baseVideo registration w = " + videoAssetWidth[0]);
+    if (initialized == 0)
         return;
-    }
     
     textArea[0].innerHTML += "\n1. done setting video asset attributes to source = " + videoAssetSource[0];
     textArea[0].innerHTML += "\n2. start setting video element attributes from w = " + videoAssetWidth[0] + " and h = " + videoAssetHeight[0];
@@ -106,6 +102,20 @@ AFRAME.registerComponent('markersstart', {
         console.log("a baseVideo registration #" + myVideoAsset.id + " and source " + myVideoAsset.src);
         console.log("b baseVideo registration #" + videoAsset[0].id + " and source " + videoAsset[0].src);
         console.log("c baseVideo registration src = " + videoAssetSource[0]);
+    },
+
+    update: function () {
+
+        if (initialized == 0 && (myVideoAsset.height == 0 || myVideoAsset.width == 0)) {
+
+            if (videoAssetHeight.length == 0) videoAssetHeight.push(myVideoAsset.height);
+            if (videoAssetWidth.length == 0) videoAssetWidth.push(myVideoAsset.width);
+
+            console.log("d baseVideo registration h = " + videoAssetHeight[0]);
+            console.log("e baseVideo registration w = " + videoAssetWidth[0]);
+        }
+        else
+            initialized = 1;
     }
 });
 
