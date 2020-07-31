@@ -130,8 +130,8 @@ AFRAME.registerComponent('button', {
         if (videoElement.length == 0) videoElement.push(myVideoElement);
         else videoElement[1] = myVideoElement;
         
-        myMarker.addEventListener('markerFound', MarkerFound(myMarker.id));
         myMarker.addEventListener('markerLost', MarkerLost);
+        myMarker.addEventListener('markerFound', MarkerFound(myMarker.id));        
         myVideoElement.addEventListener("loadedmetadata", VideoElementLoaded);
     }
 });
