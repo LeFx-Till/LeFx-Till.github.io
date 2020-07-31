@@ -97,7 +97,7 @@ AFRAME.registerComponent('markers_start', {
     }
 });
 
-AFRAME.registerComponent('baseVideo', {
+AFRAME.registerComponent('basevideo', {
 
     init: function () {
 
