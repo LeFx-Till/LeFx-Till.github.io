@@ -81,7 +81,7 @@ AFRAME.registerComponent('basevideo', {
     }
 });
 
-//AFRAME.registerComponent('markers_start', {
+//AFRAME.registerComponent('markersstart', {
 
 //    init: function () {
             
