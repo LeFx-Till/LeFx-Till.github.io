@@ -3,6 +3,7 @@
 var initialized = 0;
 var currentMarkerID = -1;
 var videoAsset = [];
+var videoElement= [];
 var videoAssetSource = [];
 var videoAssetWidth = [];
 var videoAssetHeight = [];
@@ -15,17 +16,20 @@ function ButtonClicked() {
 
 }
 
-function MarkerFound(markerID, videoElement) {
+function MarkerFound(markerID, currentVideoElement) {
 
     currentMarkerID = String(markerID).split('_')[1];        
 
-    textArea[0].innerHTML = "found marker " + markerID + " with id = " + currentMarkerID + " and current video element " + videoElement;
+    textArea[0].innerHTML = "found marker " + markerID + " with id = " + currentMarkerID + " and current video element " + currentVideoElement;
     textArea[0].innerHTML += "\n\n0. start setting video asset attributes from source = " + videoAsset[0].src;
 
     if (currentMarkerID < 10) videoAsset[0].src = 'media/Video_00' + currentMarkerID + '.mp4';
     else videoAsset[0].src = 'media/Video_0' + currentMarkerID + '.mp4';
 
-    myVideoAsset.load();
+    if (videoElement.length == 0) videoElement.push(currentVideoElement);
+    else videoElement[1] = currentVideoElement;
+
+    videoAsset[0].load();
 }
 
 function MarkerLost() {
@@ -41,7 +45,7 @@ function MarkerLost() {
     //button.hidden = true;
 }
 
-function VideoAssetMetaDataLoaded(videoelement) {
+function VideoAssetLoaded() {
 
     if (initialized == 0) {
 
@@ -59,25 +63,25 @@ function VideoAssetMetaDataLoaded(videoelement) {
     if (videoAssetWidth[0] < videoAssetHeight[0]) {
 
         var widthEl = 3 * videoAssetWidth[0] / videoAssetHeight[0];
-        videoElement.setAttribute("width", String(widthEl));
-        videoElement.setAttribute("height", "3");
+        videoElement[0].setAttribute("width", String(widthEl));
+        videoElement[0].setAttribute("height", "3");
     }
     else {
 
         var heightEl = 3 * videoAssetHeight[0] / videoAssetWidth[0];
-        videoElement.setAttribute("width", "3");
-        videoElement.setAttribute("height", String(heightEl));
+        videoElement[0].setAttribute("width", "3");
+        videoElement[0].setAttribute("height", String(heightEl));
     }
 
-    //videoElement.load();
+    videoElement.load();
 
-    text.innerHTML += "\n3. done setting video element attributes to w = " + videoElement[0].width + " and h = " + videoElement.height;
-    text.innerHTML += "\n4. I am ready to play the correct video";
+    textArea[0].innerHTML += "\n3. done setting video element attributes to w = " + videoElement[0].width + " and h = " + videoElement.height;
+    textArea[0].innerHTML += "\n4. I am ready to play the correct video";
 }
 
-function VideoElementMetaDataLoaded() {
+function VideoElementLoaded() {
 
-    //console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
+    textArea[0].innerHTML += "\n5. loaded video element data";    
 }
 
 AFRAME.registerComponent('markersstart', {
@@ -93,7 +97,7 @@ AFRAME.registerComponent('markersstart', {
         if (playButton.length == 0) playButton.push(myButton);
         
         var myVideoAsset = document.querySelector("video");
-        myVideoAsset.addEventListener("loadedMetaData", VideoAssetMetaDataLoaded);
+        myVideoAsset.addEventListener("loadedMetaData", VideoAssetLoaded);
 
         if (videoAsset.length == 0) videoAsset.push(myVideoAsset);
         if (videoAssetSource.length == 0) videoAssetSource.push(myVideoAsset.src);
@@ -113,11 +117,9 @@ AFRAME.registerComponent('button', {
         const myVideoElement = this.el.querySelector('a-video');
 
         console.log("marker registration for " + this.el.id + " with video element #" + myVideoElement.id + " and its source " + myVideoElement.src);        
-        console.log("found text area, with innerHTML = " + textArea[0].innerHTML);
-        console.log("found button, with innerHTML = " + playButton[0].innerHTML);
-
+        
         myMarker.addEventListener("markerFound", MarkerFound(myMarker.id, myVideoElement));
         myMarker.addEventListener("markerLost", MarkerLost);
-        myVideoElement.addEventListener("loadedMetaData", VideoElementMetaDataLoaded);
+        myVideoElement.addEventListener("loadedMetaData", VideoElementLoaded);
     }
 });
