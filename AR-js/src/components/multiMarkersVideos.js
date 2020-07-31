@@ -34,7 +34,7 @@ function MarkerFound(markerID) {
 
 function MarkerLost() {
 
-    //console.log("added lost-event listener for marker  #" + currentMarkerID);
+    console.log("added lost-event listener for marker  #" + currentMarkerID);
     //foundMarker = 0;
     //setVideoAsset = 0;
     //setVideoElement = 0;
