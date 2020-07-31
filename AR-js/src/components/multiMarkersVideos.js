@@ -70,7 +70,7 @@ var playButton = [];
 //    //console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
 //}
 
-AFRAME.registerComponent('basevideo', {
+AFRAME.registerComponent('markersstart', {
 
     init: function () {
 
