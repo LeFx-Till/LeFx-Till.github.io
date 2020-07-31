@@ -48,6 +48,25 @@ AFRAME.registerComponent('markers_start', {
     },
 });
 
+AFRAME.registerComponent('baseVideo', {
+
+    init: function () {
+
+        const myVideoAsset = this.el;        
+        var myTextArea = document.querySelector("textarea");
+        var myButton = document.querySelector("button");
+
+        console.log("baseVideo registration ä" + myVideoAsset.id + " and source " + myVideoAsset.src);
+        console.log("found text area, with innerHTML = " + myTextArea.innerHTML);
+        console.log("found button, with source #" + myButton.innerHTML);
+
+        myVideoAsset.addEventListener("loadedMetaData", () => {
+
+            console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
+        });
+    },
+});
+
 AFRAME.registerComponent('registerevents', {
 
     init: function () {
