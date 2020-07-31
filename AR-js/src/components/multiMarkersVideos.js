@@ -96,11 +96,11 @@ AFRAME.registerComponent('markersstart', {
         if (playButton.length == 0) playButton.push(myButton);
         if (videoAsset.length == 0) videoAsset.push(myVideoAsset);
         if (videoAssetSource.length == 0) videoAssetSource.push(myVideoAsset.src);
-
-        myTextArea.innerHTML = "Hey Tillos";        
+        
         myButton.addEventListener('click', ButtonClicked);
         myVideoAsset.addEventListener('loadedmetadata', VideoAssetLoaded);
 
+        myTextArea.innerHTML = "Hey Tillos";
         console.log("found text area, with innerHTML = " + textArea[0].innerHTML);
         console.log("found button, with innerHTML = " + playButton[0].innerHTML);
         console.log("a baseVideo registration #" + myVideoAsset.id + " and source " + myVideoAsset.src);
