@@ -71,7 +71,7 @@ AFRAME.registerComponent('basevideo', {
 
     init: function () {
 
-        const myVideoAsset = this.el;
+        var myVideoAsset = document.querySelector("video");
         if (videoAsset.length == 0) videoAsset.push(myVideoAsset);
 
         console.log("a baseVideo registration #" + myVideoAsset.id + " and source " + myVideoAsset.src);
