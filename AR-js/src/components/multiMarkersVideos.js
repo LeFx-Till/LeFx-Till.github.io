@@ -39,12 +39,6 @@ AFRAME.registerComponent('markers_start', {
         console.log("markers_start registration for " + this.el.id + " with video asset #" + myVideoAsset.id + " and its source " + myVideoAsset.src);
         console.log("found text area, with innerHTML = " + myTextArea.innerHTML);
         console.log("found button, with source #" + myButton.innerHTML);
-
-        videoElement.addEventListener("loadedMetaData", () => {
-
-            console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
-
-        });
     },
 });
 
