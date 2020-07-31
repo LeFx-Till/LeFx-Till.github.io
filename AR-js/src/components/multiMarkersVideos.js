@@ -11,17 +11,20 @@ function ButtonClicked() {
 
 }
 
-function MarkerFound() {
+function MarkerFound(markerID, videoElement) {
+   
+    currentMarkerID = String(markerID).split('_')[1];        
 
-    //console.log("added found-event listener for marker  #" + currentMarkerID);
-    //var markerID = String(marker.id).split('_');
+    text.innerHTML = "found marker " + markerID + " with id = " + currentMarkerID + " and current video element " + videoElement;
 
-    //currentMarkerID = markerID[1];
-    //currentVideoElement = videoElement;
+    text.innerHTML += "\n\n0. start setting video asset attributes from source = " + myVideoAsset[0].src;
 
-    //text.innerHTML = "current marker id = " + currentMarkerID;
+    if (currentMarkerID < 10) myVideoAsset[0].src = 'media/Video_00' + currentMarkerID + '.mp4';
+    else myVideoAsset[0].src = 'media/Video_0' + currentMarkerID + '.mp4';
 
-    //SetVideoAttributes();
+    //myVideoAsset.load();
+
+    text.innerHTML += "\n\n1. done setting video asset attributes to source = " + myVideoAsset[0].src;
 }
 
 function MarkerLost() {
@@ -45,19 +48,6 @@ function VideoAssetMetaDataLoaded() {
 function VideoElementMetaDataLoaded() {
 
     //console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
-}
-
-function SetVideoAttributes() {
-
-    if (currentMarkerID < 0)
-        return;
-
-    console.log("0. start setting video asset attributes ");
-
-    if (currentMarkerID < 10) myVideoAsset[0].src = 'media/Video_00' + currentMarkerID + '.mp4';
-    else myVideoAsset[0].src = 'media/Video_0' + currentMarkerID + '.mp4';
-
-    myVideoAsset.load();
 }
 
 AFRAME.registerComponent('basevideo', {
@@ -100,8 +90,8 @@ AFRAME.registerComponent('button', {
         console.log("marker registration for " + this.el.id + " with video element #" + myVideoElement.id + " and its source " + myVideoElement.src);        
         console.log("found text area, with innerHTML = " + textArea[0].innerHTML);
         console.log("found button, with innerHTML = " + playButton[0].innerHTML);
-        
-        myMarker.addEventListener("markerFound", MarkerFound);
+
+        myMarker.addEventListener("markerFound", MarkerFound(myMarker.id, myVideoElement));
         myMarker.addEventListener("markerLost", MarkerLost);
         myVideoElement.addEventListener("loadedMetaData", VideoElementMetaDataLoaded);
     }
