@@ -60,28 +60,11 @@ function SetVideoAttributes() {
     myVideoAsset.load();
 }
 
-
-AFRAME.registerComponent('button', {
-    init: function () {
-
-        const marker = this.el;
-        const videoElement = this.el.querySelector('a-video');
-
-        console.log("marker registration for " + this.el.id + " with video element #" + videoElement.id + " and its source " + videoElement.src);
-        //console.log("found text area in button, with innerHTML = " + textArea.innerHTML);
-        //console.log("found video asset in button, with source #" + myVideoAsset.src);
-                
-        marker.addEventListener("markerFound", MarkerFound);
-        marker.addEventListener("markerLost", MarkerLost);
-        videoElement.addEventListener("loadedMetaData", VideoElementMetaDataLoaded);
-    }
-});
-
 AFRAME.registerComponent('markers_start', {
 
     init: function () {
 
-        var myVideoAsset = document.querySelector("video");        
+        var myVideoAsset = document.querySelector("video");
         var myTextArea = document.querySelector("textarea");
         var myButton = document.querySelector("button");
 
@@ -110,5 +93,21 @@ AFRAME.registerComponent('basevideo', {
         console.log("found button, with source #" + myButton.innerHTML);
 
         myVideoAsset.addEventListener("loadedMetaData", VideoAssetMetaDataLoaded);
+    }
+});
+
+AFRAME.registerComponent('button', {
+    init: function () {
+
+        const marker = this.el;
+        const videoElement = this.el.querySelector('a-video');
+
+        console.log("marker registration for " + this.el.id + " with video element #" + videoElement.id + " and its source " + videoElement.src);
+        //console.log("found text area in button, with innerHTML = " + textArea.innerHTML);
+        //console.log("found video asset in button, with source #" + myVideoAsset.src);
+                
+        marker.addEventListener("markerFound", MarkerFound);
+        marker.addEventListener("markerLost", MarkerLost);
+        videoElement.addEventListener("loadedMetaData", VideoElementMetaDataLoaded);
     }
 });
