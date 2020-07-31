@@ -19,7 +19,7 @@ AFRAME.registerComponent('registerevents', {
     init: function () {
 
         const marker = this.el;
-        const videoElement = this.el.querySelector('a-video');
+        const videoElement = this.el.querySelector('a-video');        
 
         textArea = document.querySelector("#textArea");
         myVideoAsset = document.querySelector("#Video_Asset");
