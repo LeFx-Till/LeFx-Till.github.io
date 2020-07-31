@@ -47,7 +47,6 @@ function VideoElementMetaDataLoaded() {
     //console.log("added loadedMetaData-event listener for marker  #" + currentMarkerID + " video element " + videoElement.id);
 }
 
-
 function SetVideoAttributes() {
 
     if (currentMarkerID < 0)
@@ -60,6 +59,7 @@ function SetVideoAttributes() {
 
     myVideoAsset.load();
 }
+
 
 AFRAME.registerComponent('button', {
     init: function () {
@@ -81,15 +81,19 @@ AFRAME.registerComponent('markers_start', {
 
     init: function () {
 
-        var myVideoAsset = document.querySelector("video");
+        var myVideoAsset = document.querySelector("video");        
         var myTextArea = document.querySelector("textarea");
         var myButton = document.querySelector("button");
 
-        console.log("markers_start registration for " + this.el.id + " with video asset #" + myVideoAsset.id + " and its source " + myVideoAsset.src);
-        console.log("found text area, with innerHTML = " + myTextArea.innerHTML);
-        console.log("found button, with source #" + myButton.innerHTML);
+        if (videoAsset.length == 0) videoAsset.push(myVideoAsset);
+        if (textArea.length == 0) textArea.push(myTextArea);
+        if (playButton.length == 0) playButton.push(myButton);
 
-        myButton.addEventListener('click', ButtonClicked);
+        console.log("markers_start registration for " + this.el.id + " with video asset #" + videoAsset[0].id + " and its source " + videoAsset[0].src);
+        console.log("found text area, with innerHTML = " + textArea[0].innerHTML);
+        console.log("found button, with innerHTML = " + playButton[0].innerHTML);
+
+        playButton[0].addEventListener('click', ButtonClicked);
     }
 });
 
@@ -101,7 +105,7 @@ AFRAME.registerComponent('baseVideo', {
         var myTextArea = document.querySelector("textarea");
         var myButton = document.querySelector("button");
 
-        console.log("baseVideo registration ä" + myVideoAsset.id + " and source " + myVideoAsset.src);
+        console.log("baseVideo registration #" + myVideoAsset.id + " and source " + myVideoAsset.src);
         console.log("found text area, with innerHTML = " + myTextArea.innerHTML);
         console.log("found button, with source #" + myButton.innerHTML);
 
