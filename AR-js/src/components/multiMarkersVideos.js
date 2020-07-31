@@ -16,19 +16,16 @@ function ButtonClicked() {
 
 }
 
-function MarkerFound(markerID, currentVideoElement) {
+function MarkerFound(markerID) {
 
     currentMarkerID = String(markerID).split('_')[1];        
 
-    textArea[0].innerHTML = "found marker " + markerID + " with id = " + currentMarkerID + " and current video element " + currentVideoElement;
+    textArea[0].innerHTML = "found marker " + markerID + " with id = " + currentMarkerID + " and current video element " + videoElement[0];
     textArea[0].innerHTML += "\n\n0. start setting video asset attributes from source = " + videoAsset[0].src;
 
     if (currentMarkerID < 10) videoAsset[0].src = 'media/Video_00' + currentMarkerID + '.mp4';
     else videoAsset[0].src = 'media/Video_0' + currentMarkerID + '.mp4';
-
-    if (videoElement.length == 0) videoElement.push(currentVideoElement);
-    else videoElement[1] = currentVideoElement;
-
+    
     videoAsset[0].load();
 }
 
@@ -73,7 +70,7 @@ function VideoAssetLoaded() {
         videoElement[0].setAttribute("height", String(heightEl));
     }
 
-    videoElement.load();
+    videoElement[0].load();
 
     textArea[0].innerHTML += "\n3. done setting video element attributes to w = " + videoElement[0].width + " and h = " + videoElement.height;
     textArea[0].innerHTML += "\n4. I am ready to play the correct video";
@@ -117,8 +114,11 @@ AFRAME.registerComponent('button', {
         const myVideoElement = this.el.querySelector('a-video');
 
         console.log("marker registration for " + this.el.id + " with video element #" + myVideoElement.id + " and its source " + myVideoElement.src);        
+
+        if (videoElement.length == 0) videoElement.push(myVideoElement);
+        else videoElement[1] = myVideoElement;
         
-        myMarker.addEventListener("markerFound", MarkerFound(myMarker.id, myVideoElement));
+        myMarker.addEventListener("markerFound", MarkerFound(myMarker.id));
         myMarker.addEventListener("markerLost", MarkerLost);
         myVideoElement.addEventListener("loadedMetaData", VideoElementLoaded);
     }
