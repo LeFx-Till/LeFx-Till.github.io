@@ -119,6 +119,6 @@ AFRAME.registerComponent('button', {
         
         myMarker.addEventListener('markerFound', MarkerFound(myMarker.id));
         myMarker.addEventListener('markerLost', MarkerLost);
-        myVideoElement.addEventListener("loadedMetaData", VideoElementLoaded);
+        myVideoElement.addEventListener("loadedmetadata", VideoElementLoaded);
     }
 });
