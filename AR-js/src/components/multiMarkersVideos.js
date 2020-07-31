@@ -1,18 +1,16 @@
 
 //Global Variable
 var currentMarkerID = -1;
-var myVideoAsset;
+var myVideoAsset = document.querySelector("video");
 var myVideoElement;
-var textArea;
+var textArea = document.querySelector("#textArea");
 
 AFRAME.registerComponent('button', {
     init: function () {
 
         console.log("button registration for " + this.el.id);
-        textArea = document.querySelector("#textArea");
-
-        myVideoAsset = document.querySelector("video");
-        console.log("found video asset with source#" + myVideoAsset.src);
+        console.log("found text area in button, with innerHTML = " + textArea.innerHTML);
+        console.log("found video asset in button, with source #" + myVideoAsset.src);
     }
 });
 
@@ -23,8 +21,9 @@ AFRAME.registerComponent('registerevents', {
         const marker = this.el;
         const videoElement = this.el.querySelector('a-video');        
 
-        textArea = document.querySelector("#textArea");
-        myVideoAsset = document.querySelector("#Video_Asset");
+        console.log("marker registration for " + this.el.id + " with video element #" + videoElement.id + " and its source " + videoElement.src);
+        console.log("found text area in button, with innerHTML = " + textArea.innerHTML);
+        console.log("found video asset in button, with source #" + myVideoAsset.src);
         
 
         marker.addEventListener("markerFound", () => {
