@@ -60,15 +60,26 @@ function SetVideoAttributes() {
     myVideoAsset.load();
 }
 
-AFRAME.registerComponent('markers_start', {
+AFRAME.registerComponent('basevideo', {
 
     init: function () {
 
-        var myVideoAsset = document.querySelector("video");
+        const myVideoAsset = this.el;
+        if (videoAsset.length == 0) videoAsset.push(myVideoAsset);
+
+        console.log("baseVideo registration #" + myVideoAsset.id + " and source " + myVideoAsset.src);
+        
+        myVideoAsset.addEventListener("loadedMetaData", VideoAssetMetaDataLoaded);
+    }
+});
+
+AFRAME.registerComponent('markers_start', {
+
+    init: function () {
+            
         var myTextArea = document.querySelector("textarea");
         var myButton = document.querySelector("button");
-
-        if (videoAsset.length == 0) videoAsset.push(myVideoAsset);
+        
         if (textArea.length == 0) textArea.push(myTextArea);
         if (playButton.length == 0) playButton.push(myButton);
 
@@ -80,34 +91,20 @@ AFRAME.registerComponent('markers_start', {
     }
 });
 
-AFRAME.registerComponent('basevideo', {
 
-    init: function () {
-
-        const myVideoAsset = this.el;
-        var myTextArea = document.querySelector("textarea");
-        var myButton = document.querySelector("button");
-
-        console.log("baseVideo registration #" + myVideoAsset.id + " and source " + myVideoAsset.src);
-        console.log("found text area, with innerHTML = " + myTextArea.innerHTML);
-        console.log("found button, with source #" + myButton.innerHTML);
-
-        myVideoAsset.addEventListener("loadedMetaData", VideoAssetMetaDataLoaded);
-    }
-});
 
 AFRAME.registerComponent('button', {
     init: function () {
 
-        const marker = this.el;
-        const videoElement = this.el.querySelector('a-video');
+        const myMarker = this.el;
+        const myVideoElement = this.el.querySelector('a-video');
 
-        console.log("marker registration for " + this.el.id + " with video element #" + videoElement.id + " and its source " + videoElement.src);
+        console.log("marker registration for " + this.el.id + " with video element #" + myVideoElement.id + " and its source " + myVideoElement.src);
         //console.log("found text area in button, with innerHTML = " + textArea.innerHTML);
         //console.log("found video asset in button, with source #" + myVideoAsset.src);
                 
-        marker.addEventListener("markerFound", MarkerFound);
-        marker.addEventListener("markerLost", MarkerLost);
-        videoElement.addEventListener("loadedMetaData", VideoElementMetaDataLoaded);
+        myMarker.addEventListener("markerFound", MarkerFound);
+        myMarker.addEventListener("markerLost", MarkerLost);
+        myVideoElement.addEventListener("loadedMetaData", VideoElementMetaDataLoaded);
     }
 });
