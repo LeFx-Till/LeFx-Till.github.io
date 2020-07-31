@@ -40,8 +40,8 @@
 	<a-scene markers_start embedded arjs="debugUIEnabled: false; sourceType: webcam" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
 		<a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .intersectable; useWorldCoordinates: true;"></a-entity>
 		<a-entity camera></a-entity>
-		<a-assets>
-			<video basevideo id="Video_Asset" autoplay="false" loop crossorigin="anonymous" src="media/Video_000.mp4" webkit-playsinline playsinline controls muted></video>
+		<a-assets basevideo>
+			<video  id="Video_Asset" autoplay="false" loop crossorigin="anonymous" src="media/Video_000.mp4" webkit-playsinline playsinline controls muted></video>
 		</a-assets>
 
 		<a-marker id="marker_0" type="pattern" url="marker/border_pattern_000.patt" emitevents="true" button class="iOS" registerevents="">
